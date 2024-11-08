@@ -16,6 +16,10 @@ namespace ExamenProject
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 800;
+            //_graphics.IsFullScreen = true;
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -38,7 +42,7 @@ namespace ExamenProject
 
         public void InitializeGameObject()
         {
-            hero = new Hero(_texture);
+            hero = new Hero(_texture, _graphics);
         }
 
         protected override void Update(GameTime gameTime)

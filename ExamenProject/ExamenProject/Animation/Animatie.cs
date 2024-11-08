@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ExamenProject.Animation
 {
@@ -54,6 +55,7 @@ namespace ExamenProject.Animation
                     frames.Add(new AnimationFrame(new Rectangle(x, y, widthOfFrame, heightOfFrame)));
                 }
             }
+            Debug.Write(frames.Count());
         }
     }
 }
