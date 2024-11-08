@@ -26,3 +26,4 @@ C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\obj\Debug\net6.0\ref\ExamenProject.dll
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\characters.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\TestSheet.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\obj\Debug\net6.0\ExamenProject.sourcelink.json

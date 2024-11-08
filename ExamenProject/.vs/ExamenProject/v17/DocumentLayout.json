@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\animation\\animationframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\animation\\animationframe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -82,7 +82,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Animatie.cs",
               "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Animation\\Animatie.cs",
               "RelativeDocumentMoniker": "ExamenProject\\Animation\\Animatie.cs",
@@ -90,12 +90,11 @@
               "RelativeToolTip": "ExamenProject\\Animation\\Animatie.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAQwCAAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T10:24:23.802Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-08T10:24:23.802Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AnimationFrame.cs",
               "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Animation\\AnimationFrame.cs",
               "RelativeDocumentMoniker": "ExamenProject\\Animation\\AnimationFrame.cs",
@@ -103,12 +102,11 @@
               "RelativeToolTip": "ExamenProject\\Animation\\AnimationFrame.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T10:22:34.839Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-08T10:22:34.839Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "IGameObject.cs",
               "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Interfaces\\IGameObject.cs",
               "RelativeDocumentMoniker": "ExamenProject\\Interfaces\\IGameObject.cs",
@@ -116,8 +114,7 @@
               "RelativeToolTip": "ExamenProject\\Interfaces\\IGameObject.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T10:08:34.288Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-08T10:08:34.288Z"
             },
             {
               "$type": "Document",
@@ -127,14 +124,14 @@
               "RelativeDocumentMoniker": "ExamenProject\\Hero.cs",
               "ToolTip": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Hero.cs",
               "RelativeToolTip": "ExamenProject\\Hero.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAACoAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-08T10:05:37.167Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Game1.cs",
               "RelativeDocumentMoniker": "ExamenProject\\Game1.cs",
@@ -155,8 +152,7 @@
               "RelativeToolTip": "ExamenProject\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T09:37:37.336Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-08T09:37:37.336Z"
             }
           ]
         }
