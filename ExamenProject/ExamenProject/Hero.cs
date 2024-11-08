@@ -18,23 +18,21 @@ namespace ExamenProject
         private GraphicsDeviceManager graphics;
         private Texture2D heroTexture;
         private Animatie animation;
+        private Movement move;
         private Vector2 position;
-
-        private int posX = 350;
-        private int posY = 400;
-        private int speed = 1;
 
         public Hero(Texture2D texture, GraphicsDeviceManager graphics)
         {
             this.graphics = graphics;
             this.heroTexture = texture;
+            this.move = new Movement();
 
-            animation = new Animatie();
-            animation.GetFramesFromTextureProperties(texture.Width/4, texture.Height/4, 3, 1);
+            animation = new Animatie(move);
+            animation.GetFramesFromTextureProperties(texture.Width/4, texture.Height, 3, 4);
 
-            posX = graphics.PreferredBackBufferWidth / 2 - texture.Width / 12;
-            posY = graphics.PreferredBackBufferHeight / 2 - texture.Height / 4;
-            position = new Vector2(posX, posY);
+            move.posX = graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
+            move.posY = graphics.PreferredBackBufferHeight / 2 - texture.Height / 8;
+            position = new Vector2(move.posX, move.posY);
         }
 
         public void Update(GameTime gameTime)
@@ -50,35 +48,10 @@ namespace ExamenProject
 
         public void Move()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
-                speed = 2;
-            else
-                speed = 1;
+            move.MoveInputs();
+            move.MoveBoundaries(graphics, heroTexture);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                posY -= speed;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                posY += speed;
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                posX -= speed;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                posX += speed;
-
-            Boundaries();
-
-            position = new Vector2(posX, posY);
-        }
-
-        private void Boundaries()
-        {
-            if (graphics.PreferredBackBufferWidth - heroTexture.Width / 12 < posX)
-                posX = graphics.PreferredBackBufferWidth - heroTexture.Width / 12;
-            if (posX < 10)
-                posX = 10;
-            if (graphics.PreferredBackBufferHeight - heroTexture.Height / 4 < posY)
-                posY = graphics.PreferredBackBufferHeight - heroTexture.Height / 4;
-            if (posY < 10)
-                posY = 10;
+            position = new Vector2(move.posX, move.posY);
         }
     }
 }
