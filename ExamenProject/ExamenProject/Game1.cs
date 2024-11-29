@@ -35,7 +35,7 @@ namespace ExamenProject
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
-            _texture = Content.Load<Texture2D>("characters");
+            _texture = Content.Load<Texture2D>("Warrior_Blue_Full");
 
             InitializeGameObject();
         }

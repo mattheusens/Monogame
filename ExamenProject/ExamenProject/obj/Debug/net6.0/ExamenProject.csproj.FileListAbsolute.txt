@@ -1,4 +1,3 @@
-C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\charactersGold.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\ExamenProject.exe
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\ExamenProject.deps.json
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\ExamenProject.runtimeconfig.json
@@ -24,6 +23,5 @@ C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\obj\Debug\net6.0\ExamenProject.pdb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\obj\Debug\net6.0\ExamenProject.genruntimeconfig.cache
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\obj\Debug\net6.0\ref\ExamenProject.dll
-C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\characters.xnb
-C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\TestSheet.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\obj\Debug\net6.0\ExamenProject.sourcelink.json
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Warrior_Blue_Full.xnb

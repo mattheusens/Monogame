@@ -17,7 +17,7 @@ namespace ExamenProject
     {
         private GraphicsDeviceManager graphics;
         private Texture2D heroTexture;
-        private Animatie animation;
+        private Animatie moveAnimation;
         private Movement move;
         private Vector2 position;
 
@@ -27,23 +27,23 @@ namespace ExamenProject
             this.heroTexture = texture;
             this.move = new Movement();
 
-            animation = new Animatie(move);
-            animation.GetFramesFromTextureProperties(texture.Width/4, texture.Height, 3, 4);
+            moveAnimation = new Animatie(move);
+            moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height/4, 12, 2);
 
             move.posX = graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
-            move.posY = graphics.PreferredBackBufferHeight / 2 - texture.Height / 8;
+            move.posY = graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
             position = new Vector2(move.posX, move.posY);
         }
 
         public void Update(GameTime gameTime)
         {
-            animation.Update(gameTime);
+            moveAnimation.Update(gameTime);
             Move();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(heroTexture, position, animation.CurrentFrame.SourceRectangle, Color.White);
+            spriteBatch.Draw(heroTexture, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
         }
 
         public void Move()

@@ -19,13 +19,14 @@ namespace ExamenProject
         public bool moveDown = false;
         public bool moveLeft = false;
         public bool moveRight = false;
+        public string lastMove = "right";
 
         public void MoveInputs()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
-                speed = 2;
+                speed = 4;
             else
-                speed = 1;
+                speed = 2;
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up)){
                 posY -= speed;
@@ -38,10 +39,12 @@ namespace ExamenProject
             if (Keyboard.GetState().IsKeyDown(Keys.Left)){
                 posX -= speed;
                 moveLeft = true;
+                lastMove = "left";
             }else moveLeft = false;
             if (Keyboard.GetState().IsKeyDown(Keys.Right)){
                 posX += speed;
                 moveRight = true;
+                lastMove = "right";
             }else moveRight = false;
         }
 
@@ -52,7 +55,7 @@ namespace ExamenProject
             if (posX < 10)
                 posX = 10;
             if (graphics.PreferredBackBufferHeight - heroTexture.Height / 4 < posY)
-                posY = graphics.PreferredBackBufferHeight - heroTexture.Height / 4;
+                posY = graphics.PreferredBackBufferHeight - heroTexture.Height / 8;
             if (posY < 10)
                 posY = 10;
         }

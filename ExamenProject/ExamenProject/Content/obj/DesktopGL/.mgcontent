@@ -4,13 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/characters.png</File>
-    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/charactersGold.png</File>
-    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/TestSheet.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Warrior_Blue_Full.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
