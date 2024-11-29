@@ -13,5 +13,6 @@ namespace ExamenProject.Interfaces
     {
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
+        void Move();
     }
 }

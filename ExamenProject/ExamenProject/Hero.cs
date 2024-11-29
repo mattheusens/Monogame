@@ -16,12 +16,19 @@ namespace ExamenProject
     internal class Hero:IGameObject
     {
         private GraphicsDeviceManager graphics;
+
         private Texture2D heroTexture;
+        private Texture2D hitboxTexture;
+
         private Animatie moveAnimation;
         private Movement move;
-        private Vector2 position;
 
-        public Hero(Texture2D texture, GraphicsDeviceManager graphics)
+        private Vector2 position;
+        private Vector2 positionHitbox;
+        private Rectangle rectangle;
+        private Rectangle rectangle2;
+
+        public Hero(Texture2D texture, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
             this.graphics = graphics;
             this.heroTexture = texture;
@@ -33,6 +40,10 @@ namespace ExamenProject
             move.posX = graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
             move.posY = graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
             position = new Vector2(move.posX, move.posY);
+
+            hitboxTexture = new Texture2D(graphicsDevice, 1, 1);
+            hitboxTexture.SetData(new[] { Color.White });
+            positionHitbox = new Vector2(move.posX, move.posY);
         }
 
         public void Update(GameTime gameTime)
@@ -43,7 +54,11 @@ namespace ExamenProject
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(heroTexture, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+            rectangle = moveAnimation.CurrentFrame.SourceRectangle;
+            rectangle2 = new Rectangle((int)position.X, (int)position.Y, rectangle.Width/2, rectangle.Height/2);
+
+            spriteBatch.Draw(hitboxTexture, positionHitbox, rectangle2, Color.Red);
+            spriteBatch.Draw(heroTexture, position, rectangle, Color.White);
         }
 
         public void Move()
@@ -52,6 +67,7 @@ namespace ExamenProject
             move.MoveBoundaries(graphics, heroTexture);
 
             position = new Vector2(move.posX, move.posY);
+            positionHitbox = new Vector2(move.posX + rectangle.Width/4 , move.posY + rectangle.Height/4);
         }
     }
 }

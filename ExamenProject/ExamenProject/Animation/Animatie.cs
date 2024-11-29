@@ -49,32 +49,12 @@ namespace ExamenProject.Animation
 
         public void ChooseFrames()
         {
-            LeftAndRightMovement();
-            UpAndDownMovement();
-        }
-
-        private void UpAndDownMovement()
-        {
-            if ((move.moveUp || move.moveDown) && move.lastMove == "right")
+            if (move.moveRight || (move.moveUp || move.moveDown) && move.lastMove == "right")
             {
                 lowBoundaryCounter = 12;
                 highBoundaryCounter = 17;
             }
-            else if ((move.moveUp || move.moveDown) && move.lastMove == "left")
-            {
-                lowBoundaryCounter = 18;
-                highBoundaryCounter = 23;
-            }
-        }
-
-        private void LeftAndRightMovement()
-        {
-            if (move.moveRight)
-            {
-                lowBoundaryCounter = 12;
-                highBoundaryCounter = 17;
-            }
-            else if (move.moveLeft)
+            else if (move.moveLeft || (move.moveUp || move.moveDown) && move.lastMove == "left")
             {
                 lowBoundaryCounter = 18;
                 highBoundaryCounter = 23;

@@ -7,17 +7,17 @@ namespace ExamenProject
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
 
-        private Texture2D _texture;
+        private Texture2D textureHero;
         Hero hero;
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 800;
-            _graphics.PreferredBackBufferHeight = 800;
+            graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 1500;
+            graphics.PreferredBackBufferHeight = 900;
             //_graphics.IsFullScreen = true;
 
             Content.RootDirectory = "Content";
@@ -33,16 +33,16 @@ namespace ExamenProject
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
-            _texture = Content.Load<Texture2D>("Warrior_Blue_Full");
+            textureHero = Content.Load<Texture2D>("Warrior_Blue_Full");
 
             InitializeGameObject();
         }
 
         public void InitializeGameObject()
         {
-            hero = new Hero(_texture, _graphics);
+            hero = new Hero(textureHero, graphics, GraphicsDevice);
         }
 
         protected override void Update(GameTime gameTime)
@@ -58,9 +58,9 @@ namespace ExamenProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);
-            _spriteBatch.Begin();
-            hero.Draw(_spriteBatch);
-            _spriteBatch.End();
+            spriteBatch.Begin();
+            hero.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
