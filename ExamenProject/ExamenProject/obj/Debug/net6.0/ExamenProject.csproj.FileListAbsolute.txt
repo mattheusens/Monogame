@@ -25,3 +25,5 @@ C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\obj\Debug\net6.0\ref\ExamenProject.dll
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\obj\Debug\net6.0\ExamenProject.sourcelink.json
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Warrior_Blue_Full.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Grass1x1.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Water.xnb

@@ -4,12 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace ExamenProject
 {
@@ -26,7 +20,7 @@ namespace ExamenProject
         private Vector2 position;
         private Vector2 positionHitbox;
         private Rectangle rectangle;
-        private Rectangle rectangle2;
+        private Rectangle rectangleHitbox;
 
         public Hero(Texture2D texture, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
@@ -37,8 +31,8 @@ namespace ExamenProject
             moveAnimation = new Animatie(move);
             moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height/4, 12, 2);
 
-            move.posX = graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
-            move.posY = graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
+            move.posX = 50;//graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
+            move.posY = 50;//graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
             position = new Vector2(move.posX, move.posY);
 
             hitboxTexture = new Texture2D(graphicsDevice, 1, 1);
@@ -49,15 +43,21 @@ namespace ExamenProject
         public void Update(GameTime gameTime)
         {
             moveAnimation.Update(gameTime);
+            Fighting();
             Move();
+        }
+
+        public void Fighting()
+        {
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
-            rectangle2 = new Rectangle((int)position.X, (int)position.Y, rectangle.Width/2, rectangle.Height/2);
+            rectangleHitbox = new Rectangle((int)position.X, (int)position.Y, rectangle.Width/2, rectangle.Height/2);
 
-            spriteBatch.Draw(hitboxTexture, positionHitbox, rectangle2, Color.Red);
+            spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Red);
             spriteBatch.Draw(heroTexture, position, rectangle, Color.White);
         }
 
