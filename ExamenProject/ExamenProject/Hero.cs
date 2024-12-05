@@ -9,18 +9,18 @@ namespace ExamenProject
 {
     internal class Hero:IGameObject
     {
-        private GraphicsDeviceManager graphics;
+        GraphicsDeviceManager graphics;
 
-        private Texture2D heroTexture;
-        private Texture2D hitboxTexture;
+        Texture2D heroTexture;
+        Texture2D hitboxTexture;
 
-        private Animatie moveAnimation;
-        private Movement move;
+        Animatie moveAnimation;
+        public Movement move;
 
-        private Vector2 position;
-        private Vector2 positionHitbox;
-        private Rectangle rectangle;
-        private Rectangle rectangleHitbox;
+        Vector2 position;
+        Vector2 positionHitbox;
+        Rectangle rectangle;
+        public Rectangle rectangleHitbox;
 
         public Hero(Texture2D texture, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
@@ -55,7 +55,7 @@ namespace ExamenProject
         public void Draw(SpriteBatch spriteBatch)
         {
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
-            rectangleHitbox = new Rectangle((int)position.X, (int)position.Y, rectangle.Width/2, rectangle.Height/2);
+            rectangleHitbox = new Rectangle((int)positionHitbox.X, (int)positionHitbox.Y, rectangle.Width/2 - 50, rectangle.Height/2 - 50);
 
             spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Red);
             spriteBatch.Draw(heroTexture, position, rectangle, Color.White);
@@ -67,7 +67,7 @@ namespace ExamenProject
             move.MoveBoundaries(graphics, heroTexture);
 
             position = new Vector2(move.posX, move.posY);
-            positionHitbox = new Vector2(move.posX + rectangle.Width/4 , move.posY + rectangle.Height/4);
+            positionHitbox = new Vector2(move.posX + rectangle.Width/4 + 30, move.posY + rectangle.Height/4 + 30);
         }
     }
 }

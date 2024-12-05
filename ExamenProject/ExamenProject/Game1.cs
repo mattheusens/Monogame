@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 namespace ExamenProject
@@ -9,13 +10,18 @@ namespace ExamenProject
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+        private SpriteFont font;
+        private Song song;
 
-        private Texture2D textureHero;
+        Texture2D textureHero;
         Hero hero;
+        Texture2D enemyTexture;
+        Enemy enemy;
 
         List<Block> blocks = new();
         private Texture2D grassTexture;
         private Texture2D waterTexture;
+
 
         public Game1()
         {
@@ -40,15 +46,18 @@ namespace ExamenProject
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
             textureHero = Content.Load<Texture2D>("Warrior_Blue_Full");
+            enemyTexture = Content.Load<Texture2D>("Torch_Blue_Fixed_Full");
+            font = Content.Load<SpriteFont>("Font");
+            song = Content.Load<Song>("Audio/MedievelBackground");
+
             //grassTexture = Content.Load<Texture2D>("Grass1x1");
-            //waterTexture = Content.Load<Texture2D>("Water");
             grassTexture = new Texture2D(GraphicsDevice, 1, 1);
             grassTexture.SetData(new[] { Color.Green });
             waterTexture = new Texture2D(GraphicsDevice, 1, 1);
             waterTexture.SetData(new[] { Color.LightBlue });
 
+            MediaPlayer.Play(song);
             Maps.MakeMaps();
-
             CreateBlocks(0);
 
             InitializeGameObject();
@@ -57,7 +66,10 @@ namespace ExamenProject
         public void InitializeGameObject()
         {
             hero = new Hero(textureHero, graphics, GraphicsDevice);
+            enemy = new Enemy(enemyTexture, graphics, GraphicsDevice, hero.move);
         }
+
+        private Color clr = Color.Gray;
 
         protected override void Update(GameTime gameTime)
         {
@@ -65,16 +77,35 @@ namespace ExamenProject
                 Exit();
 
             hero.Update(gameTime);
+            enemy.Update(gameTime);
+
+            for(int i = 0; i < blocks.Count; i++)
+            {
+                if (hero.rectangleHitbox.Intersects(blocks[i].BoundingBox) && blocks[i].Type == "Water")
+                {
+                    clr = Color.Black;
+                }
+                if (hero.rectangleHitbox.Intersects(blocks[i].BoundingBox) && blocks[i].Type == "Grass")
+                {
+                    clr = Color.Gray;
+                }
+            }
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Gray);
+            GraphicsDevice.Clear(clr);
             spriteBatch.Begin();
+
             for (int i = 0; i < blocks.Count; i++) blocks[i].Draw(spriteBatch);
+
             hero.Draw(spriteBatch);
+            enemy.Draw(spriteBatch);
+
+            spriteBatch.DrawString(font, "Coins: ", new Vector2(20, 20), Color.White);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -21,6 +21,32 @@ namespace ExamenProject
         public bool moveRight = false;
         public string lastMove = "right";
 
+        //Movement for enemy
+        public void FollowPlayer(Movement movePlayer)
+        {
+            if (movePlayer.posX >= posX){ //Player is rechts van enemy
+                posX++;
+                moveLeft = false;
+                moveRight = true;
+                lastMove = "right";
+            }else{
+                posX--;
+                moveRight = false;
+                moveLeft = true;
+                lastMove = "left";
+            }
+            if (movePlayer.posY > posY){  //Player is onder enemy
+                posY++;
+                moveUp = false;
+                moveDown = true;
+            }else{
+                moveDown = false;
+                moveUp = true;
+                posY--;
+            }
+        }
+
+        //Movement for player
         public void MoveInputs()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
@@ -46,7 +72,7 @@ namespace ExamenProject
                 moveRight = true;
                 lastMove = "right";
             }else moveRight = false;
-        }
+        } 
 
         public void MoveBoundaries(GraphicsDeviceManager graphics, Texture2D heroTexture)
         {
