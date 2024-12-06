@@ -55,7 +55,7 @@ namespace ExamenProject
         public void Draw(SpriteBatch spriteBatch)
         {
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
-            rectangleHitbox = new Rectangle((int)positionHitbox.X, (int)positionHitbox.Y, rectangle.Width/2 - 50, rectangle.Height/2 - 50);
+            rectangleHitbox = new Rectangle((int)positionHitbox.X, (int)positionHitbox.Y, rectangle.Width/2 - 40, rectangle.Height/2 - 32);
 
             spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Red);
             spriteBatch.Draw(heroTexture, position, rectangle, Color.White);
@@ -67,7 +67,7 @@ namespace ExamenProject
             move.MoveBoundaries(graphics, heroTexture);
 
             position = new Vector2(move.posX, move.posY);
-            positionHitbox = new Vector2(move.posX + rectangle.Width/4 + 30, move.posY + rectangle.Height/4 + 30);
+            positionHitbox = new Vector2(move.posX + rectangle.Width/4 + 20, move.posY + rectangle.Height/4 + 20);
         }
     }
 }

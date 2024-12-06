@@ -81,11 +81,12 @@ namespace ExamenProject
 
             for(int i = 0; i < blocks.Count; i++)
             {
-                if (hero.rectangleHitbox.Intersects(blocks[i].BoundingBox) && blocks[i].Type == "Water")
+                bool collide = Collision.CheckTileCollision(hero.rectangleHitbox, blocks[i].BoundingBox);
+                if (collide && blocks[i].Type == "Water")
                 {
                     clr = Color.Black;
                 }
-                if (hero.rectangleHitbox.Intersects(blocks[i].BoundingBox) && blocks[i].Type == "Grass")
+                if (collide && blocks[i].Type == "Grass")
                 {
                     clr = Color.Gray;
                 }
