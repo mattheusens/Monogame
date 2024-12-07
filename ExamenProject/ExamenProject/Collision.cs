@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExamenProject
 {
@@ -29,6 +30,22 @@ namespace ExamenProject
                 return true;
             } // van onder naar boven
             return false;
+        }
+
+        public static void CheckCollisionWater(List<Block> blocks, Hero hero)
+        {
+            for (int i = 0; i < blocks.Count; i++)
+            {
+                if (blocks[i].Type == "Water")
+                {
+                    if (Collision.CheckTileCollision(hero.rectangleFeet, blocks[i].BoundingBox))
+                    {
+                        hero.move.posX = hero.posXBefore;
+                        hero.move.posY = hero.posYBefore;
+                    }
+
+                }
+            }
         }
     }
 }

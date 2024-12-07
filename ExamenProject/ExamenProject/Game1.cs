@@ -21,11 +21,13 @@ namespace ExamenProject
         Enemy enemy;
 
         List<Block> blocks = new();
-        List<Block> waterBlocks = new();
         private Texture2D grassTexture;
         private Texture2D waterTexture;
 
-        Texture2D pauseScreen;
+        Texture2D menuScreen;
+        Texture2D menuBackground;
+        bool pause = false;
+        bool pPressed = false;
 
         int coins = 0;
 
@@ -50,22 +52,23 @@ namespace ExamenProject
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
+            #region Content Loads
             textureHero = Content.Load<Texture2D>("Warrior_Blue_Full");
             enemyTexture = Content.Load<Texture2D>("Torch_Blue_Fixed_Full");
-            pauseScreen = Content.Load<Texture2D>("Carved_3Slides");
+
+            menuScreen = Content.Load<Texture2D>("MenuScreen/MenuScreen");
+            menuBackground = Content.Load<Texture2D>("MenuScreen/MenuBackground");
+
             font = Content.Load<SpriteFont>("Font");
             song = Content.Load<Song>("Audio/MedievelBackground");
+            #endregion
 
             //grassTexture = Content.Load<Texture2D>("Grass1x1");
-            grassTexture = new Texture2D(GraphicsDevice, 1, 1);
-            grassTexture.SetData(new[] { Color.Green });
-            waterTexture = new Texture2D(GraphicsDevice, 1, 1);
-            waterTexture.SetData(new[] { Color.LightBlue });
 
             MediaPlayer.Play(song);
             Maps.MakeMaps();
-            CreateBlocks(0);
+            Maps.CreateBlocks(blocks, 0, grassTexture, waterTexture);
 
             InitializeGameObject();
         }
@@ -74,6 +77,11 @@ namespace ExamenProject
         {
             hero = new Hero(textureHero, graphics, GraphicsDevice);
             enemy = new Enemy(enemyTexture, graphics, GraphicsDevice, hero.move);
+
+            grassTexture = new Texture2D(GraphicsDevice, 1, 1);
+            grassTexture.SetData(new[] { Color.Green });
+            waterTexture = new Texture2D(GraphicsDevice, 1, 1);
+            waterTexture.SetData(new[] { Color.LightBlue });
         }
 
         private Color clr = Color.Gray;
@@ -85,17 +93,8 @@ namespace ExamenProject
 
             hero.Update(gameTime);
             enemy.Update(gameTime);
-
-            for(int i = 0; i < blocks.Count; i++)
-            {
-                if (blocks[i].Type == "Water")
-                {
-                    if (Collision.CheckTileCollision(hero.rectangleFeet, blocks[i].BoundingBox)) {
-                        hero.move.posX = hero.posXBefore;
-                        hero.move.posY = hero.posYBefore;
-                    } 
-                }
-            }
+            Collision.CheckCollisionWater(blocks, hero);
+            CheckPause();
 
             base.Update(gameTime);
         }
@@ -112,39 +111,25 @@ namespace ExamenProject
 
             spriteBatch.DrawString(font, "Coins: " + coins, new Vector2(20, 20), Color.White);
 
-            /*if (Keyboard.GetState().IsKeyDown(Keys.P))
+            if (pause)
             {
-                spriteBatch.Draw(pauseScreen, )
-            }*/
+                spriteBatch.Draw(menuBackground, new Vector2(0, 0), null, Color.White, 0.0f, new Vector2(0, 0), 2.0f, SpriteEffects.None, 0.0f);
+                spriteBatch.Draw(menuScreen, new Vector2(graphics.PreferredBackBufferWidth / 2, graphics.PreferredBackBufferHeight / 2), null, Color.White, 0.0f, new Vector2(96, 96), 4.5f, SpriteEffects.None, 1.0f);
+            }
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
-        
-        private void CreateBlocks(int level)
+
+        void CheckPause()
         {
-            blocks.Clear();
-            waterBlocks.Clear();
-            for (int l = 0; l < Maps.maps[level].GetLength(0); l++)
+            if (Keyboard.GetState().IsKeyDown(Keys.P) && !pPressed)
             {
-                for (int c = 0; c < Maps.maps[level].GetLength(1); c++)
-                {
-                    int width = 100; int height = 100;
-                    Vector2 pos = new Vector2((c * width), (l * height));
-                    Rectangle rec = new Rectangle((c * width), (l * height), width, height);
-                    if (Maps.maps[level][l, c] == 0)
-                    {
-                        blocks.Add(new Block(pos, rec, grassTexture, "Grass"));
-                    }
-                    else if (Maps.maps[level][l, c] == 1)
-                    {
-                        Block wb = new Block(pos, rec, waterTexture, "Water");
-                        blocks.Add(wb);
-                        waterBlocks.Add(wb);
-                    }
-                }
+                pause = !pause;
+                pPressed = true;
             }
+            if (Keyboard.GetState().IsKeyUp(Keys.P)) pPressed = false;
         }
     }
 }
