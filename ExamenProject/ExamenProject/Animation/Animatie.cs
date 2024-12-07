@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Input;
 
 namespace ExamenProject.Animation
 {
@@ -19,6 +20,7 @@ namespace ExamenProject.Animation
         private int counter;
         private int lowBoundaryCounter;
         private int highBoundaryCounter;
+        bool fighting = false;
 
         public Animatie(Movement move)
         {
@@ -43,33 +45,55 @@ namespace ExamenProject.Animation
 
             if (counter >= highBoundaryCounter)
             {
+                fighting = false;
                 counter = lowBoundaryCounter;
+            }
+        }
+
+        public void Fighting()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.F))
+            {
+                fighting = true;
             }
         }
 
         public void ChooseFrames()
         {
-            if (move.moveRight || (move.moveUp || move.moveDown) && move.lastMove == "right")
+            if (fighting && move.lastMove == "right")
             {
-                lowBoundaryCounter = 12;
-                highBoundaryCounter = 17;
+                lowBoundaryCounter = 24;
+                highBoundaryCounter = 29;
             }
-            else if (move.moveLeft || (move.moveUp || move.moveDown) && move.lastMove == "left")
+            else if(fighting && move.lastMove == "left")
             {
-                lowBoundaryCounter = 18;
-                highBoundaryCounter = 23;
+                lowBoundaryCounter = 30;
+                highBoundaryCounter = 35;
             }
             else
             {
-                if (move.lastMove == "right")
+                if (move.moveRight || (move.moveUp || move.moveDown) && move.lastMove == "right")
                 {
-                    lowBoundaryCounter = 0;
-                    highBoundaryCounter = 5;
+                    lowBoundaryCounter = 12;
+                    highBoundaryCounter = 17;
+                }
+                else if (move.moveLeft || (move.moveUp || move.moveDown) && move.lastMove == "left")
+                {
+                    lowBoundaryCounter = 18;
+                    highBoundaryCounter = 23;
                 }
                 else
                 {
-                    lowBoundaryCounter = 6;
-                    highBoundaryCounter = 11;
+                    if (move.lastMove == "right")
+                    {
+                        lowBoundaryCounter = 0;
+                        highBoundaryCounter = 5;
+                    }
+                    else
+                    {
+                        lowBoundaryCounter = 6;
+                        highBoundaryCounter = 11;
+                    }
                 }
             }
         }

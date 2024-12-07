@@ -12,8 +12,8 @@ namespace ExamenProject
     internal class Movement
     {
         public int speed;
-        public int posX = 10;
-        public int posY = 10;
+        public int posX = 0;
+        public int posY = 0;
 
         public bool moveUp = false;
         public bool moveDown = false;

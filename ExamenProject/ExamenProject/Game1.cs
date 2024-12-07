@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 
 namespace ExamenProject
 {
@@ -19,9 +21,13 @@ namespace ExamenProject
         Enemy enemy;
 
         List<Block> blocks = new();
+        List<Block> waterBlocks = new();
         private Texture2D grassTexture;
         private Texture2D waterTexture;
 
+        Texture2D pauseScreen;
+
+        int coins = 0;
 
         public Game1()
         {
@@ -47,6 +53,7 @@ namespace ExamenProject
             
             textureHero = Content.Load<Texture2D>("Warrior_Blue_Full");
             enemyTexture = Content.Load<Texture2D>("Torch_Blue_Fixed_Full");
+            pauseScreen = Content.Load<Texture2D>("Carved_3Slides");
             font = Content.Load<SpriteFont>("Font");
             song = Content.Load<Song>("Audio/MedievelBackground");
 
@@ -81,14 +88,12 @@ namespace ExamenProject
 
             for(int i = 0; i < blocks.Count; i++)
             {
-                bool collide = Collision.CheckTileCollision(hero.rectangleHitbox, blocks[i].BoundingBox);
-                if (collide && blocks[i].Type == "Water")
+                if (blocks[i].Type == "Water")
                 {
-                    clr = Color.Black;
-                }
-                if (collide && blocks[i].Type == "Grass")
-                {
-                    clr = Color.Gray;
+                    if (Collision.CheckTileCollision(hero.rectangleFeet, blocks[i].BoundingBox)) {
+                        hero.move.posX = hero.posXBefore;
+                        hero.move.posY = hero.posYBefore;
+                    } 
                 }
             }
 
@@ -97,15 +102,20 @@ namespace ExamenProject
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(clr);
+            GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
 
             for (int i = 0; i < blocks.Count; i++) blocks[i].Draw(spriteBatch);
 
             hero.Draw(spriteBatch);
-            enemy.Draw(spriteBatch);
+            //enemy.Draw(spriteBatch);
 
-            spriteBatch.DrawString(font, "Coins: ", new Vector2(20, 20), Color.White);
+            spriteBatch.DrawString(font, "Coins: " + coins, new Vector2(20, 20), Color.White);
+
+            /*if (Keyboard.GetState().IsKeyDown(Keys.P))
+            {
+                spriteBatch.Draw(pauseScreen, )
+            }*/
 
             spriteBatch.End();
 
@@ -115,6 +125,7 @@ namespace ExamenProject
         private void CreateBlocks(int level)
         {
             blocks.Clear();
+            waterBlocks.Clear();
             for (int l = 0; l < Maps.maps[level].GetLength(0); l++)
             {
                 for (int c = 0; c < Maps.maps[level].GetLength(1); c++)
@@ -128,7 +139,9 @@ namespace ExamenProject
                     }
                     else if (Maps.maps[level][l, c] == 1)
                     {
-                        blocks.Add(new Block(pos, rec, waterTexture, "Water"));
+                        Block wb = new Block(pos, rec, waterTexture, "Water");
+                        blocks.Add(wb);
+                        waterBlocks.Add(wb);
                     }
                 }
             }
