@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -31,11 +32,11 @@ namespace ExamenProject
                     Rectangle rec = new Rectangle((c * width), (l * height), width, height);
                     if (Maps.maps[level][l, c] == 0)
                     {
-                        blocks.Add(new Block(pos, rec, texture2, "Water"));
+                        blocks.Add(new Block(pos, rec, texture1, "Water"));
                     }
                     else if (Maps.maps[level][l, c] == 1)
                     {
-                        blocks.Add(new Block(pos, rec, texture1, "Grass"));
+                        blocks.Add(new Block(pos, rec, texture2, "Grass"));
                     }
                 }
             }

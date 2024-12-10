@@ -10,9 +10,9 @@ namespace ExamenProject
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager graphics;
+        public static GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private SpriteFont font;
+        public static SpriteFont font;
         private Song song;
 
         Texture2D textureHero;
@@ -21,13 +21,8 @@ namespace ExamenProject
         Enemy enemy;
 
         List<Block> blocks = new();
-        private Texture2D grassTexture;
-        private Texture2D waterTexture;
-
-        Texture2D menuScreen;
-        Texture2D menuBackground;
-        bool pause = false;
-        bool pPressed = false;
+        Texture2D grassTexture;
+        Texture2D waterTexture;
 
         int coins = 0;
 
@@ -56,19 +51,15 @@ namespace ExamenProject
             #region Content Loads
             textureHero = Content.Load<Texture2D>("Warrior_Blue_Full");
             enemyTexture = Content.Load<Texture2D>("Torch_Blue_Fixed_Full");
-
-            menuScreen = Content.Load<Texture2D>("MenuScreen/MenuScreen");
-            menuBackground = Content.Load<Texture2D>("MenuScreen/MenuBackground");
+            grassTexture = Content.Load<Texture2D>("Background/Grass");
+            waterTexture = Content.Load<Texture2D>("Background/Water");
 
             font = Content.Load<SpriteFont>("Font");
             song = Content.Load<Song>("Audio/MedievelBackground");
             #endregion
 
-            //grassTexture = Content.Load<Texture2D>("Grass1x1");
-
             MediaPlayer.Play(song);
             Maps.MakeMaps();
-            Maps.CreateBlocks(blocks, 0, grassTexture, waterTexture);
 
             InitializeGameObject();
         }
@@ -78,13 +69,8 @@ namespace ExamenProject
             hero = new Hero(textureHero, graphics, GraphicsDevice);
             enemy = new Enemy(enemyTexture, graphics, GraphicsDevice, hero.move);
 
-            grassTexture = new Texture2D(GraphicsDevice, 1, 1);
-            grassTexture.SetData(new[] { Color.Green });
-            waterTexture = new Texture2D(GraphicsDevice, 1, 1);
-            waterTexture.SetData(new[] { Color.LightBlue });
+            Maps.CreateBlocks(blocks, 0, waterTexture, grassTexture);
         }
-
-        private Color clr = Color.Gray;
 
         protected override void Update(GameTime gameTime)
         {
@@ -94,7 +80,7 @@ namespace ExamenProject
             hero.Update(gameTime);
             enemy.Update(gameTime);
             Collision.CheckCollisionWater(blocks, hero);
-            CheckPause();
+            MenuScreen.CheckPause();
 
             base.Update(gameTime);
         }
@@ -107,29 +93,15 @@ namespace ExamenProject
             for (int i = 0; i < blocks.Count; i++) blocks[i].Draw(spriteBatch);
 
             hero.Draw(spriteBatch);
-            //enemy.Draw(spriteBatch);
+            enemy.Draw(spriteBatch);
 
             spriteBatch.DrawString(font, "Coins: " + coins, new Vector2(20, 20), Color.White);
 
-            if (pause)
-            {
-                spriteBatch.Draw(menuBackground, new Vector2(0, 0), null, Color.White, 0.0f, new Vector2(0, 0), 2.0f, SpriteEffects.None, 0.0f);
-                spriteBatch.Draw(menuScreen, new Vector2(graphics.PreferredBackBufferWidth / 2, graphics.PreferredBackBufferHeight / 2), null, Color.White, 0.0f, new Vector2(96, 96), 4.5f, SpriteEffects.None, 1.0f);
-            }
+            MenuScreen.Draw(spriteBatch, Content);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        void CheckPause()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.P) && !pPressed)
-            {
-                pause = !pause;
-                pPressed = true;
-            }
-            if (Keyboard.GetState().IsKeyUp(Keys.P)) pPressed = false;
         }
     }
 }

@@ -28,7 +28,8 @@ namespace ExamenProject
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, BoundingBox, Color);
+            if(Type == "Grass") spriteBatch.Draw(Texture, Position, BoundingBox, Color, 0.0f, new Vector2(0, 0), 2f, SpriteEffects.None, 0.0f);
+            if(Type == "Water") spriteBatch.Draw(Texture, Position, BoundingBox, Color);
         }
     }
 }
