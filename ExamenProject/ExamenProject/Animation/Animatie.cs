@@ -13,14 +13,13 @@ namespace ExamenProject.Animation
     {
         public AnimationFrame CurrentFrame { get; set; }
         private List<AnimationFrame> frames;
-        private AnimationFrame idleFrame;
         private Movement move;
 
         private double secondCounter = 0;
         private int counter;
         private int lowBoundaryCounter;
         private int highBoundaryCounter;
-        bool fighting = false;
+        public bool fighting = false;
 
         public Animatie(Movement move)
         {
@@ -52,10 +51,7 @@ namespace ExamenProject.Animation
 
         public void Fighting()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.F))
-            {
-                fighting = true;
-            }
+            fighting = true;   
         }
 
         public void ChooseFrames()
@@ -110,7 +106,6 @@ namespace ExamenProject.Animation
                 }
             }
             CurrentFrame = frames[0];
-            idleFrame = frames[1];
         }
     }
 }

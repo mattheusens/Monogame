@@ -16,6 +16,7 @@ namespace ExamenProject
         public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
         public string Type { get; set; }
+        private int counter = 0;
 
         public Block(Vector2 position, Rectangle rectangle, Texture2D texture, String type)
         {
@@ -28,8 +29,8 @@ namespace ExamenProject
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(Type == "Grass") spriteBatch.Draw(Texture, Position, BoundingBox, Color, 0.0f, new Vector2(0, 0), 2f, SpriteEffects.None, 0.0f);
-            if(Type == "Water") spriteBatch.Draw(Texture, Position, BoundingBox, Color);
+            if(Type == "Grass") spriteBatch.Draw(Texture, Position, BoundingBox, Color, 0.0f, new Vector2(0, 0), 1.74f, SpriteEffects.None, 0.0f);
+            else if(Type == "Water") spriteBatch.Draw(Texture, Position, BoundingBox, Color);
         }
     }
 }

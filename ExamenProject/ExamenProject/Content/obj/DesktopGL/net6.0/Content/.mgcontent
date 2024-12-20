@@ -5,6 +5,19 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Audio/MedievelBackground.mp3</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Blue/Castle.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Blue/House.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Blue/Tower.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Purple/Castle.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Purple/House.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Purple/Tower.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Red/Castle.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Red/House.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Red/Tower.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Yellow/Castle.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Yellow/House.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Yellow/Tower.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Grass_Big.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Grass.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Water.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Font.spritefont</File>
@@ -15,6 +28,19 @@
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Warrior_Blue_Full.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

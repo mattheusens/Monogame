@@ -34,3 +34,16 @@ C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\MenuScreen\MenuTitle.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Grass.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Water.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Grass_Big.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Blue\Castle.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Blue\House.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Blue\Tower.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Purple\Castle.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Purple\House.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Purple\Tower.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Red\Castle.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Red\House.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Red\Tower.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Yellow\Castle.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Yellow\House.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Yellow\Tower.xnb
