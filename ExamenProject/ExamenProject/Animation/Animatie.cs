@@ -1,11 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using Microsoft.Xna.Framework.Input;
 
 namespace ExamenProject.Animation
 {
@@ -51,7 +45,7 @@ namespace ExamenProject.Animation
 
         public void Fighting()
         {
-            fighting = true;   
+            fighting = true;
         }
 
         public void ChooseFrames()
@@ -61,7 +55,7 @@ namespace ExamenProject.Animation
                 lowBoundaryCounter = 24;
                 highBoundaryCounter = 29;
             }
-            else if(fighting && move.lastMove == "left")
+            else if (fighting && move.lastMove == "left")
             {
                 lowBoundaryCounter = 30;
                 highBoundaryCounter = 35;
@@ -94,7 +88,7 @@ namespace ExamenProject.Animation
             }
         }
 
-        public void GetFramesFromTextureProperties (int width, int height, int numberOfWidthSprites, int numberOfHeightSprites)
+        public void GetFramesFromTextureProperties(int width, int height, int numberOfWidthSprites, int numberOfHeightSprites)
         {
             int widthOfFrame = width / numberOfWidthSprites;
             int heightOfFrame = height / numberOfHeightSprites;

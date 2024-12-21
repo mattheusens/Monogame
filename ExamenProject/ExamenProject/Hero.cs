@@ -3,11 +3,10 @@ using ExamenProject.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace ExamenProject
 {
-    internal class Hero:IGameObject
+    internal class Hero : IGameObject
     {
         GraphicsDeviceManager graphics;
 
@@ -80,7 +79,7 @@ namespace ExamenProject
 
         public void Update(GameTime gameTime)
         {
-            if(Keyboard.GetState().IsKeyDown(Keys.F)) moveAnimation.Fighting();
+            if (Keyboard.GetState().IsKeyDown(Keys.F)) moveAnimation.Fighting();
             moveAnimation.Update(gameTime);
             Move();
         }
@@ -91,7 +90,7 @@ namespace ExamenProject
             rectangleWeaponL = new Rectangle((int)positionWeaponL.X, (int)positionWeaponL.Y, rectangle.Width / 2 - 30, rectangle.Height / 2 + 15);
             rectangleWeaponR = new Rectangle((int)positionWeaponR.X, (int)positionWeaponR.Y, rectangle.Width / 2 - 30, rectangle.Height / 2 + 15);
             rectangleFeet = new Rectangle((int)positionFeet.X, (int)positionFeet.Y, rectangle.Width / 2 - 75, rectangle.Height / 2 - 90);
-            rectangleHitbox = new Rectangle((int)positionHitbox.X, (int)positionHitbox.Y, rectangle.Width/2 - 40, rectangle.Height/2 - 32);
+            rectangleHitbox = new Rectangle((int)positionHitbox.X, (int)positionHitbox.Y, rectangle.Width / 2 - 40, rectangle.Height / 2 - 32);
 
             spriteBatch.Draw(heroTexture, position, rectangle, Color.White);
             spriteBatch.Draw(weaponTexture, positionWeaponL, rectangleWeaponL, Color.Transparent);

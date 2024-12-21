@@ -1,14 +1,6 @@
-﻿using ExamenProject.Animation;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace ExamenProject
 {

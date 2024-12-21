@@ -2,10 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
 
 namespace ExamenProject
 {
@@ -25,9 +22,10 @@ namespace ExamenProject
         Texture2D grassTexture;
         Texture2D waterTexture;
 
-        Texture2D castle;
-        Texture2D house;
-        Texture2D tower;
+        List<Building> buildings = new();
+        Texture2D castleTexture;
+        Texture2D houseTexture;
+        Texture2D towerTexture;
 
         int coins = 0;
 
@@ -58,9 +56,9 @@ namespace ExamenProject
             enemyTexture = Content.Load<Texture2D>("Torch_Blue_Fixed_Full");
             grassTexture = Content.Load<Texture2D>("Background/Grass_Big");
             waterTexture = Content.Load<Texture2D>("Background/Water");
-            castle = Content.Load<Texture2D>("Background/Buildings/Blue/Castle");
-            house = Content.Load<Texture2D>("Background/Buildings/Blue/House");
-            tower = Content.Load<Texture2D>("Background/Buildings/Blue/Tower");
+            castleTexture = Content.Load<Texture2D>("Background/Buildings/Blue/Castle");
+            houseTexture = Content.Load<Texture2D>("Background/Buildings/Blue/House");
+            towerTexture = Content.Load<Texture2D>("Background/Buildings/Blue/Tower");
 
             font = Content.Load<SpriteFont>("Font");
             song = Content.Load<Song>("Audio/MedievelBackground");
@@ -76,6 +74,10 @@ namespace ExamenProject
         {
             hero = new Hero(textureHero, graphics, GraphicsDevice);
             enemies.Add(new Enemy(enemyTexture, graphics, GraphicsDevice, hero.move));
+
+            buildings.Add(new Building(new Rectangle(500, 20, 320, 256), castleTexture, "castle"));
+            buildings.Add(new Building(new Rectangle(1000, 200, 128, 192), houseTexture, "house"));
+            buildings.Add(new Building(new Rectangle(500, 500, 128, 256), towerTexture, "tower"));
         }
 
         protected override void Update(GameTime gameTime)
@@ -86,10 +88,12 @@ namespace ExamenProject
             Maps.CreateBlocks(blocks, 0, waterTexture, grassTexture);
             hero.Update(gameTime);
 
-            foreach(Enemy en in enemies) en.Update(gameTime);
-            Collision.CheckCollisionOnEnemies(enemies, hero);
+            foreach (Enemy en in enemies) en.Update(gameTime);
 
-            Collision.CheckCollisionWater(blocks, hero);
+            Collision.CheckCollisionOnBuilding(buildings, hero);
+            Collision.CheckCollisionOnEnemies(enemies, hero);
+            Collision.CheckCollisionOnBlock(blocks, hero);
+
             MenuScreen.CheckPause();
 
             base.Update(gameTime);
@@ -100,13 +104,10 @@ namespace ExamenProject
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
 
-            for (int i = 0; i < blocks.Count; i++)  if (blocks[i].Type == "Water") blocks[i].Draw(spriteBatch);
+            for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Water") blocks[i].Draw(spriteBatch);
             for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Grass") blocks[i].Draw(spriteBatch);
 
-
-            spriteBatch.Draw(castle, new Rectangle(500, 20, 320, 256), Color.White);
-            spriteBatch.Draw(house, new Rectangle(1000, 200, 128, 192), Color.White);
-            spriteBatch.Draw(tower, new Rectangle(500, 500, 128, 256), Color.White);
+            for (int i = 0; i < buildings.Count; i++) buildings[i].Draw(spriteBatch);
 
             hero.Draw(spriteBatch);
 

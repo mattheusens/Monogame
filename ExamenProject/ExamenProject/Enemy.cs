@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExamenProject.Animation;
 using ExamenProject.Interfaces;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using ExamenProject.Animation;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExamenProject
 {
-    internal class Enemy:IGameObject
+    internal class Enemy : IGameObject
     {
         private GraphicsDeviceManager graphics;
 
@@ -27,7 +22,7 @@ namespace ExamenProject
         private Rectangle rectangle;
         public Rectangle rectangleHitbox;
 
-        public int health = 2;
+        public int health = 3;
 
         public Enemy(Texture2D texture, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice, Movement movePlayer)
         {
