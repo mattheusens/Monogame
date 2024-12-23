@@ -47,7 +47,7 @@ namespace ExamenProject
         {
             for (int i = 0; i < buildings.Count; i++)
             {
-                if (Collision.CheckCollision(hero.rectangleFeet, buildings[i].DestinationRectangle))
+                if (Collision.CheckCollision(hero.rectangleFeet, buildings[i].HitboxRectangle))
                 {
                     hero.move.posX = hero.posXBefore;
                     hero.move.posY = hero.posYBefore;

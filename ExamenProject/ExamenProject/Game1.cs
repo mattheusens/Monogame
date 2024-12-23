@@ -23,18 +23,18 @@ namespace ExamenProject
         Texture2D waterTexture;
 
         List<Building> buildings = new();
-        Texture2D castleTexture;
-        Texture2D houseTexture;
-        Texture2D towerTexture;
+        Texture2D castleTexture; // 320x256
+        Texture2D houseTexture; // 128x192
+        Texture2D towerTexture; // 128x256
 
-        int coins = 0;
+        public int level = 0;
+        public int coins = 0;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1500;
             graphics.PreferredBackBufferHeight = 900;
-            //graphics.IsFullScreen = true;
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -74,10 +74,7 @@ namespace ExamenProject
         {
             hero = new Hero(textureHero, graphics, GraphicsDevice);
             enemies.Add(new Enemy(enemyTexture, graphics, GraphicsDevice, hero.move));
-
-            buildings.Add(new Building(new Rectangle(500, 20, 320, 256), castleTexture, "castle"));
-            buildings.Add(new Building(new Rectangle(1000, 200, 128, 192), houseTexture, "house"));
-            buildings.Add(new Building(new Rectangle(500, 500, 128, 256), towerTexture, "tower"));
+            Maps.CreateBuildings(buildings, level, castleTexture, houseTexture, towerTexture, GraphicsDevice);
         }
 
         protected override void Update(GameTime gameTime)
@@ -85,7 +82,8 @@ namespace ExamenProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Maps.CreateBlocks(blocks, 0, waterTexture, grassTexture);
+            Maps.CreateBlocks(blocks, level, waterTexture, grassTexture);
+
             hero.Update(gameTime);
 
             foreach (Enemy en in enemies) en.Update(gameTime);

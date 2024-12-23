@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Blue/House.png</SourceFile>
-  <SourceTime>2024-11-15T12:05:42.3941644+01:00</SourceTime>
+  <SourceTime>2024-12-21T16:44:22.3589678+01:00</SourceTime>
   <DestFile>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/bin/DesktopGL/Content/Background/Buildings/Blue/House.xnb</DestFile>
-  <DestTime>2024-12-13T12:54:31.9959677+01:00</DestTime>
+  <DestTime>2024-12-23T01:32:24.1066769+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

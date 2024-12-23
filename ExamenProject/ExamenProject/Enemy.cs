@@ -57,8 +57,8 @@ namespace ExamenProject
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
             rectangleHitbox = new Rectangle((int)positionHitbox.X, (int)positionHitbox.Y, rectangle.Width / 2 - 60, rectangle.Height / 2 - 40);
 
-            spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Red);
             spriteBatch.Draw(enemyTexture, position, rectangle, Color.White);
+            spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Transparent);
         }
         public void Move(Movement movePlayer)
         {

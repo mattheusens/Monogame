@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ExamenProject
 {
@@ -50,6 +51,16 @@ namespace ExamenProject
             }
         }
 
+        public static void CreateBuildings(List<Building> buildings, int level, Texture2D textureC, Texture2D textureH, Texture2D textureT, GraphicsDevice graphicsD)
+        {
+            switch (level)
+            {
+                case 0:
+                    BuildingsLevel1(buildings, textureC, textureH, textureT, graphicsD);
+                    break;
+            }
+        }
+
         public static void GetFramesFromTextureProperties(int width, int height, int numberOfWidthSprites, int numberOfHeightSprites)
         {
             int widthOfFrame = width / numberOfWidthSprites;
@@ -75,5 +86,18 @@ namespace ExamenProject
             {5,5,5,5,5,5,5,5,5,5,5,5,5,5,5},
             {5,5,5,5,5,5,5,5,5,5,5,5,5,5,5},
         };
+
+        public static void BuildingsLevel1(List<Building> bd, Texture2D tC, Texture2D tH, Texture2D tT, GraphicsDevice gd)
+        {
+            bd.Add(new Building(new Rectangle(590, 20, 320, 256), tC, "castle", gd));
+            bd.Add(new Building(new Rectangle(484, 20, 128, 256), tT, "tower", gd));
+            bd.Add(new Building(new Rectangle(888, 20, 128, 256), tT, "tower", gd));
+            bd.Add(new Building(new Rectangle(279, 300, 128, 192), tH, "house", gd));
+            bd.Add(new Building(new Rectangle(686, 300, 128, 192), tH, "house", gd));
+            bd.Add(new Building(new Rectangle(1093, 300, 128, 192), tH, "house", gd));
+            bd.Add(new Building(new Rectangle(279, 600, 128, 192), tH, "house", gd));
+            bd.Add(new Building(new Rectangle(686, 600, 128, 192), tH, "house", gd));
+            bd.Add(new Building(new Rectangle(1093, 600, 128, 192), tH, "house", gd));
+        }
     }
 }
