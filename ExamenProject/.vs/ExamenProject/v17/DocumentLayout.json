@@ -1,36 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\maps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\maps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\building.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\building.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\collision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\collision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|c:\\users\\matth\\bureaublad\\game development\\monogame\\examenproject\\examenproject\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5E70B06F-B3E5-4E8A-8AF7-2D8578E14C4B}|ExamenProject\\ExamenProject.csproj|solutionrelative:examenproject\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -38,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -83,97 +54,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Maps.cs",
-              "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Maps.cs",
-              "RelativeDocumentMoniker": "ExamenProject\\Maps.cs",
-              "ToolTip": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Maps.cs",
-              "RelativeToolTip": "ExamenProject\\Maps.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAYwF0AAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T00:29:38.517Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Hero.cs",
-              "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Hero.cs",
-              "RelativeDocumentMoniker": "ExamenProject\\Hero.cs",
-              "ToolTip": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Hero.cs",
-              "RelativeToolTip": "ExamenProject\\Hero.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAQwEIAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T00:23:44.878Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Building.cs",
-              "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Building.cs",
-              "RelativeDocumentMoniker": "ExamenProject\\Building.cs",
-              "ToolTip": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Building.cs",
-              "RelativeToolTip": "ExamenProject\\Building.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAAACoAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T00:12:56.575Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Game1.cs",
-              "RelativeDocumentMoniker": "ExamenProject\\Game1.cs",
-              "ToolTip": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Game1.cs",
-              "RelativeToolTip": "ExamenProject\\Game1.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAzwFQAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T14:39:52.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Collision.cs",
-              "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Collision.cs",
-              "RelativeDocumentMoniker": "ExamenProject\\Collision.cs",
-              "ToolTip": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Collision.cs",
-              "RelativeToolTip": "ExamenProject\\Collision.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAYwDEAAABdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-20T10:55:26.145Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Animatie.cs",
-              "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Animation\\Animatie.cs",
-              "RelativeDocumentMoniker": "ExamenProject\\Animation\\Animatie.cs",
-              "ToolTip": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Animation\\Animatie.cs",
-              "RelativeToolTip": "ExamenProject\\Animation\\Animatie.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAowGgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T09:27:44.756Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Block.cs",
-              "DocumentMoniker": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Block.cs",
-              "RelativeDocumentMoniker": "ExamenProject\\Block.cs",
-              "ToolTip": "C:\\Users\\matth\\Bureaublad\\Game Development\\Monogame\\ExamenProject\\ExamenProject\\Block.cs",
-              "RelativeToolTip": "ExamenProject\\Block.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAqwBoAAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T00:13:01.759Z",
-              "EditorCaption": ""
             }
           ]
         }

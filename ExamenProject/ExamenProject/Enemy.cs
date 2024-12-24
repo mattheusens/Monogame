@@ -2,69 +2,112 @@
 using ExamenProject.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace ExamenProject
 {
     internal class Enemy : IGameObject
     {
-        private GraphicsDeviceManager graphics;
+        Texture2D enemyTexture;
+        Texture2D hitboxTexture;
+        Texture2D feetTexture;
+        Texture2D weaponTexture;
 
-        private Texture2D enemyTexture;
-        private Texture2D hitboxTexture;
+        public Animatie moveAnimation;
+        public Movement movePlayer;
+        public Movement moveBefore;
+        public Movement move;
 
-        private Animatie moveAnimation;
-        private Movement move;
-        Movement movePlayer;
+        public int posXBefore;
+        public int posYBefore;
 
-        private Vector2 position;
-        public Vector2 positionHitbox;
-        private Vector2 offsetHitbox;
-        private Rectangle rectangle;
+        Vector2 position;
+        Vector2 positionHitbox;
+        Vector2 offsetHitbox;
+        Vector2 positionFeet;
+        Vector2 offsetFeet;
+        Vector2 positionWeaponR;
+        Vector2 offsetWeaponR;
+        Vector2 positionWeaponL;
+        Vector2 offsetWeaponL;
+
+        public Rectangle rectangle;
         public Rectangle rectangleHitbox;
+        public Rectangle rectangleFeet;
+        public Rectangle rectangleWeaponR;
+        public Rectangle rectangleWeaponL;
 
         public int health = 3;
 
-        public Enemy(Texture2D texture, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice, Movement movePlayer)
+        public Enemy(Texture2D texture, GraphicsDevice graphicsDevice, Movement movePlayer)
         {
             this.enemyTexture = texture;
-            this.graphics = graphics;
             this.movePlayer = movePlayer;
             this.move = new Movement();
 
             moveAnimation = new Animatie(move);
-            moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height / 5 * 2, 12, 2);
+            moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height / 5 * 3, 12, 3);
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
 
-            offsetHitbox.X = rectangle.Width / 4 + 30;
-            offsetHitbox.Y = rectangle.Height / 4 + 22;
-
-            move.posX = 400;
-            move.posY = 400;
+            move.posX = 400; //graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
+            move.posY = 400; //graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
             position = new Vector2(move.posX, move.posY);
 
+            feetTexture = new Texture2D(graphicsDevice, 1, 1);
             hitboxTexture = new Texture2D(graphicsDevice, 1, 1);
+            weaponTexture = new Texture2D(graphicsDevice, 1, 1);
+            
+            feetTexture.SetData(new[] { Color.White });
             hitboxTexture.SetData(new[] { Color.White });
-            positionHitbox = new Vector2(move.posX, move.posY);
+            weaponTexture.SetData(new[] { Color.White });
+
+            offsetFeet.X = rectangle.Width / 4 + 37;
+            offsetFeet.Y = rectangle.Height / 4 + 76;
+            offsetHitbox.X = rectangle.Width / 4 + 30;
+            offsetHitbox.Y = rectangle.Height / 4 + 22;
+            
+            offsetWeaponR.X = rectangle.Width / 4 + 84;
+            offsetWeaponR.Y = rectangle.Height / 4 + 20;
+            offsetWeaponL.X = rectangle.Width / 4 - 30;
+            offsetWeaponL.Y = rectangle.Height / 4 + 20;
+
+            positionFeet = new Vector2(move.posX + offsetFeet.X, move.posY + offsetFeet.Y);
+            positionHitbox = new Vector2(move.posX + offsetHitbox.X, move.posY + offsetHitbox.Y);
+            positionWeaponR = new Vector2(move.posX + offsetWeaponR.X, move.posY + offsetWeaponR.Y);
+            positionWeaponL = new Vector2(move.posX + offsetWeaponL.X, move.posY + offsetWeaponL.Y);
         }
 
         public void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.F)) moveAnimation.Fighting(); // moet weg
             moveAnimation.Update(gameTime);
             Move(movePlayer);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
+            rectangleFeet = new Rectangle((int)positionFeet.X, (int)positionFeet.Y, rectangle.Width / 2 - 75, rectangle.Height / 2 - 90);
             rectangleHitbox = new Rectangle((int)positionHitbox.X, (int)positionHitbox.Y, rectangle.Width / 2 - 60, rectangle.Height / 2 - 40);
+            rectangleWeaponR = new Rectangle((int)positionWeaponR.X, (int)positionWeaponR.Y, rectangle.Width / 2 - 50, rectangle.Height / 2 - 29);
+            rectangleWeaponL = new Rectangle((int)positionWeaponL.X, (int)positionWeaponL.Y, rectangle.Width / 2 - 50, rectangle.Height / 2 - 29);
 
             spriteBatch.Draw(enemyTexture, position, rectangle, Color.White);
+            spriteBatch.Draw(feetTexture, positionFeet, rectangleFeet, Color.Transparent);
             spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Transparent);
+            spriteBatch.Draw(weaponTexture, positionWeaponR, rectangleWeaponR, Color.Transparent);
+            spriteBatch.Draw(weaponTexture, positionWeaponL, rectangleWeaponL, Color.Transparent);
         }
         public void Move(Movement movePlayer)
         {
-            move.FollowPlayer(movePlayer);
+            posXBefore = move.posX;
+            posYBefore = move.posY;
+            //move.FollowPlayer(movePlayer);
+
             position = new Vector2(move.posX, move.posY);
+            positionFeet = new Vector2(move.posX + offsetFeet.X, move.posY + offsetFeet.Y);
             positionHitbox = new Vector2(move.posX + offsetHitbox.X, move.posY + offsetHitbox.Y);
+            positionWeaponR = new Vector2(move.posX + offsetWeaponR.X, move.posY + offsetWeaponR.Y);
+            positionWeaponL = new Vector2(move.posX + offsetWeaponL.X, move.posY + offsetWeaponL.Y);
         }
     }
 }

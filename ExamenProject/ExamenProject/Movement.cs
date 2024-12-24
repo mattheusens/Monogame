@@ -19,31 +19,35 @@ namespace ExamenProject
         public bool moveDown = false;
         public bool moveLeft = false;
         public bool moveRight = false;
-        public string lastMove = "right";
+        public string lastMove = "left";
 
         //Movement for enemy
         public void FollowPlayer(Movement movePlayer)
-        {
-            if (movePlayer.posX >= posX){ //Player is rechts van enemy
+        { 
+            if (movePlayer.posX - 50 >= posX){ //Player is rechts van enemy
                 posX++;
                 moveLeft = false;
                 moveRight = true;
-                lastMove = "right";
-            }else{
+            } 
+            else if (movePlayer.posX + 50 <= posX){
                 posX--;
                 moveRight = false;
                 moveLeft = true;
-                lastMove = "left";
             }
-            if (movePlayer.posY > posY){  //Player is onder enemy
+
+            if (movePlayer.posY > posY){ //Player is onder enemy
                 posY++;
                 moveUp = false;
                 moveDown = true;
-            }else{
+            }
+            else if (movePlayer.posY < posY){
                 moveDown = false;
                 moveUp = true;
                 posY--;
             }
+
+            if (movePlayer.posX >= posX) lastMove = "right";
+            else if (movePlayer.posX <= posX) lastMove = "left";
         }
 
         //Movement for player

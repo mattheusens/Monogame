@@ -73,24 +73,24 @@ namespace ExamenProject
         public void InitializeGameObject()
         {
             hero = new Hero(textureHero, graphics, GraphicsDevice);
-            enemies.Add(new Enemy(enemyTexture, graphics, GraphicsDevice, hero.move));
+            enemies.Add(new Enemy(enemyTexture, GraphicsDevice, hero.move));
             Maps.CreateBuildings(buildings, level, castleTexture, houseTexture, towerTexture, GraphicsDevice);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            
             Maps.CreateBlocks(blocks, level, waterTexture, grassTexture);
 
             hero.Update(gameTime);
-
             foreach (Enemy en in enemies) en.Update(gameTime);
-
             Collision.CheckCollisionOnBuilding(buildings, hero);
+            foreach (Enemy en in enemies) Collision.CheckCollisionOnBuilding(buildings, en);
             Collision.CheckCollisionOnEnemies(enemies, hero);
             Collision.CheckCollisionOnBlock(blocks, hero);
+            foreach (Enemy en in enemies) Collision.CheckCollisionOnBlock(blocks, en);
 
             MenuScreen.CheckPause();
 

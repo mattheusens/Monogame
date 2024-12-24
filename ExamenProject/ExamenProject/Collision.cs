@@ -43,6 +43,22 @@ namespace ExamenProject
             }
         }
 
+        public static void CheckCollisionOnBlock(List<Block> blocks, Enemy enemy)
+        {
+            for (int i = 0; i < blocks.Count; i++)
+            {
+                if (blocks[i].Type == "Water")
+                {
+                    if (Collision.CheckCollision(enemy.rectangleFeet, blocks[i].BoundingBox))
+                    {
+                        enemy.move.posX = enemy.posXBefore;
+                        enemy.move.posY = enemy.posYBefore;
+                    }
+
+                }
+            }
+        }
+
         public static void CheckCollisionOnBuilding(List<Building> buildings, Hero hero)
         {
             for (int i = 0; i < buildings.Count; i++)
@@ -51,6 +67,18 @@ namespace ExamenProject
                 {
                     hero.move.posX = hero.posXBefore;
                     hero.move.posY = hero.posYBefore;
+                }
+            }
+        }
+
+        public static void CheckCollisionOnBuilding(List<Building> buildings, Enemy enemy)
+        {
+            for (int i = 0; i < buildings.Count; i++)
+            {
+                if (Collision.CheckCollision(enemy.rectangleHitbox, buildings[i].HitboxRectangle))
+                {
+                    enemy.move.posX = enemy.posXBefore;
+                    enemy.move.posY = enemy.posYBefore;
                 }
             }
         }

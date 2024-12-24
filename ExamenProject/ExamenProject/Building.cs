@@ -20,6 +20,7 @@ namespace ExamenProject
             Type = type;
             Color = Color.White;
 
+
             hitTexture = new Texture2D(graphicsDevice, 1, 1);
             hitTexture.SetData(new[] { Color.White });
 

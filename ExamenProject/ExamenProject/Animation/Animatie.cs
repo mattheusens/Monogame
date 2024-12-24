@@ -24,22 +24,45 @@ namespace ExamenProject.Animation
         public void Update(GameTime gameTime)
         {
             ChooseFrames();
-            if (counter < lowBoundaryCounter || highBoundaryCounter < counter)
-                counter = lowBoundaryCounter;
-            CurrentFrame = frames[counter];
-
-            secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
-            int fps = 15;
-            if (secondCounter >= 1d / fps)
+            if(move.lastMove == "right")
             {
-                counter++;
-                secondCounter = 0;
+                if (counter < lowBoundaryCounter || highBoundaryCounter < counter)
+                    counter = lowBoundaryCounter;
+                CurrentFrame = frames[counter];
+
+                secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
+                int fps = 15;
+                if (secondCounter >= 1d / fps)
+                {
+                    counter++;
+                    secondCounter = 0;
+                }
+
+                if (counter >= highBoundaryCounter)
+                {
+                    fighting = false;
+                    counter = lowBoundaryCounter;
+                }
             }
-
-            if (counter >= highBoundaryCounter)
+            else
             {
-                fighting = false;
-                counter = lowBoundaryCounter;
+                if (counter < lowBoundaryCounter || highBoundaryCounter < counter)
+                    counter = highBoundaryCounter;
+                CurrentFrame = frames[counter];
+
+                secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
+                int fps = 15;
+                if (secondCounter >= 1d / fps)
+                {
+                    counter--;
+                    secondCounter = 0;
+                }
+
+                if (counter <= lowBoundaryCounter)
+                {
+                    fighting = false;
+                    counter = highBoundaryCounter;
+                }
             }
         }
 
