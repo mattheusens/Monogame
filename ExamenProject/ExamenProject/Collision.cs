@@ -6,21 +6,21 @@ namespace ExamenProject
 {
     static class Collision
     {
-        public static bool CheckCollision(Rectangle rectPlayer, Rectangle rectTile)
+        public static bool CheckCollision(Rectangle rect1, Rectangle rect2)
         {
-            if (rectTile.Top - 3 < rectPlayer.Bottom && rectTile.Right > rectPlayer.Left && rectTile.Left < rectPlayer.Right && rectTile.Bottom > rectPlayer.Bottom)
+            if (rect2.Top - 3 < rect1.Bottom && rect2.Right > rect1.Left && rect2.Left < rect1.Right && rect2.Bottom > rect1.Bottom)
             {
                 return true;
             } // van boven naar onder
-            if (rectTile.Top < rectPlayer.Bottom && rectTile.Bottom > rectPlayer.Top && rectTile.Left - 3 < rectPlayer.Right && rectTile.Right > rectPlayer.Right)
+            if (rect2.Top < rect1.Bottom && rect2.Bottom > rect1.Top && rect2.Left - 3 < rect1.Right && rect2.Right > rect1.Right)
             {
                 return true;
             } // van links naar rechts
-            if (rectTile.Top < rectPlayer.Bottom && rectTile.Bottom > rectPlayer.Top && rectTile.Right + 3 > rectPlayer.Left && rectTile.Left < rectPlayer.Left)
+            if (rect2.Top < rect1.Bottom && rect2.Bottom > rect1.Top && rect2.Right + 3 > rect1.Left && rect2.Left < rect1.Left)
             {
                 return true;
             } // van rechts naar links
-            if (rectTile.Bottom + 3 > rectPlayer.Top && rectTile.Right > rectPlayer.Left && rectTile.Left < rectPlayer.Right && rectTile.Top < rectPlayer.Top)
+            if (rect2.Bottom + 3 > rect1.Top && rect2.Right > rect1.Left && rect2.Left < rect1.Right && rect2.Top < rect1.Top)
             {
                 return true;
             } // van onder naar boven
@@ -33,7 +33,7 @@ namespace ExamenProject
             {
                 if (blocks[i].Type == "Water")
                 {
-                    if (Collision.CheckCollision(hero.rectangleFeet, blocks[i].BoundingBox))
+                    if (CheckCollision(hero.rectangleFeet, blocks[i].BoundingBox))
                     {
                         hero.move.posX = hero.posXBefore;
                         hero.move.posY = hero.posYBefore;
@@ -49,7 +49,7 @@ namespace ExamenProject
             {
                 if (blocks[i].Type == "Water")
                 {
-                    if (Collision.CheckCollision(enemy.rectangleFeet, blocks[i].BoundingBox))
+                    if (CheckCollision(enemy.rectangleFeet, blocks[i].BoundingBox))
                     {
                         enemy.move.posX = enemy.posXBefore;
                         enemy.move.posY = enemy.posYBefore;
@@ -63,7 +63,7 @@ namespace ExamenProject
         {
             for (int i = 0; i < buildings.Count; i++)
             {
-                if (Collision.CheckCollision(hero.rectangleFeet, buildings[i].HitboxRectangle))
+                if (CheckCollision(hero.rectangleFeet, buildings[i].HitboxRectangle))
                 {
                     hero.move.posX = hero.posXBefore;
                     hero.move.posY = hero.posYBefore;
@@ -75,7 +75,7 @@ namespace ExamenProject
         {
             for (int i = 0; i < buildings.Count; i++)
             {
-                if (Collision.CheckCollision(enemy.rectangleHitbox, buildings[i].HitboxRectangle))
+                if (CheckCollision(enemy.rectangleFeet, buildings[i].HitboxRectangle))
                 {
                     enemy.move.posX = enemy.posXBefore;
                     enemy.move.posY = enemy.posYBefore;
@@ -87,7 +87,6 @@ namespace ExamenProject
 
         public static void CheckCollisionOnEnemies(List<Enemy> enemies, Hero hero)
         {
-
             if (!hero.moveAnimation.fighting)
             {
                 hitEnemies.Clear();
@@ -96,13 +95,16 @@ namespace ExamenProject
 
             for (int i = 0; i < enemies.Count; i++)
             {
-                bool collisionR = CheckCollision(hero.rectangleWeaponR, enemies[i].rectangleHitbox) && hero.move.lastMove == "right";
-                bool collisionL = CheckCollision(hero.rectangleWeaponL, enemies[i].rectangleHitbox) && hero.move.lastMove == "left";
+                bool collisionR = CheckCollision(enemies[i].rectangleHitbox, hero.rectangleWeaponR) && hero.move.lastMove == "right";
+                bool collisionL = CheckCollision(enemies[i].rectangleHitbox, hero.rectangleWeaponL) && hero.move.lastMove == "left";
+
+                //Debug.WriteLine(collisionR + " " + collisionL);
 
                 if ((collisionR || collisionL) && !hitEnemies.Contains(enemies[i]))
                 {
                     hitEnemies.Add(enemies[i]);
                     enemies[i].health--;
+                    Debug.WriteLine("hit");
 
                     if (enemies[i].health <= 0)
                     {
@@ -117,7 +119,12 @@ namespace ExamenProject
         {
             for (int i = 0; i < enemies.Count; i++)
             {
-                if (CheckCollision(hero.rectangleHitbox, enemies[i].rectangleHitbox) /*&& enemies[i].moveAnimation.fighting*/)
+                if (!enemies[i].moveAnimation.fighting) continue;
+
+                bool collisionR = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponR) && enemies[i].move.lastMove == "right";
+                bool collisionL = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponL) && enemies[i].move.lastMove == "left";
+
+                if (collisionR || collisionL)
                 {
                     Debug.Write("auwch");
                     hero.health--;

@@ -77,11 +77,26 @@ namespace ExamenProject
             positionWeaponL = new Vector2(move.posX + offsetWeaponL.X, move.posY + offsetWeaponL.Y);
         }
 
+        public bool counting = false;
+        int counter = 0;
+
         public void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.F)) moveAnimation.Fighting(); // moet weg
+            Counter();
             moveAnimation.Update(gameTime);
             Move(movePlayer);
+        }
+
+        void Counter()
+        {
+            if (counting) counter++;
+
+            if (counter >= 100)
+            {
+                moveAnimation.Fighting();
+                counter = 0;
+                counting = false;
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -101,7 +116,7 @@ namespace ExamenProject
         {
             posXBefore = move.posX;
             posYBefore = move.posY;
-            //move.FollowPlayer(movePlayer);
+            move.FollowPlayer(movePlayer);
 
             position = new Vector2(move.posX, move.posY);
             positionFeet = new Vector2(move.posX + offsetFeet.X, move.posY + offsetFeet.Y);

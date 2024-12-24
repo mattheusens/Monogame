@@ -81,14 +81,17 @@ namespace ExamenProject
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
+
             Maps.CreateBlocks(blocks, level, waterTexture, grassTexture);
+
+            foreach (Enemy en in enemies) if (Collision.CheckCollision(hero.rectangleHitbox, en.rectangleWeaponR)) en.counting = true;
 
             hero.Update(gameTime);
             foreach (Enemy en in enemies) en.Update(gameTime);
             Collision.CheckCollisionOnBuilding(buildings, hero);
             foreach (Enemy en in enemies) Collision.CheckCollisionOnBuilding(buildings, en);
             Collision.CheckCollisionOnEnemies(enemies, hero);
+            Collision.CheckCollisionOnHero(enemies, hero);
             Collision.CheckCollisionOnBlock(blocks, hero);
             foreach (Enemy en in enemies) Collision.CheckCollisionOnBlock(blocks, en);
 

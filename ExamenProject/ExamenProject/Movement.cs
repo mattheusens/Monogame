@@ -24,12 +24,12 @@ namespace ExamenProject
         //Movement for enemy
         public void FollowPlayer(Movement movePlayer)
         { 
-            if (movePlayer.posX - 50 >= posX){ //Player is rechts van enemy
+            if (movePlayer.posX - 60 >= posX){ //Player is rechts van enemy
                 posX++;
                 moveLeft = false;
                 moveRight = true;
             } 
-            else if (movePlayer.posX + 50 <= posX){
+            else if (movePlayer.posX + 60 <= posX){
                 posX--;
                 moveRight = false;
                 moveLeft = true;
