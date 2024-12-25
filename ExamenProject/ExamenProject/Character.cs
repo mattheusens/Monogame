@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ExamenProject
 {
-    internal class Character
+    internal abstract class Character
     {
-        Texture2D enemyTexture;
-        Texture2D hitboxTexture;
-        Texture2D feetTexture;
-        Texture2D weaponTexture;
+        protected Texture2D enemyTexture;
+        protected Texture2D hitboxTexture;
+        protected Texture2D feetTexture;
+        protected Texture2D weaponTexture;
 
         public Animatie moveAnimation;
         public Movement movePlayer;
@@ -21,15 +21,15 @@ namespace ExamenProject
         public int posXBefore;
         public int posYBefore;
 
-        Vector2 position;
-        Vector2 positionHitbox;
-        Vector2 offsetHitbox;
-        Vector2 positionFeet;
-        Vector2 offsetFeet;
-        Vector2 positionWeaponR;
-        Vector2 offsetWeaponR;
-        Vector2 positionWeaponL;
-        Vector2 offsetWeaponL;
+        protected Vector2 position;
+        protected Vector2 positionHitbox;
+        protected Vector2 offsetHitbox;
+        protected Vector2 positionFeet;
+        protected Vector2 offsetFeet;
+        protected Vector2 positionWeaponR;
+        protected Vector2 offsetWeaponR;
+        protected Vector2 positionWeaponL;
+        protected Vector2 offsetWeaponL;
 
         public Rectangle rectangle;
         public Rectangle rectangleHitbox;

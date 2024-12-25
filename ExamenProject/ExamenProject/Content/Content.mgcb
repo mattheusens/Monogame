@@ -242,6 +242,18 @@
 /processorParam:TextureFormat=Color
 /build:MenuScreen/MenuTitle.png
 
+#begin Screens/background.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Screens/background.png
+
 #begin Torch_Blue_Fixed_Full.png
 /importer:TextureImporter
 /processor:TextureProcessor

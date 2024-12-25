@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ExamenProject.Screens;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -12,6 +13,7 @@ namespace ExamenProject
         private SpriteBatch spriteBatch;
         public static SpriteFont font;
         private Song song;
+        Texture2D buttonTexture;
 
         Texture2D textureHero;
         Hero hero;
@@ -29,6 +31,8 @@ namespace ExamenProject
 
         public int level = 0;
         public int coins = 0;
+
+        Texture2D backgroundTexture;
 
         public Game1()
         {
@@ -60,8 +64,12 @@ namespace ExamenProject
             houseTexture = Content.Load<Texture2D>("Background/Buildings/Blue/House");
             towerTexture = Content.Load<Texture2D>("Background/Buildings/Blue/Tower");
 
+            backgroundTexture = Content.Load<Texture2D>("Screens/background");
+            buttonTexture = Content.Load<Texture2D>("MenuScreen/MenuTitle");
+
             font = Content.Load<SpriteFont>("Font");
             song = Content.Load<Song>("Audio/MedievelBackground");
+
             #endregion
 
             //MediaPlayer.Play(song);
@@ -73,7 +81,8 @@ namespace ExamenProject
         public void InitializeGameObject()
         {
             hero = new Hero(textureHero, graphics, GraphicsDevice);
-            enemies.Add(new Enemy(enemyTexture, GraphicsDevice, hero.move));
+            enemies.Add(new Enemy(enemyTexture, GraphicsDevice, hero.move, true));
+            StartScreen.button = new Button(buttonTexture, new Vector2(100, 100), font);
             Maps.CreateBuildings(buildings, level, castleTexture, houseTexture, towerTexture, GraphicsDevice);
         }
 
@@ -82,20 +91,27 @@ namespace ExamenProject
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Maps.CreateBlocks(blocks, level, waterTexture, grassTexture);
+            if (StartScreen.startScreen)
+            {
+                StartScreen.Update();
+            }
+            else 
+            { 
+                Maps.CreateBlocks(blocks, level, waterTexture, grassTexture);
 
-            foreach (Enemy en in enemies) if (Collision.CheckCollision(hero.rectangleHitbox, en.rectangleWeaponR)) en.counting = true;
+                foreach (Enemy en in enemies) if (Collision.CheckCollision(hero.rectangleHitbox, en.rectangleWeaponR)) en.counting = true;
 
-            hero.Update(gameTime);
-            foreach (Enemy en in enemies) en.Update(gameTime);
-            Collision.CheckCollisionOnBuilding(buildings, hero);
-            foreach (Enemy en in enemies) Collision.CheckCollisionOnBuilding(buildings, en);
-            Collision.CheckCollisionOnEnemies(enemies, hero);
-            Collision.CheckCollisionOnHero(enemies, hero);
-            Collision.CheckCollisionOnBlock(blocks, hero);
-            foreach (Enemy en in enemies) Collision.CheckCollisionOnBlock(blocks, en);
-
-            MenuScreen.CheckPause();
+                hero.Update(gameTime);
+                foreach (Enemy en in enemies) en.Update(gameTime);
+                Collision.CheckCollisionOnBuilding(buildings, hero);
+                foreach (Enemy en in enemies) Collision.CheckCollisionOnBuilding(buildings, en);
+                Collision.CheckCollisionOnEnemies(enemies, hero);
+                Collision.CheckCollisionOnHero(enemies, hero);
+                Collision.CheckCollisionOnBlock(blocks, hero);
+                foreach (Enemy en in enemies) Collision.CheckCollisionOnBlock(blocks, en);
+                
+                MenuScreen.CheckPause();
+            }
 
             base.Update(gameTime);
         }
@@ -105,18 +121,23 @@ namespace ExamenProject
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
 
-            for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Water") blocks[i].Draw(spriteBatch);
-            for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Grass") blocks[i].Draw(spriteBatch);
+            if (StartScreen.startScreen)
+            {
+                StartScreen.Draw(spriteBatch, font, buttonTexture, backgroundTexture);
+            }
+            else
+            {
+                for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Water") blocks[i].Draw(spriteBatch);
+                for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Grass") blocks[i].Draw(spriteBatch);
+                for (int i = 0; i < buildings.Count; i++) buildings[i].Draw(spriteBatch);
 
-            for (int i = 0; i < buildings.Count; i++) buildings[i].Draw(spriteBatch);
+                hero.Draw(spriteBatch);
+                foreach (Enemy enemy in enemies) enemy.Draw(spriteBatch);
 
-            hero.Draw(spriteBatch);
+                spriteBatch.DrawString(font, "Coins: " + coins, new Vector2(20, 20), Color.White);
 
-            foreach (Enemy enemy in enemies) enemy.Draw(spriteBatch);
-
-            spriteBatch.DrawString(font, "Coins: " + coins, new Vector2(20, 20), Color.White);
-
-            MenuScreen.Draw(spriteBatch, Content);
+                MenuScreen.Draw(spriteBatch, Content);
+            }
 
             spriteBatch.End();
 

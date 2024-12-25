@@ -98,8 +98,6 @@ namespace ExamenProject
                 bool collisionR = CheckCollision(enemies[i].rectangleHitbox, hero.rectangleWeaponR) && hero.move.lastMove == "right";
                 bool collisionL = CheckCollision(enemies[i].rectangleHitbox, hero.rectangleWeaponL) && hero.move.lastMove == "left";
 
-                //Debug.WriteLine(collisionR + " " + collisionL);
-
                 if ((collisionR || collisionL) && !hitEnemies.Contains(enemies[i]))
                 {
                     hitEnemies.Add(enemies[i]);
@@ -115,18 +113,24 @@ namespace ExamenProject
             }
         }
 
+        public static bool heroHit = false;
+
         public static void CheckCollisionOnHero(List<Enemy> enemies, Hero hero)
         {
             for (int i = 0; i < enemies.Count; i++)
             {
-                if (!enemies[i].moveAnimation.fighting) continue;
+                if (!enemies[i].moveAnimation.fighting) {
+                    heroHit = false;
+                    continue;
+                } 
 
                 bool collisionR = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponR) && enemies[i].move.lastMove == "right";
                 bool collisionL = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponL) && enemies[i].move.lastMove == "left";
 
-                if (collisionR || collisionL)
+                if ((collisionR || collisionL) && !heroHit)
                 {
-                    Debug.Write("auwch");
+                    Debug.WriteLine("auwch");
+                    heroHit = true;
                     hero.health--;
                 }
             }

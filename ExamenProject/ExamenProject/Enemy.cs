@@ -38,12 +38,16 @@ namespace ExamenProject
         public Rectangle rectangleWeaponL;
 
         public int health = 3;
+        public bool canFight = false;
+        public bool counting = false;
+        int counter = 0;
 
-        public Enemy(Texture2D texture, GraphicsDevice graphicsDevice, Movement movePlayer)
+        public Enemy(Texture2D texture, GraphicsDevice graphicsDevice, Movement movePlayer, bool canFight)
         {
             this.enemyTexture = texture;
             this.movePlayer = movePlayer;
             this.move = new Movement();
+            this.canFight = canFight;
 
             moveAnimation = new Animatie(move);
             moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height / 5 * 3, 12, 3);
@@ -77,12 +81,9 @@ namespace ExamenProject
             positionWeaponL = new Vector2(move.posX + offsetWeaponL.X, move.posY + offsetWeaponL.Y);
         }
 
-        public bool counting = false;
-        int counter = 0;
-
         public void Update(GameTime gameTime)
         {
-            Counter();
+            if(canFight) Counter();
             moveAnimation.Update(gameTime);
             Move(movePlayer);
         }
