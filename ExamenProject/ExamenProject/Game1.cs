@@ -1,5 +1,6 @@
 ﻿using ExamenProject.Screens;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -11,7 +12,6 @@ namespace ExamenProject
     {
         public static GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        public static SpriteFont font;
         private Song song;
         Texture2D buttonTexture;
 
@@ -34,6 +34,9 @@ namespace ExamenProject
 
         Texture2D backgroundTexture;
 
+        StartScreen startScreen;
+        SpriteFont font;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -46,7 +49,11 @@ namespace ExamenProject
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            ContentLoader.getInstance().init(Content);
+            MedievalFont.getInstance().init();
+
+            font = MedievalFont.getInstance().font;
+            startScreen = StartScreen.getInstance();
 
             base.Initialize();
         }
@@ -67,9 +74,7 @@ namespace ExamenProject
             backgroundTexture = Content.Load<Texture2D>("Screens/background");
             buttonTexture = Content.Load<Texture2D>("MenuScreen/MenuTitle");
 
-            font = Content.Load<SpriteFont>("Font");
             song = Content.Load<Song>("Audio/MedievelBackground");
-
             #endregion
 
             //MediaPlayer.Play(song);
@@ -82,7 +87,6 @@ namespace ExamenProject
         {
             hero = new Hero(textureHero, graphics, GraphicsDevice);
             enemies.Add(new Enemy(enemyTexture, GraphicsDevice, hero.move, true));
-            StartScreen.button = new Button(buttonTexture, new Vector2(100, 100), font);
             Maps.CreateBuildings(buildings, level, castleTexture, houseTexture, towerTexture, GraphicsDevice);
         }
 
@@ -91,9 +95,9 @@ namespace ExamenProject
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (StartScreen.startScreen)
+            if (startScreen.startScreenOn)
             {
-                StartScreen.Update();
+                startScreen.Update();
             }
             else 
             { 
@@ -121,9 +125,9 @@ namespace ExamenProject
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
 
-            if (StartScreen.startScreen)
+            if (startScreen.startScreenOn)
             {
-                StartScreen.Draw(spriteBatch, font, buttonTexture, backgroundTexture);
+                startScreen.Draw(spriteBatch, buttonTexture, backgroundTexture);
             }
             else
             {
