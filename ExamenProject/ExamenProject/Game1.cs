@@ -13,7 +13,6 @@ namespace ExamenProject
         public static GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Song song;
-        Texture2D buttonTexture;
 
         Texture2D textureHero;
         Hero hero;
@@ -32,9 +31,8 @@ namespace ExamenProject
         public int level = 0;
         public int coins = 0;
 
-        Texture2D backgroundTexture;
-
         StartScreen startScreen;
+        BugScreen bugScreen;
         SpriteFont font;
 
         public Game1()
@@ -54,6 +52,7 @@ namespace ExamenProject
 
             font = MedievalFont.getInstance().font;
             startScreen = StartScreen.getInstance();
+            bugScreen = BugScreen.getInstance();
 
             base.Initialize();
         }
@@ -70,9 +69,6 @@ namespace ExamenProject
             castleTexture = Content.Load<Texture2D>("Background/Buildings/Blue/Castle");
             houseTexture = Content.Load<Texture2D>("Background/Buildings/Blue/House");
             towerTexture = Content.Load<Texture2D>("Background/Buildings/Blue/Tower");
-
-            backgroundTexture = Content.Load<Texture2D>("Screens/background");
-            buttonTexture = Content.Load<Texture2D>("MenuScreen/MenuTitle");
 
             song = Content.Load<Song>("Audio/MedievelBackground");
             #endregion
@@ -97,7 +93,15 @@ namespace ExamenProject
 
             if (startScreen.startScreenOn)
             {
-                startScreen.Update();
+                if (startScreen.bugScreenOn) { 
+                    bugScreen.Update();
+                    if (bugScreen.returnButton.clicked) startScreen.bugScreenOn = false;
+                }
+                else
+                {
+                    startScreen.Update();
+                    if (startScreen.quit) Exit();
+                }
             }
             else 
             { 
@@ -127,7 +131,8 @@ namespace ExamenProject
 
             if (startScreen.startScreenOn)
             {
-                startScreen.Draw(spriteBatch, buttonTexture, backgroundTexture);
+                startScreen.Draw(spriteBatch);
+                if (startScreen.bugScreenOn) bugScreen.Draw(spriteBatch);
             }
             else
             {
@@ -140,7 +145,7 @@ namespace ExamenProject
 
                 spriteBatch.DrawString(font, "Coins: " + coins, new Vector2(20, 20), Color.White);
 
-                MenuScreen.Draw(spriteBatch, Content);
+                MenuScreen.Draw(spriteBatch);
             }
 
             spriteBatch.End();

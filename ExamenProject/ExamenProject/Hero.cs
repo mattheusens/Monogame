@@ -104,7 +104,6 @@ namespace ExamenProject
             posXBefore = move.posX;
             posYBefore = move.posY;
             move.MoveInputs();
-            move.MoveBoundaries(graphics, heroTexture);
 
             position = new Vector2(move.posX, move.posY);
             positionFeet = new Vector2(move.posX + offsetFeet.X, move.posY + offsetFeet.Y);

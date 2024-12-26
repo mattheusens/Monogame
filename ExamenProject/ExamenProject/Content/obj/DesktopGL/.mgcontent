@@ -19,16 +19,20 @@
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Yellow/Tower.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Grass_Big.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Grass.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Tree.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Water.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Font.spritefont</File>
-    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/MenuScreen/MenuBackground.png</File>
-    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/MenuScreen/MenuScreen.png</File>
-    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/MenuScreen/MenuTitle.png</File>
-    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/background.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/BackgroundFilter.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/BigScreen.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/Button.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/MainBackground.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/Return.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Torch_Blue_Fixed_Full.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Warrior_Blue_Full.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

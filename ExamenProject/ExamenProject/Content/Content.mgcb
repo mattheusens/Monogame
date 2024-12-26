@@ -187,6 +187,18 @@
 /processorParam:TextureFormat=Color
 /build:Background/Grass.png
 
+#begin Background/Tree.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Background/Tree.png
+
 #begin Background/Water.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -206,7 +218,7 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
-#begin MenuScreen/MenuBackground.png
+#begin Screens/BackgroundFilter.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -216,9 +228,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:MenuScreen/MenuBackground.png
+/build:Screens/BackgroundFilter.png
 
-#begin MenuScreen/MenuScreen.png
+#begin Screens/BigScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -228,9 +240,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:MenuScreen/MenuScreen.png
+/build:Screens/BigScreen.png
 
-#begin MenuScreen/MenuTitle.png
+#begin Screens/Button.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -240,9 +252,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:MenuScreen/MenuTitle.png
+/build:Screens/Button.png
 
-#begin Screens/background.png
+#begin Screens/MainBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -252,7 +264,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Screens/background.png
+/build:Screens/MainBackground.png
+
+#begin Screens/Return.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Screens/Return.png
 
 #begin Torch_Blue_Fixed_Full.png
 /importer:TextureImporter

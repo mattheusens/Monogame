@@ -77,17 +77,5 @@ namespace ExamenProject
                 lastMove = "right";
             }else moveRight = false;
         } 
-
-        public void MoveBoundaries(GraphicsDeviceManager graphics, Texture2D heroTexture)
-        {
-            if (graphics.PreferredBackBufferWidth - heroTexture.Width / 12 < posX)
-                posX = graphics.PreferredBackBufferWidth - heroTexture.Width / 12;
-            if (posX < 10)
-                posX = 10;
-            if (graphics.PreferredBackBufferHeight - heroTexture.Height / 8 < posY)
-                posY = graphics.PreferredBackBufferHeight - heroTexture.Height / 8;
-            if (posY < 10)
-                posY = 10;
-        }
     }
 }

@@ -15,23 +15,26 @@ namespace ExamenProject.Screens
     {
         static bool pause = false;
         static bool pPressed = false;
-        static Texture2D menuScreen;
-        static Texture2D menuBackground;
-        static Texture2D menuTitle;
+        static Texture2D bigScreen;
+        static Texture2D backgroundFilter;
+        
+        private static SpriteFont font;
 
-        public static void Draw(SpriteBatch spriteBatch, ContentManager content)
+        public static void Draw(SpriteBatch spriteBatch)
         {
-            menuScreen = content.Load<Texture2D>("MenuScreen/MenuScreen");
-            menuBackground = content.Load<Texture2D>("MenuScreen/MenuBackground");
-            menuTitle = content.Load<Texture2D>("MenuScreen/MenuTitle");
+            font = MedievalFont.getInstance().font;
+
+            ContentManager Content = ContentLoader.getInstance().contentM;
+
+            bigScreen = Content.Load<Texture2D>("Screens/BigScreen");
+            backgroundFilter = Content.Load<Texture2D>("Screens/BackgroundFilter");
 
             if (pause)
             {
-                spriteBatch.Draw(menuBackground, new Vector2(0, 0), null, Color.White, 0.0f, new Vector2(0, 0), 2.0f, SpriteEffects.None, 0.0f);
-                spriteBatch.Draw(menuScreen, new Vector2(Game1.graphics.PreferredBackBufferWidth / 2, Game1.graphics.PreferredBackBufferHeight / 2), null, Color.White, 0.0f, new Vector2(96, 96), 4.5f, SpriteEffects.None, 1.0f);
-                //spriteBatch.Draw(menuTitle, new Vector2(730, 137), null, Color.White, 0.0f, new Vector2(96, 32), 1.2f, SpriteEffects.None, 1.0f);
+                spriteBatch.Draw(backgroundFilter, new Vector2(0, 0), null, Color.White, 0.0f, new Vector2(0, 0), 2.0f, SpriteEffects.None, 0.0f);
+                spriteBatch.Draw(bigScreen, new Vector2(Game1.graphics.PreferredBackBufferWidth / 2, Game1.graphics.PreferredBackBufferHeight / 2), null, Color.White, 0.0f, new Vector2(96, 96), 4.5f, SpriteEffects.None, 1.0f);
 
-                spriteBatch.DrawString(Game1.font, "Menu", new Vector2(750, 200), Color.White, 0, new Vector2(50, 50), 2f, SpriteEffects.None, 0);
+                spriteBatch.DrawString(font, "Menu", new Vector2(750, 200), Color.White, 0, new Vector2(50, 50), 2f, SpriteEffects.None, 0);
             }
         }
 
