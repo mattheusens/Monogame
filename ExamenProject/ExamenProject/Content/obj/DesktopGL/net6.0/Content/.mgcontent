@@ -22,7 +22,9 @@
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Tree.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Water.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Font.spritefont</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Heart.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/BackgroundFilter.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/BackgroundFilterGameOver.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/BigScreen.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/Button.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/MainBackground.png</File>
@@ -31,6 +33,8 @@
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Warrior_Blue_Full.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

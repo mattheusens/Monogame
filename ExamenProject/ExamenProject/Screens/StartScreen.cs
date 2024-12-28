@@ -1,12 +1,11 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
+using ExamenProject.Interfaces;
 
 namespace ExamenProject.Screens
 {
-    internal class StartScreen
+    internal class StartScreen : IScreenState
     {
         private static StartScreen startScreen = new StartScreen();
         private Texture2D backgroundTexture;
@@ -84,5 +83,11 @@ namespace ExamenProject.Screens
             spriteBatch.DrawString(font, "Bugs", basePositionBugs + offsetTextB, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
             spriteBatch.DrawString(font, "Quit", basePositionQuit + offsetTextQ, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
         }
+
+        public void goToGame() { }
+        public void goToStartScreen() { }
+        public void goToBugScreen() { }
+        public void goToEndScreen() { }
+        public void goToMenuScreen() { }
     }
 }

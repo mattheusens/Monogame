@@ -1,4 +1,5 @@
-﻿using ExamenProject.Screens;
+﻿using ExamenProject.Nature;
+using ExamenProject.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -33,7 +34,13 @@ namespace ExamenProject
 
         StartScreen startScreen;
         BugScreen bugScreen;
+        GameOverScreen gameOverScreen;
+        MenuScreen menuScreen;
         SpriteFont font;
+
+        List<Tree> trees = new();
+
+        Screen screen;
 
         public Game1()
         {
@@ -47,12 +54,16 @@ namespace ExamenProject
 
         protected override void Initialize()
         {
+            screen = new();
+
             ContentLoader.getInstance().init(Content);
             MedievalFont.getInstance().init();
 
             font = MedievalFont.getInstance().font;
             startScreen = StartScreen.getInstance();
             bugScreen = BugScreen.getInstance();
+            gameOverScreen = GameOverScreen.getInstance();
+            menuScreen = MenuScreen.getInstance();
 
             base.Initialize();
         }
@@ -81,8 +92,9 @@ namespace ExamenProject
 
         public void InitializeGameObject()
         {
-            hero = new Hero(textureHero, graphics, GraphicsDevice);
+            hero = new Hero(textureHero, GraphicsDevice);
             enemies.Add(new Enemy(enemyTexture, GraphicsDevice, hero.move, true));
+            Maps.CreateTrees(trees, 0, GraphicsDevice);
             Maps.CreateBuildings(buildings, level, castleTexture, houseTexture, towerTexture, GraphicsDevice);
         }
 
@@ -103,6 +115,16 @@ namespace ExamenProject
                     if (startScreen.quit) Exit();
                 }
             }
+            else if (hero.health == 0)
+            {
+                gameOverScreen.Update();
+                if (gameOverScreen.restartButton.clicked) 
+                {
+                    
+                    hero.health = 3;
+                    startScreen.startScreenOn = true; 
+                }
+            }
             else 
             { 
                 Maps.CreateBlocks(blocks, level, waterTexture, grassTexture);
@@ -111,14 +133,19 @@ namespace ExamenProject
 
                 hero.Update(gameTime);
                 foreach (Enemy en in enemies) en.Update(gameTime);
+
+                foreach (Tree tr in trees) tr.Update(gameTime);
+
                 Collision.CheckCollisionOnBuilding(buildings, hero);
                 foreach (Enemy en in enemies) Collision.CheckCollisionOnBuilding(buildings, en);
+                Collision.CheckCollisionOnTree(trees, hero);
+                foreach (Enemy en in enemies) Collision.CheckCollisionOnTree(trees, en);
                 Collision.CheckCollisionOnEnemies(enemies, hero);
                 Collision.CheckCollisionOnHero(enemies, hero);
                 Collision.CheckCollisionOnBlock(blocks, hero);
                 foreach (Enemy en in enemies) Collision.CheckCollisionOnBlock(blocks, en);
                 
-                MenuScreen.CheckPause();
+                menuScreen.Update();
             }
 
             base.Update(gameTime);
@@ -134,10 +161,15 @@ namespace ExamenProject
                 startScreen.Draw(spriteBatch);
                 if (startScreen.bugScreenOn) bugScreen.Draw(spriteBatch);
             }
+            else if (hero.health == 0)
+            {
+                gameOverScreen.Draw(spriteBatch);
+            }
             else
             {
                 for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Water") blocks[i].Draw(spriteBatch);
                 for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Grass") blocks[i].Draw(spriteBatch);
+                foreach (Tree tr in trees) tr.Draw(spriteBatch);
                 for (int i = 0; i < buildings.Count; i++) buildings[i].Draw(spriteBatch);
 
                 hero.Draw(spriteBatch);
@@ -145,7 +177,7 @@ namespace ExamenProject
 
                 spriteBatch.DrawString(font, "Coins: " + coins, new Vector2(20, 20), Color.White);
 
-                MenuScreen.Draw(spriteBatch);
+                menuScreen.Draw(spriteBatch);
             }
 
             spriteBatch.End();

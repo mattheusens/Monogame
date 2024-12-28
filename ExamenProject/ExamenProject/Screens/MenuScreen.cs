@@ -1,26 +1,23 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ExamenProject.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExamenProject.Screens
 {
-    static class MenuScreen
+    internal class MenuScreen : IScreenState
     {
+        private static MenuScreen menuScreen = new MenuScreen();
+
         static bool pause = false;
         static bool pPressed = false;
         static Texture2D bigScreen;
         static Texture2D backgroundFilter;
         
-        private static SpriteFont font;
+        static SpriteFont font;
 
-        public static void Draw(SpriteBatch spriteBatch)
+        private MenuScreen()
         {
             font = MedievalFont.getInstance().font;
 
@@ -28,7 +25,20 @@ namespace ExamenProject.Screens
 
             bigScreen = Content.Load<Texture2D>("Screens/BigScreen");
             backgroundFilter = Content.Load<Texture2D>("Screens/BackgroundFilter");
+        }
 
+        public static MenuScreen getInstance()
+        {
+            return menuScreen;
+        }
+
+        public void Update()
+        {
+            CheckPause();
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
             if (pause)
             {
                 spriteBatch.Draw(backgroundFilter, new Vector2(0, 0), null, Color.White, 0.0f, new Vector2(0, 0), 2.0f, SpriteEffects.None, 0.0f);
@@ -38,7 +48,7 @@ namespace ExamenProject.Screens
             }
         }
 
-        public static void CheckPause()
+        public void CheckPause()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.P) && !pPressed)
             {
@@ -47,5 +57,11 @@ namespace ExamenProject.Screens
             }
             if (Keyboard.GetState().IsKeyUp(Keys.P)) pPressed = false;
         }
+
+        public void goToGame() { }
+        public void goToStartScreen() { }
+        public void goToBugScreen() { }
+        public void goToEndScreen() { }
+        public void goToMenuScreen() { }
     }
 }

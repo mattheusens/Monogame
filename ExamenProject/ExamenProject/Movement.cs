@@ -19,7 +19,7 @@ namespace ExamenProject
         public bool moveDown = false;
         public bool moveLeft = false;
         public bool moveRight = false;
-        public string lastMove = "left";
+        public string lastMove = "right";
 
         //Movement for enemy
         public void FollowPlayer(Movement movePlayer)

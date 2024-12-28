@@ -42,7 +42,7 @@ namespace ExamenProject
             this.enemyTexture = texture;
             this.move = new Movement();
 
-            moveAnimation = new Animatie(move);
+            moveAnimation = new Animatie(move, 6);
 
             feetTexture = new Texture2D(graphicsDevice, 1, 1);
             hitboxTexture = new Texture2D(graphicsDevice, 1, 1);

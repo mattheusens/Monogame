@@ -14,10 +14,12 @@ namespace ExamenProject.Animation
         private int lowBoundaryCounter;
         private int highBoundaryCounter;
         public bool fighting = false;
+        private int framesPerWidth; 
 
-        public Animatie(Movement move)
+        public Animatie(Movement move, int framesPerWidth)
         {
             this.move = move;
+            this.framesPerWidth = framesPerWidth;
             frames = new List<AnimationFrame>();
         }
 
@@ -38,7 +40,7 @@ namespace ExamenProject.Animation
                     secondCounter = 0;
                 }
 
-                if (counter >= highBoundaryCounter)
+                if (counter > highBoundaryCounter)
                 {
                     fighting = false;
                     counter = lowBoundaryCounter;
@@ -75,37 +77,37 @@ namespace ExamenProject.Animation
         {
             if (fighting && move.lastMove == "right")
             {
-                lowBoundaryCounter = 24;
-                highBoundaryCounter = 29;
+                lowBoundaryCounter = framesPerWidth * 4;
+                highBoundaryCounter = framesPerWidth * 5 - 1;
             }
             else if (fighting && move.lastMove == "left")
             {
-                lowBoundaryCounter = 30;
-                highBoundaryCounter = 35;
+                lowBoundaryCounter = framesPerWidth * 5;
+                highBoundaryCounter = framesPerWidth * 6 - 1;
             }
             else
             {
                 if (move.moveRight || (move.moveUp || move.moveDown) && move.lastMove == "right")
                 {
-                    lowBoundaryCounter = 12;
-                    highBoundaryCounter = 17;
+                    lowBoundaryCounter = framesPerWidth * 2;
+                    highBoundaryCounter = framesPerWidth * 3 - 1;
                 }
                 else if (move.moveLeft || (move.moveUp || move.moveDown) && move.lastMove == "left")
                 {
-                    lowBoundaryCounter = 18;
-                    highBoundaryCounter = 23;
+                    lowBoundaryCounter = framesPerWidth * 3;
+                    highBoundaryCounter = framesPerWidth * 4 - 1;
                 }
                 else
                 {
                     if (move.lastMove == "right")
                     {
                         lowBoundaryCounter = 0;
-                        highBoundaryCounter = 5;
+                        highBoundaryCounter = framesPerWidth * 1 - 1;
                     }
                     else
                     {
-                        lowBoundaryCounter = 6;
-                        highBoundaryCounter = 11;
+                        lowBoundaryCounter = framesPerWidth * 1;
+                        highBoundaryCounter = framesPerWidth * 2 - 1;
                     }
                 }
             }

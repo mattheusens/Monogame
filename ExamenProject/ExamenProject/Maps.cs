@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.ComponentModel;
+using ExamenProject.Nature;
+using System.Diagnostics;
 
 namespace ExamenProject
 {
@@ -61,6 +63,15 @@ namespace ExamenProject
             }
         }
 
+        public static void CreateTrees(List<Tree> tr, int level, GraphicsDevice gd){
+            switch (level)
+            {
+                case 0:
+                    TreesLevel1(tr, gd);
+                    break;
+            }
+        }
+
         public static void GetFramesFromTextureProperties(int width, int height, int numberOfWidthSprites, int numberOfHeightSprites)
         {
             int widthOfFrame = width / numberOfWidthSprites;
@@ -95,9 +106,45 @@ namespace ExamenProject
             bd.Add(new Building(new Rectangle(279, 300, 128, 192), tH, "house", gd));
             bd.Add(new Building(new Rectangle(686, 300, 128, 192), tH, "house", gd));
             bd.Add(new Building(new Rectangle(1093, 300, 128, 192), tH, "house", gd));
-            bd.Add(new Building(new Rectangle(279, 600, 128, 192), tH, "house", gd));
-            bd.Add(new Building(new Rectangle(686, 600, 128, 192), tH, "house", gd));
-            bd.Add(new Building(new Rectangle(1093, 600, 128, 192), tH, "house", gd));
+        }
+
+        public static void TreesLevel1(List<Tree> tr, GraphicsDevice gd)
+        {
+            //Top side trees
+            for (int i = -72; i < 1611; i+=111)
+            {
+                for (int j = -2; j <= 0; j++)
+                {
+                    tr.Add(new Tree(new(i, 78 * j), gd));
+                }
+            }
+
+            //Left side trees
+            for (int i = 1; i < 9; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    tr.Add(new Tree(new(-72 + 111 * j, 78 * i), gd));
+                }
+            }
+
+            //Right side trees
+            for (int i = 1; i < 9; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    tr.Add(new Tree(new(1260 + 111 * j, 78 * i), gd));
+                }
+            }
+
+            //Bottom side trees
+            for (int i = -72; i < 1611; i += 111)
+            {
+                for (int j = -2; j <= 0; j++)
+                {
+                    tr.Add(new Tree(new(i, 78 * (11 + j)), gd));
+                }
+            }
         }
     }
 }

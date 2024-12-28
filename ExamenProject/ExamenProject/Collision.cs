@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;
+using ExamenProject.Nature;
 
 namespace ExamenProject
 {
@@ -63,7 +64,7 @@ namespace ExamenProject
         {
             for (int i = 0; i < buildings.Count; i++)
             {
-                if (CheckCollision(hero.rectangleFeet, buildings[i].HitboxRectangle))
+                if (CheckCollision(hero.rectangleFeet, buildings[i].hitboxRectangle))
                 {
                     hero.move.posX = hero.posXBefore;
                     hero.move.posY = hero.posYBefore;
@@ -75,7 +76,7 @@ namespace ExamenProject
         {
             for (int i = 0; i < buildings.Count; i++)
             {
-                if (CheckCollision(enemy.rectangleFeet, buildings[i].HitboxRectangle))
+                if (CheckCollision(enemy.rectangleFeet, buildings[i].hitboxRectangle))
                 {
                     enemy.move.posX = enemy.posXBefore;
                     enemy.move.posY = enemy.posYBefore;
@@ -84,7 +85,6 @@ namespace ExamenProject
         }
 
         public static List<Enemy> hitEnemies = new();
-
         public static void CheckCollisionOnEnemies(List<Enemy> enemies, Hero hero)
         {
             if (!hero.moveAnimation.fighting)
@@ -102,7 +102,6 @@ namespace ExamenProject
                 {
                     hitEnemies.Add(enemies[i]);
                     enemies[i].health--;
-                    Debug.WriteLine("hit");
 
                     if (enemies[i].health <= 0)
                     {
@@ -114,12 +113,12 @@ namespace ExamenProject
         }
 
         public static bool heroHit = false;
-
         public static void CheckCollisionOnHero(List<Enemy> enemies, Hero hero)
         {
             for (int i = 0; i < enemies.Count; i++)
             {
                 if (!enemies[i].moveAnimation.fighting) {
+                    if(heroHit) hero.health--;
                     heroHit = false;
                     continue;
                 } 
@@ -129,9 +128,31 @@ namespace ExamenProject
 
                 if ((collisionR || collisionL) && !heroHit)
                 {
-                    Debug.WriteLine("auwch");
                     heroHit = true;
-                    hero.health--;
+                }
+            }
+        }
+
+        public static void CheckCollisionOnTree(List<Tree> trees, Hero hero)
+        {
+            for (int i = 0; i < trees.Count; i++)
+            {
+                if (CheckCollision(hero.rectangleFeet, trees[i].hitboxRectangle))
+                {
+                    hero.move.posX = hero.posXBefore;
+                    hero.move.posY = hero.posYBefore;
+                }
+            }
+        }
+          
+        public static void CheckCollisionOnTree(List<Tree> trees, Enemy enemy)
+        {
+            for (int i = 0; i < trees.Count; i++)
+            {
+                if (CheckCollision(enemy.rectangleFeet, trees[i].hitboxRectangle))
+                {
+                    enemy.move.posX = enemy.posXBefore;
+                    enemy.move.posY = enemy.posYBefore;
                 }
             }
         }

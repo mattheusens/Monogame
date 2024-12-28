@@ -1,6 +1,7 @@
 ﻿using ExamenProject.Animation;
 using ExamenProject.Interfaces;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -8,8 +9,6 @@ namespace ExamenProject
 {
     internal class Hero : IGameObject
     {
-        GraphicsDeviceManager graphics;
-
         Texture2D heroTexture;
         Texture2D hitboxTexture;
         Texture2D feetTexture;
@@ -38,20 +37,23 @@ namespace ExamenProject
         public Rectangle rectangleWeaponR;
         public Rectangle rectangleWeaponL;
 
+        private Texture2D heart;
         public int health = 3;
 
-        public Hero(Texture2D texture, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
+        public Hero(Texture2D texture, GraphicsDevice graphicsDevice)
         {
-            this.graphics = graphics;
             this.heroTexture = texture;
             this.move = new Movement();
 
-            moveAnimation = new Animatie(move);
+            ContentManager Content = ContentLoader.getInstance().contentM;
+            heart = Content.Load<Texture2D>("Heart");
+
+            moveAnimation = new Animatie(move, 6);
             moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height / 8 * 3, 12, 3);
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
 
-            move.posX = 50; //graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
-            move.posY = 50; //graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
+            move.posX = 120; //graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
+            move.posY = 100; //graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
             position = new Vector2(move.posX, move.posY);
 
             feetTexture = new Texture2D(graphicsDevice, 1, 1);
@@ -97,6 +99,11 @@ namespace ExamenProject
             spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Transparent);
             spriteBatch.Draw(weaponTexture, positionWeaponR, rectangleWeaponR, Color.Transparent);
             spriteBatch.Draw(weaponTexture, positionWeaponL, rectangleWeaponL, Color.Transparent);
+
+            for (int i = 0; i < health; i++)
+            {
+                spriteBatch.Draw(heart, new(30 + 110 * i, 800), new(0, 0, heart.Width, heart.Height), Color.White, 0, new(0, 0), 0.3f, SpriteEffects.None, 0);
+            }
         }
 
         public void Move()

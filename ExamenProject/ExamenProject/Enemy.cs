@@ -49,7 +49,7 @@ namespace ExamenProject
             this.move = new Movement();
             this.canFight = canFight;
 
-            moveAnimation = new Animatie(move);
+            moveAnimation = new Animatie(move, 6);
             moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height / 5 * 3, 12, 3);
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
 

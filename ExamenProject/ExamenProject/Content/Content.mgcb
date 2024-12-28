@@ -218,6 +218,18 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
+#begin Heart.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Heart.png
+
 #begin Screens/BackgroundFilter.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -229,6 +241,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Screens/BackgroundFilter.png
+
+#begin Screens/BackgroundFilterGameOver.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Screens/BackgroundFilterGameOver.png
 
 #begin Screens/BigScreen.png
 /importer:TextureImporter
