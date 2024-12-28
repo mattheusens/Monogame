@@ -1,4 +1,5 @@
-﻿using ExamenProject.Nature;
+﻿using ExamenProject.Interfaces;
+using ExamenProject.Nature;
 using ExamenProject.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -32,10 +33,6 @@ namespace ExamenProject
         public int level = 0;
         public int coins = 0;
 
-        StartScreen startScreen;
-        BugScreen bugScreen;
-        GameOverScreen gameOverScreen;
-        MenuScreen menuScreen;
         SpriteFont font;
 
         List<Tree> trees = new();
@@ -54,16 +51,12 @@ namespace ExamenProject
 
         protected override void Initialize()
         {
-            screen = new();
-
             ContentLoader.getInstance().init(Content);
             MedievalFont.getInstance().init();
-
             font = MedievalFont.getInstance().font;
-            startScreen = StartScreen.getInstance();
-            bugScreen = BugScreen.getInstance();
-            gameOverScreen = GameOverScreen.getInstance();
-            menuScreen = MenuScreen.getInstance();
+            GraphicsDeviceLoader.getInstance().init(GraphicsDevice);
+    
+            screen = new();
 
             base.Initialize();
         }
@@ -103,6 +96,15 @@ namespace ExamenProject
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            screen.state.Update(gameTime);
+
+            if(screen.state == screen.getStartScreen())
+            {
+                StartScreen sc = screen.state as StartScreen;
+                if (sc.quit) Exit();
+            }
+
+            /*
             if (startScreen.startScreenOn)
             {
                 if (startScreen.bugScreenOn) { 
@@ -127,7 +129,7 @@ namespace ExamenProject
             }
             else 
             { 
-                Maps.CreateBlocks(blocks, level, waterTexture, grassTexture);
+                Maps.CreateBlocks(blocks, level, waterTexture, grassTexture);    
 
                 foreach (Enemy en in enemies) if (Collision.CheckCollision(hero.rectangleHitbox, en.rectangleWeaponR)) en.counting = true;
 
@@ -147,7 +149,7 @@ namespace ExamenProject
                 
                 menuScreen.Update();
             }
-
+            */
             base.Update(gameTime);
         }
 
@@ -156,6 +158,9 @@ namespace ExamenProject
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
 
+            screen.state.Draw(spriteBatch);
+
+            /*
             if (startScreen.startScreenOn)
             {
                 startScreen.Draw(spriteBatch);
@@ -179,6 +184,7 @@ namespace ExamenProject
 
                 menuScreen.Draw(spriteBatch);
             }
+            */
 
             spriteBatch.End();
 

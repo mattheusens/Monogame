@@ -1,4 +1,5 @@
 ﻿using ExamenProject.Interfaces;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +10,48 @@ namespace ExamenProject.Screens
 {
     public class Screen
     {
-        IScreenState bugScreen;
-        IScreenState gameOverScreen;
         IScreenState startScreen;
-        IScreenState menuScreen;
+        IScreenState bugScreen;
         IScreenState gameScreen;
-        IScreenState state;
+        IScreenState menuScreen;
+        IScreenState gameOverScreen;
+        public IScreenState state;
 
         public Screen()
         {
-            bugScreen = BugScreen.getInstance();
-            gameOverScreen = GameOverScreen.getInstance();
-            startScreen = StartScreen.getInstance();
-            menuScreen = MenuScreen.getInstance();
+            startScreen = new StartScreen(this);
+            bugScreen = new BugScreen(this);
             gameScreen = new GameScreen(this);
+            menuScreen = new MenuScreen(this);
+            gameOverScreen = new GameOverScreen(this);
             state = startScreen;
         }
 
-        void setState(IScreenState state)
+        public void setState(IScreenState state)
         {
             this.state = state;
+        }
+
+
+        public IScreenState getStartScreen()
+        {
+            return startScreen;
+        }
+        public IScreenState getBugScreen()
+        {
+            return bugScreen;
+        }
+        public IScreenState getGameScreen()
+        {
+            return gameScreen;
+        }
+        public IScreenState getMenuScreen()
+        {
+            return menuScreen;
+        }
+        public IScreenState getGameOverScreen()
+        {
+            return gameOverScreen; 
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ExamenProject.Screens
 {
     internal class MenuScreen : IScreenState
     {
-        private static MenuScreen menuScreen = new MenuScreen();
+        Screen screen;
 
         static bool pause = false;
         static bool pPressed = false;
@@ -17,8 +17,10 @@ namespace ExamenProject.Screens
         
         static SpriteFont font;
 
-        private MenuScreen()
+        public MenuScreen(Screen screen)
         {
+            this.screen = screen;
+
             font = MedievalFont.getInstance().font;
 
             ContentManager Content = ContentLoader.getInstance().contentM;
@@ -27,41 +29,42 @@ namespace ExamenProject.Screens
             backgroundFilter = Content.Load<Texture2D>("Screens/BackgroundFilter");
         }
 
-        public static MenuScreen getInstance()
+        public void Update(GameTime gameTime)
         {
-            return menuScreen;
-        }
-
-        public void Update()
-        {
-            CheckPause();
+            if (Keyboard.GetState().IsKeyDown(Keys.P)) goToGame();
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            if (pause)
-            {
-                spriteBatch.Draw(backgroundFilter, new Vector2(0, 0), null, Color.White, 0.0f, new Vector2(0, 0), 2.0f, SpriteEffects.None, 0.0f);
-                spriteBatch.Draw(bigScreen, new Vector2(Game1.graphics.PreferredBackBufferWidth / 2, Game1.graphics.PreferredBackBufferHeight / 2), null, Color.White, 0.0f, new Vector2(96, 96), 4.5f, SpriteEffects.None, 1.0f);
+        {   
+            spriteBatch.Draw(backgroundFilter, new Vector2(0, 0), null, Color.White, 0.0f, new Vector2(0, 0), 2.0f, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(bigScreen, new Vector2(Game1.graphics.PreferredBackBufferWidth / 2, Game1.graphics.PreferredBackBufferHeight / 2), null, Color.White, 0.0f, new Vector2(96, 96), 4.5f, SpriteEffects.None, 1.0f);
 
-                spriteBatch.DrawString(font, "Menu", new Vector2(750, 200), Color.White, 0, new Vector2(50, 50), 2f, SpriteEffects.None, 0);
-            }
+            spriteBatch.DrawString(font, "Menu", new Vector2(750, 200), Color.White, 0, new Vector2(50, 50), 2f, SpriteEffects.None, 0);   
         }
 
-        public void CheckPause()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.P) && !pPressed)
-            {
-                pause = !pause;
-                pPressed = true;
-            }
-            if (Keyboard.GetState().IsKeyUp(Keys.P)) pPressed = false;
+        public void goToStartScreen() 
+        { 
+            // Need to make this
         }
-
-        public void goToGame() { }
-        public void goToStartScreen() { }
-        public void goToBugScreen() { }
-        public void goToEndScreen() { }
-        public void goToMenuScreen() { }
+        public void goToBugScreen() 
+        {
+            // Need to make this
+        }
+        public void goToGame() 
+        {
+            screen.state = screen.getGameScreen();
+        }
+        public void goToMenuScreen() 
+        { 
+            // Already here
+        }
+        public void goToEndScreen() 
+        {
+            // Impossible
+        }
+        public void exitGame()
+        {
+            // Need to make this
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace ExamenProject.Screens
 {
     internal class GameOverScreen : IScreenState
     {
-        private static GameOverScreen gameOverScreen = new GameOverScreen();
+        Screen screen;
 
         public Button restartButton;
         private Texture2D restartTexture;
@@ -18,8 +18,10 @@ namespace ExamenProject.Screens
         private SpriteFont font;
         private string text;
 
-        private GameOverScreen()
+        public GameOverScreen(Screen screen)
         {
+            this.screen = screen;
+
             font = MedievalFont.getInstance().font;
             ContentManager Content = ContentLoader.getInstance().contentM;
 
@@ -29,12 +31,8 @@ namespace ExamenProject.Screens
             restartButton = new Button(restartTexture, new(750 - restartTexture.Width / 4 * 3, 500), 1.5f);
         }
 
-        public static GameOverScreen getInstance()
-        {
-            return gameOverScreen;
-        }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             restartButton.Update();
         }
@@ -47,10 +45,29 @@ namespace ExamenProject.Screens
             spriteBatch.DrawString(font, "Restart", new(650, 515), Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
         }
 
-        public void goToGame() { }
-        public void goToStartScreen() { }
-        public void goToBugScreen() { }
-        public void goToEndScreen() { }
-        public void goToMenuScreen() { }
+        public void goToStartScreen() 
+        {
+            screen.state = screen.getStartScreen();
+        }
+        public void goToBugScreen() 
+        {
+            // Impossible
+        }
+        public void goToGame() 
+        {
+            // Need to make this
+        }
+        public void goToMenuScreen() 
+        {
+            // Impossible
+        }
+        public void goToEndScreen() 
+        {
+            // Already here
+        }
+        public void exitGame() 
+        {
+            // Need to make this
+        }
     }
 }

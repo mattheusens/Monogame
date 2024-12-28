@@ -7,7 +7,9 @@ namespace ExamenProject.Screens
 {
     internal class BugScreen : IScreenState
     {
-        private static BugScreen bugScreen = new BugScreen();
+        Screen screen;
+
+        private Texture2D backgroundTexture;
 
         public Button returnButton;
         private Texture2D returnTexture;
@@ -18,11 +20,14 @@ namespace ExamenProject.Screens
         private SpriteFont font;
         private string text;
 
-        private BugScreen()
+        public BugScreen(Screen screen)
         {
+            this.screen = screen;
+
             font = MedievalFont.getInstance().font;
             ContentManager Content = ContentLoader.getInstance().contentM;
 
+            backgroundTexture = Content.Load<Texture2D>("Screens/MainBackground");
             background = Content.Load<Texture2D>("Screens/BigScreen");
             returnTexture = Content.Load<Texture2D>("Screens/Return");
 
@@ -35,27 +40,45 @@ namespace ExamenProject.Screens
                 "\nbut with sprint.";
         }
 
-        public static BugScreen getInstance()
-        {
-            return bugScreen;
-        }
-
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             returnButton.Update();
+            if (returnButton.clicked) goToStartScreen();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, 1500, 900), Color.White);
+
             spriteBatch.Draw(background, new Vector2(1500 / 2, 900 / 2), null, Color.White, 0.0f, new Vector2(96, 96), 4.5f, SpriteEffects.None, 1.0f);
             returnButton.Draw(spriteBatch);
             spriteBatch.DrawString(font, text, new(400, 150), Color.White, 0, new(0, 0), 1.5f, SpriteEffects.None, 0);
         }
 
-        public void goToGame() { }
-        public void goToStartScreen() { }
-        public void goToBugScreen() { }
-        public void goToEndScreen() { }
-        public void goToMenuScreen() { }
+        public void goToStartScreen() 
+        {
+            returnButton.clicked = false;
+            screen.state = screen.getStartScreen();
+        }
+        public void goToBugScreen() 
+        {
+            // Already here
+        }
+        public void goToGame() 
+        {
+            // Impossible
+        }
+        public void goToMenuScreen() 
+        {
+            // Need to make this
+        }
+        public void goToEndScreen() 
+        {
+            // Impossible
+        }
+        public void exitGame() 
+        {
+            // Impossible
+        }
     }
 }

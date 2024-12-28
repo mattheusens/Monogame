@@ -7,12 +7,9 @@ namespace ExamenProject.Screens
 {
     internal class StartScreen : IScreenState
     {
-        private static StartScreen startScreen = new StartScreen();
-        private Texture2D backgroundTexture;
+        Screen screen;
 
-        public bool startScreenOn = true;
-        public bool bugScreenOn = false;
-        public bool quit = false;
+        private Texture2D backgroundTexture;
 
         private SpriteFont font;
         private Texture2D buttonTexture;
@@ -29,9 +26,14 @@ namespace ExamenProject.Screens
         private Vector2 basePositionQuit;
         private Vector2 offsetTextQ;
 
+        public bool startScreenOn = true;
+        public bool bugScreenOn = false;
+        public bool quit = false;
 
-        private StartScreen()
+        public StartScreen(Screen screen)
         {
+            this.screen = screen;
+
             font = MedievalFont.getInstance().font;
             ContentManager Content = ContentLoader.getInstance().contentM;
 
@@ -52,23 +54,15 @@ namespace ExamenProject.Screens
             quitButton = new Button(buttonTexture, basePositionQuit, buttonSize);
         }
 
-        public static StartScreen getInstance()
+        public void Update(GameTime gameTime)
         {
-            return startScreen;
-        }
-
-        public void Update()
-        {
-            if (startButton.clicked) startScreenOn = false;
-            if (bugsButton.clicked)
-            {
-                bugScreenOn = !bugScreenOn;
-                bugsButton.clicked = false;
-            }
-            if (quitButton.clicked) quit = true;
             startButton.Update();
             bugsButton.Update();
             quitButton.Update();
+
+            if (startButton.clicked) goToGame();
+            if (bugsButton.clicked) goToBugScreen();
+            if (quitButton.clicked) exitGame();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -84,10 +78,31 @@ namespace ExamenProject.Screens
             spriteBatch.DrawString(font, "Quit", basePositionQuit + offsetTextQ, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
         }
 
-        public void goToGame() { }
-        public void goToStartScreen() { }
-        public void goToBugScreen() { }
-        public void goToEndScreen() { }
-        public void goToMenuScreen() { }
+        public void goToStartScreen()
+        { 
+            // Already here
+        }
+        public void goToBugScreen() 
+        {
+            bugsButton.clicked = false;
+            screen.state = screen.getBugScreen();
+        }
+        public void goToGame() 
+        {
+            startButton.clicked = false;
+            screen.state = screen.getGameScreen();
+        }
+        public void goToMenuScreen() 
+        {
+            // Impossible
+        }
+        public void goToEndScreen() 
+        { 
+            // Impossible
+        }
+        public void exitGame() 
+        {
+            quit = true;
+        }
     }
 }
