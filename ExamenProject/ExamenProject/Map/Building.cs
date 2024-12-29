@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace ExamenProject
+namespace ExamenProject.Map
 {
     internal class Building
     {
@@ -25,11 +25,11 @@ namespace ExamenProject
             {
                 hitboxRectangle = new Rectangle(rectangle.X + 10, rectangle.Y + 24, rectangle.Width - 20, rectangle.Height - 50);
             }
-            else if(type == "tower")
+            else if (type == "tower")
             {
                 hitboxRectangle = new Rectangle(rectangle.X + 7, rectangle.Y + 52, rectangle.Width - 14, rectangle.Height - 84);
             }
-            else if(type == "castle")
+            else if (type == "castle")
             {
                 hitboxRectangle = new Rectangle(rectangle.X + 16, rectangle.Y + 45, rectangle.Width - 32, rectangle.Height - 60);
             }

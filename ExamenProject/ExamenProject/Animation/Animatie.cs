@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ExamenProject.Characters;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace ExamenProject.Animation

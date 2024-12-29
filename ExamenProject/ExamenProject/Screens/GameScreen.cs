@@ -1,4 +1,6 @@
-﻿using ExamenProject.Interfaces;
+﻿using ExamenProject.Characters;
+using ExamenProject.Interfaces;
+using ExamenProject.Map;
 using ExamenProject.Nature;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;

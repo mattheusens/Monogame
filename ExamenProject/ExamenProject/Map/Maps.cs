@@ -5,7 +5,7 @@ using System.ComponentModel;
 using ExamenProject.Nature;
 using System.Diagnostics;
 
-namespace ExamenProject
+namespace ExamenProject.Map
 {
     internal class Maps
     {
@@ -21,15 +21,15 @@ namespace ExamenProject
         {
             blocks.Clear();
             GetFramesFromTextureProperties(texture2.Width, texture2.Height, 3, 3);
-            for (int l = 0; l < Maps.maps[level].GetLength(0); l++)
+            for (int l = 0; l < maps[level].GetLength(0); l++)
             {
-                for (int c = 0; c < Maps.maps[level].GetLength(1); c++)
+                for (int c = 0; c < maps[level].GetLength(1); c++)
                 {
                     int width = 100; int height = 100;
-                    Vector2 pos = new Vector2((c * width), (l * height));
+                    Vector2 pos = new Vector2(c * width, l * height);
                     Vector2 pos2 = pos - new Vector2(10, 10);
-                    Rectangle rec = new Rectangle((c * width), (l * height), width, height);
-                    int number = Maps.maps[level][l, c];
+                    Rectangle rec = new Rectangle(c * width, l * height, width, height);
+                    int number = maps[level][l, c];
                     switch (number)
                     {
                         case 0:
@@ -63,7 +63,8 @@ namespace ExamenProject
             }
         }
 
-        public static void CreateTrees(List<Tree> tr, int level, GraphicsDevice gd){
+        public static void CreateTrees(List<Tree> tr, int level, GraphicsDevice gd)
+        {
             switch (level)
             {
                 case 0:
@@ -111,7 +112,7 @@ namespace ExamenProject
         public static void TreesLevel1(List<Tree> tr, GraphicsDevice gd)
         {
             //Top side trees
-            for (int i = -72; i < 1611; i+=111)
+            for (int i = -72; i < 1611; i += 111)
             {
                 for (int j = -2; j <= 0; j++)
                 {

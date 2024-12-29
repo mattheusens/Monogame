@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using ExamenProject.Nature;
+using ExamenProject.Characters;
 
-namespace ExamenProject
+namespace ExamenProject.Map
 {
     static class Collision
     {
@@ -117,11 +118,12 @@ namespace ExamenProject
         {
             for (int i = 0; i < enemies.Count; i++)
             {
-                if (!enemies[i].moveAnimation.fighting) {
-                    if(heroHit) hero.health--;
+                if (!enemies[i].moveAnimation.fighting)
+                {
+                    if (heroHit) hero.health--;
                     heroHit = false;
                     continue;
-                } 
+                }
 
                 bool collisionR = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponR) && enemies[i].move.lastMove == "right";
                 bool collisionL = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponL) && enemies[i].move.lastMove == "left";
@@ -144,7 +146,7 @@ namespace ExamenProject
                 }
             }
         }
-          
+
         public static void CheckCollisionOnTree(List<Tree> trees, Enemy enemy)
         {
             for (int i = 0; i < trees.Count; i++)

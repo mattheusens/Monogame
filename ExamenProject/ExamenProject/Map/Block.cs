@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace ExamenProject
+namespace ExamenProject.Map
 {
     internal class Block
     {
@@ -12,7 +12,7 @@ namespace ExamenProject
         public Vector2 Position { get; set; }
         public string Type { get; set; }
 
-        public Block(Vector2 position, Rectangle rectangle, Texture2D texture, String type)
+        public Block(Vector2 position, Rectangle rectangle, Texture2D texture, string type)
         {
             Position = position;
             BoundingBox = rectangle;
@@ -23,8 +23,8 @@ namespace ExamenProject
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(Type == "Grass") spriteBatch.Draw(Texture, Position, BoundingBox, Color, 0.0f, new Vector2(0, 0), 1.74f, SpriteEffects.None, 0.0f);
-            else if(Type == "Water") spriteBatch.Draw(Texture, Position, BoundingBox, Color);
+            if (Type == "Grass") spriteBatch.Draw(Texture, Position, BoundingBox, Color, 0.0f, new Vector2(0, 0), 1.74f, SpriteEffects.None, 0.0f);
+            else if (Type == "Water") spriteBatch.Draw(Texture, Position, BoundingBox, Color);
         }
     }
 }

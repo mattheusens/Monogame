@@ -4,11 +4,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace ExamenProject
+namespace ExamenProject.Characters
 {
     internal abstract class Character
     {
-        protected Texture2D enemyTexture;
+        protected Texture2D characterTexture;
         protected Texture2D hitboxTexture;
         protected Texture2D feetTexture;
         protected Texture2D weaponTexture;
@@ -39,8 +39,8 @@ namespace ExamenProject
 
         public Character(Texture2D texture, GraphicsDevice graphicsDevice)
         {
-            this.enemyTexture = texture;
-            this.move = new Movement();
+            enemyTexture = texture;
+            move = new Movement();
 
             moveAnimation = new Animatie(move, 6);
 

@@ -1,4 +1,5 @@
 ﻿using ExamenProject.Animation;
+using ExamenProject.Characters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;

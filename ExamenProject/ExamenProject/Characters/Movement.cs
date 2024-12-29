@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExamenProject
+namespace ExamenProject.Characters
 {
     internal class Movement
     {
@@ -23,24 +23,28 @@ namespace ExamenProject
 
         //Movement for enemy
         public void FollowPlayer(Movement movePlayer)
-        { 
-            if (movePlayer.posX - 60 >= posX){ //Player is rechts van enemy
+        {
+            if (movePlayer.posX - 60 >= posX)
+            { //Player is rechts van enemy
                 posX++;
                 moveLeft = false;
                 moveRight = true;
-            } 
-            else if (movePlayer.posX + 60 <= posX){
+            }
+            else if (movePlayer.posX + 60 <= posX)
+            {
                 posX--;
                 moveRight = false;
                 moveLeft = true;
             }
 
-            if (movePlayer.posY > posY){ //Player is onder enemy
+            if (movePlayer.posY > posY)
+            { //Player is onder enemy
                 posY++;
                 moveUp = false;
                 moveDown = true;
             }
-            else if (movePlayer.posY < posY){
+            else if (movePlayer.posY < posY)
+            {
                 moveDown = false;
                 moveUp = true;
                 posY--;
@@ -58,24 +62,32 @@ namespace ExamenProject
             else
                 speed = 2;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Up)){
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
                 posY -= speed;
                 moveUp = true;
-            }else moveUp = false;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down)){
+            }
+            else moveUp = false;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
                 posY += speed;
                 moveDown = true;
-            }else moveDown = false;
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)){
+            }
+            else moveDown = false;
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
                 posX -= speed;
                 moveLeft = true;
                 lastMove = "left";
-            }else moveLeft = false;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right)){
+            }
+            else moveLeft = false;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
                 posX += speed;
                 moveRight = true;
                 lastMove = "right";
-            }else moveRight = false;
-        } 
+            }
+            else moveRight = false;
+        }
     }
 }
