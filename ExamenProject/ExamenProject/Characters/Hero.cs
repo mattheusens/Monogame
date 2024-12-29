@@ -40,9 +40,10 @@ namespace ExamenProject.Characters
         private Texture2D heart;
         public int health = 3;
 
-        public Hero(Texture2D texture, GraphicsDevice graphicsDevice)
+        public Hero(Texture2D texture)
         {
-            heroTexture = texture;
+            GraphicsDevice graphicsDevice = GraphicsDeviceLoader.getInstance().graphicsDevice;
+            characterTexture = texture;
             move = new Movement();
 
             ContentManager Content = ContentLoader.getInstance().contentM;
@@ -94,7 +95,7 @@ namespace ExamenProject.Characters
             rectangleWeaponR = new Rectangle((int)positionWeaponR.X, (int)positionWeaponR.Y, rectangle.Width / 2 - 30, rectangle.Height / 2 + 15);
             rectangleWeaponL = new Rectangle((int)positionWeaponL.X, (int)positionWeaponL.Y, rectangle.Width / 2 - 30, rectangle.Height / 2 + 15);
 
-            spriteBatch.Draw(heroTexture, position, rectangle, Color.White);
+            spriteBatch.Draw(characterTexture, position, rectangle, Color.White);
             spriteBatch.Draw(feetTexture, positionFeet, rectangleFeet, Color.Transparent);
             spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Transparent);
             spriteBatch.Draw(weaponTexture, positionWeaponR, rectangleWeaponR, Color.Transparent);

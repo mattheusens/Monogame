@@ -42,9 +42,11 @@ namespace ExamenProject.Characters
         public bool counting = false;
         int counter = 0;
 
-        public Enemy(Texture2D texture, GraphicsDevice graphicsDevice, Movement movePlayer, bool canFight)
+        public Enemy(Texture2D texture, Movement movePlayer, bool canFight)
         {
-            enemyTexture = texture;
+            GraphicsDevice graphicsDevice = GraphicsDeviceLoader.getInstance().graphicsDevice;
+
+            characterTexture = texture;
             this.movePlayer = movePlayer;
             move = new Movement();
             this.canFight = canFight;
@@ -107,7 +109,7 @@ namespace ExamenProject.Characters
             rectangleWeaponR = new Rectangle((int)positionWeaponR.X, (int)positionWeaponR.Y, rectangle.Width / 2 - 50, rectangle.Height / 2 - 29);
             rectangleWeaponL = new Rectangle((int)positionWeaponL.X, (int)positionWeaponL.Y, rectangle.Width / 2 - 50, rectangle.Height / 2 - 29);
 
-            spriteBatch.Draw(enemyTexture, position, rectangle, Color.White);
+            spriteBatch.Draw(characterTexture, position, rectangle, Color.White);
             spriteBatch.Draw(feetTexture, positionFeet, rectangleFeet, Color.Transparent);
             spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Transparent);
             spriteBatch.Draw(weaponTexture, positionWeaponR, rectangleWeaponR, Color.Transparent);

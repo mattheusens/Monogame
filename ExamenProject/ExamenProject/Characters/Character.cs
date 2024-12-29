@@ -14,7 +14,6 @@ namespace ExamenProject.Characters
         protected Texture2D weaponTexture;
 
         public Animatie moveAnimation;
-        public Movement movePlayer;
         public Movement moveBefore;
         public Movement move;
 
@@ -37,9 +36,13 @@ namespace ExamenProject.Characters
         public Rectangle rectangleWeaponR;
         public Rectangle rectangleWeaponL;
 
-        public Character(Texture2D texture, GraphicsDevice graphicsDevice)
+        public int health = 3;
+
+        public Character(Texture2D texture)
         {
-            enemyTexture = texture;
+            GraphicsDevice graphicsDevice = GraphicsDeviceLoader.getInstance().graphicsDevice;
+
+            characterTexture = texture;
             move = new Movement();
 
             moveAnimation = new Animatie(move, 6);
