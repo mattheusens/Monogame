@@ -87,8 +87,8 @@ namespace ExamenProject
 
         public void InitializeGameObject()
         {
-            hero = new Hero(textureHero, GraphicsDevice);
-            enemies.Add(new Enemy(enemyTexture, GraphicsDevice, hero.move, true));
+            hero = new Hero(textureHero);
+            enemies.Add(new Enemy(enemyTexture, hero.move, true));
             Maps.CreateTrees(trees, 0, GraphicsDevice);
             Maps.CreateBuildings(buildings, level, castleTexture, houseTexture, towerTexture, GraphicsDevice);
         }

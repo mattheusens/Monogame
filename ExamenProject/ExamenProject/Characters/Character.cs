@@ -3,10 +3,11 @@ using ExamenProject.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace ExamenProject.Characters
 {
-    internal abstract class Character
+    internal abstract class Character : IGameObject
     {
         protected Texture2D characterTexture;
         protected Texture2D hitboxTexture;
@@ -55,9 +56,31 @@ namespace ExamenProject.Characters
             hitboxTexture.SetData(new[] { Color.White });
             weaponTexture.SetData(new[] { Color.White });
         }
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             moveAnimation.Update(gameTime);
+            Move();
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(characterTexture, position, rectangle, Color.White);
+            spriteBatch.Draw(feetTexture, positionFeet, rectangleFeet, Color.Red);
+            spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Transparent);
+            spriteBatch.Draw(weaponTexture, positionWeaponR, rectangleWeaponR, Color.Transparent);
+            spriteBatch.Draw(weaponTexture, positionWeaponL, rectangleWeaponL, Color.Transparent);
+        }
+
+        public virtual void Move()
+        {
+            position = new Vector2(move.posX, move.posY);
+            positionFeet = new Vector2(move.posX + offsetFeet.X, move.posY + offsetFeet.Y);
+            positionHitbox = new Vector2(move.posX + offsetHitbox.X, move.posY + offsetHitbox.Y);
+            positionWeaponR = new Vector2(move.posX + offsetWeaponR.X, move.posY + offsetWeaponR.Y);
+            positionWeaponL = new Vector2(move.posX + offsetWeaponL.X, move.posY + offsetWeaponL.Y);
+
+            posXBefore = move.posX;
+            posYBefore = move.posY;
         }
     }
 }

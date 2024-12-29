@@ -52,8 +52,8 @@ namespace ExamenProject.Screens
 
             Maps.MakeMaps();
 
-            hero = new Hero(heroTexture, graphicsDevice);
-            enemies.Add(new Enemy(enemyTexture, graphicsDevice, hero.move, true));
+            hero = new Hero(heroTexture);
+            enemies.Add(new Enemy(enemyTexture, hero.move, true));
 
             Maps.CreateTrees(trees, 0, graphicsDevice);
             Maps.CreateBlocks(blocks, level, waterTexture, grassTexture);
