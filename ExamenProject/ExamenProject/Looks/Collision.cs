@@ -29,7 +29,25 @@ namespace ExamenProject.Map
             return false;
         }
 
-        public static void CheckCollisionOnBlock(List<Block> blocks, Character character)
+        public static void CheckAllCollisions(Hero hero, List<Enemy> ens, List<Block> bls, List<Building> bds, List<Tree> trs)
+        {
+            List<Character> chs = new();
+            chs.Add(hero);
+            foreach (Enemy en in ens) chs.Add(en);
+
+            foreach (Character chr in chs)
+            {
+                CheckCollisionOnBlock(bls, chr); 
+                CheckCollisionOnBuilding(bds, chr); 
+            }
+            CheckCollisionOnTree(trs, hero);
+
+            CheckCollisionOnEnemies(ens, hero);
+            CheckCollisionOnHero(ens, hero);
+
+        }
+
+        private static void CheckCollisionOnBlock(List<Block> blocks, Character character)
         {
             for (int i = 0; i < blocks.Count; i++)
             {
@@ -45,7 +63,7 @@ namespace ExamenProject.Map
             }
         }
 
-        public static void CheckCollisionOnBuilding(List<Building> buildings, Character character)
+        private static void CheckCollisionOnBuilding(List<Building> buildings, Character character)
         {
             for (int i = 0; i < buildings.Count; i++)
             {
@@ -57,8 +75,8 @@ namespace ExamenProject.Map
             }
         }
 
-        public static List<Enemy> hitEnemies = new();
-        public static void CheckCollisionOnEnemies(List<Enemy> enemies, Hero hero)
+        private static List<Enemy> hitEnemies = new();
+        private static void CheckCollisionOnEnemies(List<Enemy> enemies, Hero hero)
         {
             if (!hero.moveAnimation.fighting)
             {
@@ -85,8 +103,8 @@ namespace ExamenProject.Map
             }
         }
 
-        public static bool heroHit = false;
-        public static void CheckCollisionOnHero(List<Enemy> enemies, Hero hero)
+        private static bool heroHit = false;
+        private static void CheckCollisionOnHero(List<Enemy> enemies, Hero hero)
         {
             for (int i = 0; i < enemies.Count; i++)
             {
@@ -107,7 +125,7 @@ namespace ExamenProject.Map
             }
         }
 
-        public static void CheckCollisionOnTree(List<Tree> trees, Hero hero)
+        private static void CheckCollisionOnTree(List<Tree> trees, Hero hero)
         {
             for (int i = 0; i < trees.Count; i++)
             {

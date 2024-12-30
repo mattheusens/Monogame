@@ -1,15 +1,11 @@
-﻿using ExamenProject.Characters;
-using ExamenProject.Interfaces;
-using ExamenProject.Map;
-using ExamenProject.Map.Nature;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using ExamenProject.Levels;
-using System.Diagnostics;
+using ExamenProject.Interfaces;
 using ExamenProject.Loaders;
+using ExamenProject.Characters;
+using ExamenProject.Levels;
 
 namespace ExamenProject.Screens
 {
@@ -27,8 +23,6 @@ namespace ExamenProject.Screens
 
             ContentManager Content = ContentLoader.getInstance().contentM; 
             heroTexture = Content.Load<Texture2D>("Warrior_Blue_Full"); 
-
-            Maps.MakeMaps(); 
 
             hero = new Hero(heroTexture);
             levels = new CurrentLevel(hero);

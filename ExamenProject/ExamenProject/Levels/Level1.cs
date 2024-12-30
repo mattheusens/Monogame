@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Content;
 using ExamenProject.Map.Nature;
 using ExamenProject.Map;
 using ExamenProject.Loaders;
+using System.Diagnostics;
+using ExamenProject.Maps;
 
 namespace ExamenProject.Levels
 {
@@ -19,13 +21,13 @@ namespace ExamenProject.Levels
         CurrentLevel level;
 
         Hero hero;
-        List<Enemy> enemies = new();
-        List<Character> characters = new();
+        List<Enemy> enemies;
+        List<Character> characters;
         Texture2D enemyTexture;
 
-        List<Block> blocks = new();
-        List<Building> buildings = new();
-        List<Tree> trees = new();
+        List<Block> blocks;
+        List<Building> buildings;
+        List<Tree> trees;
 
         int levelNr = 1;
         bool gateOpen = false;
@@ -39,15 +41,19 @@ namespace ExamenProject.Levels
             enemyTexture = Content.Load<Texture2D>("Torch_Blue_Fixed_Full");
 
             hero = level.hero;
+            enemies = level.enemies;
+            characters = level.characters;
+            blocks = level.blocks;
+            buildings = level.buildings;
+            trees = level.trees;
         }
         public void init()
         {
             enemies.Add(new Enemy(enemyTexture, hero.move, true));
 
-            characters.Add(hero);
             foreach (Enemy en in enemies) characters.Add(en);
 
-            Maps.CreateMap(blocks, buildings, trees, levelNr - 1);
+            MapLoader.LoadMap(levelNr, blocks, buildings, trees);
         }
         public void Update(GameTime gameTime)
         {
@@ -57,13 +63,7 @@ namespace ExamenProject.Levels
             foreach (Enemy en in enemies) en.Update(gameTime);
             foreach (Tree tr in trees) tr.Update(gameTime);
 
-            foreach (Character chr in characters) Collision.CheckCollisionOnBuilding(buildings, chr);
-            foreach (Character chr in characters) Collision.CheckCollisionOnBlock(blocks, chr);
-
-            Collision.CheckCollisionOnTree(trees, hero);
-
-            Collision.CheckCollisionOnEnemies(enemies, hero);
-            Collision.CheckCollisionOnHero(enemies, hero);
+            Collision.CheckAllCollisions(hero, enemies, blocks, buildings, trees);
 
             if (!enemies.Any() && !gateOpen) RemoveTrees();
             if (hero.move.posY > 900) goNextLevel();
@@ -81,6 +81,8 @@ namespace ExamenProject.Levels
         public void goNextLevel()
         {
             level.setState(level.getLevel2());
+            level.getState().init();
+            hero.move.posY = -50;
         }
         public void goLastLevel()
         {

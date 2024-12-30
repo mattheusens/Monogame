@@ -1,15 +1,9 @@
-﻿using ExamenProject.Characters;
-using ExamenProject.Interfaces;
-using ExamenProject.Loaders;
-using ExamenProject.Map;
-using ExamenProject.Map.Nature;
-using ExamenProject.Screens;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using System.Collections.Generic;
+using ExamenProject.Loaders;
+using ExamenProject.Screens;
 
 namespace ExamenProject
 {
