@@ -20,7 +20,8 @@ namespace ExamenProject.Characters
             this.movePlayer = movePlayer;
             this.canFight = canFight;
 
-            moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height / 5 * 3, 12, 3);
+            SpriteSplitter.GetFramesFromTexture(moveAnimation.frames, texture.Width, texture.Height / 5 * 3, 12, 3);
+            moveAnimation.setFirst();
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
 
             move.posX = 400; //graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
@@ -71,8 +72,11 @@ namespace ExamenProject.Characters
         }
         public override void Move()
         {
-            base.Move();
+
+            posXBefore = move.posX;
+            posYBefore = move.posY;
             move.FollowPlayer(movePlayer);
+            base.Move();
         }
     }
 }

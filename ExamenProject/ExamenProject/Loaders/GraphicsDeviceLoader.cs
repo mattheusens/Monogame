@@ -1,5 +1,5 @@
 ﻿using ExamenProject.Interfaces;
-using ExamenProject.Nature;
+using ExamenProject.Map.Nature;
 using ExamenProject.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
-namespace ExamenProject
+namespace ExamenProject.Loaders
 {
     internal class GraphicsDeviceLoader
     {

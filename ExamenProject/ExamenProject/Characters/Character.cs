@@ -1,5 +1,6 @@
 ﻿using ExamenProject.Animation;
 using ExamenProject.Interfaces;
+using ExamenProject.Loaders;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -65,7 +66,7 @@ namespace ExamenProject.Characters
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(characterTexture, position, rectangle, Color.White);
-            spriteBatch.Draw(feetTexture, positionFeet, rectangleFeet, Color.Red);
+            spriteBatch.Draw(feetTexture, positionFeet, rectangleFeet, Color.Transparent);
             spriteBatch.Draw(hitboxTexture, positionHitbox, rectangleHitbox, Color.Transparent);
             spriteBatch.Draw(weaponTexture, positionWeaponR, rectangleWeaponR, Color.Transparent);
             spriteBatch.Draw(weaponTexture, positionWeaponL, rectangleWeaponL, Color.Transparent);
@@ -78,9 +79,6 @@ namespace ExamenProject.Characters
             positionHitbox = new Vector2(move.posX + offsetHitbox.X, move.posY + offsetHitbox.Y);
             positionWeaponR = new Vector2(move.posX + offsetWeaponR.X, move.posY + offsetWeaponR.Y);
             positionWeaponL = new Vector2(move.posX + offsetWeaponL.X, move.posY + offsetWeaponL.Y);
-
-            posXBefore = move.posX;
-            posYBefore = move.posY;
         }
     }
 }

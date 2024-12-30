@@ -1,5 +1,6 @@
 ﻿using ExamenProject.Animation;
 using ExamenProject.Interfaces;
+using ExamenProject.Loaders;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,8 +17,9 @@ namespace ExamenProject.Characters
             ContentManager Content = ContentLoader.getInstance().contentM;
             heart = Content.Load<Texture2D>("Heart");
 
-            moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height / 8 * 3, 12, 3);
-            rectangle = moveAnimation.CurrentFrame.SourceRectangle;
+            SpriteSplitter.GetFramesFromTexture(moveAnimation.frames, texture.Width, texture.Height / 8 * 3, 12, 3);
+            moveAnimation.setFirst();
+            rectangle = moveAnimation.frames[0].SourceRectangle;
 
             move.posX = 120; //graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
             move.posY = 100; //graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
@@ -62,8 +64,10 @@ namespace ExamenProject.Characters
 
         public override void Move()
         {
-            base.Move();
+            posXBefore = move.posX;
+            posYBefore = move.posY;
             move.MoveInputs();
+            base.Move();
         }
     }
 }

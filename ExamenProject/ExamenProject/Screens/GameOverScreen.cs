@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using ExamenProject.Interfaces;
+using ExamenProject.Loaders;
 
 namespace ExamenProject.Screens
 {
@@ -35,6 +36,7 @@ namespace ExamenProject.Screens
         public void Update(GameTime gameTime)
         {
             restartButton.Update();
+            if (restartButton.clicked) goToStartScreen();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -47,7 +49,8 @@ namespace ExamenProject.Screens
 
         public void goToStartScreen() 
         {
-            screen.state = screen.getStartScreen();
+            restartButton.clicked = false;
+            screen.setState(screen.getStartScreen());
         }
         public void goToBugScreen() 
         {

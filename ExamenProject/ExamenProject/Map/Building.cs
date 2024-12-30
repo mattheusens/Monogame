@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ExamenProject.Loaders;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -12,10 +14,12 @@ namespace ExamenProject.Map
         public Rectangle hitboxRectangle;
         public Color Color;
 
-        public Building(Rectangle rectangle, Texture2D texture, string type, GraphicsDevice graphicsDevice)
+        public Building(Rectangle rectangle, string type)
         {
+            ContentManager Content = ContentLoader.getInstance().contentM;
+            GraphicsDevice graphicsDevice = GraphicsDeviceLoader.getInstance().graphicsDevice;
+
             this.rectangle = rectangle;
-            this.texture = texture;
             Color = Color.White;
 
             hitboxTexture = new Texture2D(graphicsDevice, 1, 1);
@@ -23,14 +27,17 @@ namespace ExamenProject.Map
 
             if (type == "house")
             {
+                texture = Content.Load<Texture2D>("Background/Buildings/Blue/House"); // 128x192
                 hitboxRectangle = new Rectangle(rectangle.X + 10, rectangle.Y + 24, rectangle.Width - 20, rectangle.Height - 50);
             }
             else if (type == "tower")
             {
+                texture = Content.Load<Texture2D>("Background/Buildings/Blue/Tower"); // 128x256
                 hitboxRectangle = new Rectangle(rectangle.X + 7, rectangle.Y + 52, rectangle.Width - 14, rectangle.Height - 84);
             }
             else if (type == "castle")
             {
+                texture = Content.Load<Texture2D>("Background/Buildings/Blue/Castle"); // 320x256
                 hitboxRectangle = new Rectangle(rectangle.X + 16, rectangle.Y + 45, rectangle.Width - 32, rectangle.Height - 60);
             }
 

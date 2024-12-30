@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using ExamenProject.Interfaces;
+using ExamenProject.Loaders;
 
 namespace ExamenProject.Screens
 {
@@ -58,7 +59,7 @@ namespace ExamenProject.Screens
         public void goToStartScreen() 
         {
             returnButton.clicked = false;
-            screen.state = screen.getStartScreen();
+            screen.setState(screen.getStartScreen());
         }
         public void goToBugScreen() 
         {

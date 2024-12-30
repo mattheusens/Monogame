@@ -1,4 +1,5 @@
 ﻿using ExamenProject.Interfaces;
+using ExamenProject.Loaders;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -52,7 +53,7 @@ namespace ExamenProject.Screens
         }
         public void goToGame() 
         {
-            screen.state = screen.getGameScreen();
+            screen.setState(screen.getGameScreen());
         }
         public void goToMenuScreen() 
         { 

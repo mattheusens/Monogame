@@ -1,12 +1,13 @@
 ﻿using ExamenProject.Animation;
 using ExamenProject.Characters;
+using ExamenProject.Loaders;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
 
-namespace ExamenProject.Nature
+namespace ExamenProject.Map.Nature
 {
     internal class Tree : Nature
     {
@@ -17,14 +18,16 @@ namespace ExamenProject.Nature
         public Animatie moveAnimation;
         public Movement move;
 
-        public Tree(Vector2 position, GraphicsDevice graphicsDevice) : base(position)
+        public Tree(Vector2 position) : base(position)
         {
+            GraphicsDevice graphicsDevice = GraphicsDeviceLoader.getInstance().graphicsDevice;
             ContentManager Content = ContentLoader.getInstance().contentM;
             setTexture(Content.Load<Texture2D>("Background/Tree"));
 
-            this.move = new Movement();
+            move = new Movement();
             moveAnimation = new Animatie(move, 3);
-            moveAnimation.GetFramesFromTextureProperties(texture.Width, texture.Height / 3 * 2, 4, 2); // 192x192
+            SpriteSplitter.GetFramesFromTexture(moveAnimation.frames, texture.Width, texture.Height / 3 * 2, 4, 2); // 192x192
+            moveAnimation.setFirst();
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
 
             hitboxTexture = new Texture2D(graphicsDevice, 1, 1);

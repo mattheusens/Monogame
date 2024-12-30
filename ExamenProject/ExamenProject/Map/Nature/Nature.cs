@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace ExamenProject.Nature
+namespace ExamenProject.Map.Nature
 {
     internal class Nature
     {

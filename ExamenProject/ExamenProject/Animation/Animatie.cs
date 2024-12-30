@@ -6,8 +6,8 @@ namespace ExamenProject.Animation
 {
     internal class Animatie
     {
-        public AnimationFrame CurrentFrame { get; set; }
-        private List<AnimationFrame> frames;
+        public FrameHolder CurrentFrame { get; set; }
+        public List<FrameHolder> frames = new();
         private Movement move;
 
         private double secondCounter = 0;
@@ -21,7 +21,6 @@ namespace ExamenProject.Animation
         {
             this.move = move;
             this.framesPerWidth = framesPerWidth;
-            frames = new List<AnimationFrame>();
         }
 
         public void Update(GameTime gameTime)
@@ -114,17 +113,8 @@ namespace ExamenProject.Animation
             }
         }
 
-        public void GetFramesFromTextureProperties(int width, int height, int numberOfWidthSprites, int numberOfHeightSprites)
+        public void setFirst()
         {
-            int widthOfFrame = width / numberOfWidthSprites;
-            int heightOfFrame = height / numberOfHeightSprites;
-            for (int y = 0; y <= height - heightOfFrame; y += heightOfFrame)
-            {
-                for (int x = 0; x <= width - widthOfFrame; x += widthOfFrame)
-                {
-                    frames.Add(new AnimationFrame(new Rectangle(x, y, widthOfFrame, heightOfFrame)));
-                }
-            }
             CurrentFrame = frames[0];
         }
     }

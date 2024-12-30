@@ -15,7 +15,7 @@ namespace ExamenProject.Screens
         IScreenState gameScreen;
         IScreenState menuScreen;
         IScreenState gameOverScreen;
-        public IScreenState state;
+        IScreenState state;
 
         public Screen()
         {
@@ -32,6 +32,10 @@ namespace ExamenProject.Screens
             this.state = state;
         }
 
+        public IScreenState getState()
+        {
+            return state;
+        }
 
         public IScreenState getStartScreen()
         {

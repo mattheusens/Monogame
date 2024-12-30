@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;
-using ExamenProject.Nature;
 using ExamenProject.Characters;
+using ExamenProject.Map.Nature;
 
 namespace ExamenProject.Map
 {
@@ -29,58 +29,30 @@ namespace ExamenProject.Map
             return false;
         }
 
-        public static void CheckCollisionOnBlock(List<Block> blocks, Hero hero)
+        public static void CheckCollisionOnBlock(List<Block> blocks, Character character)
         {
             for (int i = 0; i < blocks.Count; i++)
             {
                 if (blocks[i].Type == "Water")
                 {
-                    if (CheckCollision(hero.rectangleFeet, blocks[i].BoundingBox))
+                    if (CheckCollision(character.rectangleFeet, blocks[i].BoundingBox))
                     {
-                        hero.move.posX = hero.posXBefore;
-                        hero.move.posY = hero.posYBefore;
+                        character.move.posX = character.posXBefore;
+                        character.move.posY = character.posYBefore;
                     }
 
                 }
             }
         }
 
-        public static void CheckCollisionOnBlock(List<Block> blocks, Enemy enemy)
-        {
-            for (int i = 0; i < blocks.Count; i++)
-            {
-                if (blocks[i].Type == "Water")
-                {
-                    if (CheckCollision(enemy.rectangleFeet, blocks[i].BoundingBox))
-                    {
-                        enemy.move.posX = enemy.posXBefore;
-                        enemy.move.posY = enemy.posYBefore;
-                    }
-
-                }
-            }
-        }
-
-        public static void CheckCollisionOnBuilding(List<Building> buildings, Hero hero)
+        public static void CheckCollisionOnBuilding(List<Building> buildings, Character character)
         {
             for (int i = 0; i < buildings.Count; i++)
             {
-                if (CheckCollision(hero.rectangleFeet, buildings[i].hitboxRectangle))
+                if (CheckCollision(character.rectangleFeet, buildings[i].hitboxRectangle))
                 {
-                    hero.move.posX = hero.posXBefore;
-                    hero.move.posY = hero.posYBefore;
-                }
-            }
-        }
-
-        public static void CheckCollisionOnBuilding(List<Building> buildings, Enemy enemy)
-        {
-            for (int i = 0; i < buildings.Count; i++)
-            {
-                if (CheckCollision(enemy.rectangleFeet, buildings[i].hitboxRectangle))
-                {
-                    enemy.move.posX = enemy.posXBefore;
-                    enemy.move.posY = enemy.posYBefore;
+                    character.move.posX = character.posXBefore;
+                    character.move.posY = character.posYBefore;
                 }
             }
         }
@@ -143,18 +115,6 @@ namespace ExamenProject.Map
                 {
                     hero.move.posX = hero.posXBefore;
                     hero.move.posY = hero.posYBefore;
-                }
-            }
-        }
-
-        public static void CheckCollisionOnTree(List<Tree> trees, Enemy enemy)
-        {
-            for (int i = 0; i < trees.Count; i++)
-            {
-                if (CheckCollision(enemy.rectangleFeet, trees[i].hitboxRectangle))
-                {
-                    enemy.move.posX = enemy.posXBefore;
-                    enemy.move.posY = enemy.posYBefore;
                 }
             }
         }

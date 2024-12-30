@@ -1,26 +1,40 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.ComponentModel;
-using ExamenProject.Nature;
-using System.Diagnostics;
+using Microsoft.Xna.Framework.Content;
+using ExamenProject.Map.Nature;
+using ExamenProject.Animation;
+using ExamenProject.Loaders;
 
 namespace ExamenProject.Map
 {
     internal class Maps
     {
         public static List<int[,]> maps { get; set; } = new();
-        public static List<Rectangle> framesGrass = new();
+        private static List<FrameHolder> framesGrass = new();
 
         public static void MakeMaps()
         {
             maps.Add(map1);
         }
 
-        public static void CreateBlocks(List<Block> blocks, int level, Texture2D texture1, Texture2D texture2)
+        public static void CreateMap(List<Block> bl, List<Building> bd, List<Tree> tr, int levelNr)
+        {
+            CreateBlocks(bl, levelNr);
+            CreateBuildings(bd, levelNr);
+            CreateTrees(tr, levelNr);
+        }
+
+        private static void CreateBlocks(List<Block> blocks, int level)
         {
             blocks.Clear();
-            GetFramesFromTextureProperties(texture2.Width, texture2.Height, 3, 3);
+
+            ContentManager Content = ContentLoader.getInstance().contentM;
+            Texture2D grassTexture = Content.Load<Texture2D>("Background/Grass_Big");
+            Texture2D waterTexture = Content.Load<Texture2D>("Background/Water");
+
+            SpriteSplitter.GetFramesFromTexture(framesGrass, grassTexture.Width, grassTexture.Height, 3, 3);
+
             for (int l = 0; l < maps[level].GetLength(0); l++)
             {
                 for (int c = 0; c < maps[level].GetLength(1); c++)
@@ -33,7 +47,7 @@ namespace ExamenProject.Map
                     switch (number)
                     {
                         case 0:
-                            blocks.Add(new Block(pos, rec, texture1, "Water"));
+                            blocks.Add(new Block(pos, rec, waterTexture, "Water"));
                             break;
                         case 1:
                         case 2:
@@ -44,7 +58,7 @@ namespace ExamenProject.Map
                         case 7:
                         case 8:
                         case 9:
-                            blocks.Add(new Block(pos2, framesGrass[number - 1], texture2, "Grass"));
+                            blocks.Add(new Block(pos2, framesGrass[number - 1].SourceRectangle, grassTexture, "Grass"));
                             break;
                         default:
                             break;
@@ -53,36 +67,25 @@ namespace ExamenProject.Map
             }
         }
 
-        public static void CreateBuildings(List<Building> buildings, int level, Texture2D textureC, Texture2D textureH, Texture2D textureT, GraphicsDevice graphicsD)
+        private static void CreateBuildings(List<Building> buildings, int level)
         {
+            buildings.Clear();
             switch (level)
             {
                 case 0:
-                    BuildingsLevel1(buildings, textureC, textureH, textureT, graphicsD);
+                    BuildingsLevel1(buildings);
                     break;
             }
         }
 
-        public static void CreateTrees(List<Tree> tr, int level, GraphicsDevice gd)
+        private static void CreateTrees(List<Tree> trees, int level)
         {
+            trees.Clear();
             switch (level)
             {
                 case 0:
-                    TreesLevel1(tr, gd);
+                    TreesLevel1(trees);
                     break;
-            }
-        }
-
-        public static void GetFramesFromTextureProperties(int width, int height, int numberOfWidthSprites, int numberOfHeightSprites)
-        {
-            int widthOfFrame = width / numberOfWidthSprites;
-            int heightOfFrame = height / numberOfHeightSprites;
-            for (int y = 0; y <= height - heightOfFrame; y += heightOfFrame)
-            {
-                for (int x = 0; x <= width - widthOfFrame; x += widthOfFrame)
-                {
-                    framesGrass.Add(new Rectangle(x, y, widthOfFrame, heightOfFrame));
-                }
             }
         }
 
@@ -99,24 +102,24 @@ namespace ExamenProject.Map
             {5,5,5,5,5,5,5,5,5,5,5,5,5,5,5},
         };
 
-        public static void BuildingsLevel1(List<Building> bd, Texture2D tC, Texture2D tH, Texture2D tT, GraphicsDevice gd)
+        private static void BuildingsLevel1(List<Building> bd)
         {
-            bd.Add(new Building(new Rectangle(590, 20, 320, 256), tC, "castle", gd));
-            bd.Add(new Building(new Rectangle(484, 20, 128, 256), tT, "tower", gd));
-            bd.Add(new Building(new Rectangle(888, 20, 128, 256), tT, "tower", gd));
-            bd.Add(new Building(new Rectangle(279, 300, 128, 192), tH, "house", gd));
-            bd.Add(new Building(new Rectangle(686, 300, 128, 192), tH, "house", gd));
-            bd.Add(new Building(new Rectangle(1093, 300, 128, 192), tH, "house", gd));
+            bd.Add(new Building(new Rectangle(590, 20, 320, 256), "castle"));
+            bd.Add(new Building(new Rectangle(484, 20, 128, 256), "tower"));
+            bd.Add(new Building(new Rectangle(888, 20, 128, 256), "tower"));
+            bd.Add(new Building(new Rectangle(279, 300, 128, 192), "house"));
+            bd.Add(new Building(new Rectangle(686, 300, 128, 192), "house"));
+            bd.Add(new Building(new Rectangle(1093, 300, 128, 192), "house"));
         }
 
-        public static void TreesLevel1(List<Tree> tr, GraphicsDevice gd)
+        private static void TreesLevel1(List<Tree> tr)
         {
             //Top side trees
             for (int i = -72; i < 1611; i += 111)
             {
                 for (int j = -2; j <= 0; j++)
                 {
-                    tr.Add(new Tree(new(i, 78 * j), gd));
+                    tr.Add(new Tree(new(i, 78 * j)));
                 }
             }
 
@@ -125,7 +128,7 @@ namespace ExamenProject.Map
             {
                 for (int j = 0; j < 2; j++)
                 {
-                    tr.Add(new Tree(new(-72 + 111 * j, 78 * i), gd));
+                    tr.Add(new Tree(new(-72 + 111 * j, 78 * i)));
                 }
             }
 
@@ -134,7 +137,7 @@ namespace ExamenProject.Map
             {
                 for (int j = 0; j < 2; j++)
                 {
-                    tr.Add(new Tree(new(1260 + 111 * j, 78 * i), gd));
+                    tr.Add(new Tree(new(1260 + 111 * j, 78 * i)));
                 }
             }
 
@@ -143,7 +146,7 @@ namespace ExamenProject.Map
             {
                 for (int j = -2; j <= 0; j++)
                 {
-                    tr.Add(new Tree(new(i, 78 * (11 + j)), gd));
+                    tr.Add(new Tree(new(i, 78 * (11 + j))));
                 }
             }
         }
