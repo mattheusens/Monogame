@@ -13,6 +13,7 @@ using ExamenProject.Map;
 using ExamenProject.Loaders;
 using System.Diagnostics;
 using ExamenProject.Maps;
+using ExamenProject.Screens;
 
 namespace ExamenProject.Levels
 {
@@ -22,7 +23,6 @@ namespace ExamenProject.Levels
 
         Hero hero;
         List<Enemy> enemies;
-        List<Character> characters;
         Texture2D enemyTexture;
 
         List<Block> blocks;
@@ -38,22 +38,24 @@ namespace ExamenProject.Levels
 
             ContentManager Content = ContentLoader.getInstance().contentM;
 
-            enemyTexture = Content.Load<Texture2D>("Torch_Blue_Fixed_Full");
+            enemyTexture = Content.Load<Texture2D>($"Torch_{GameScreen.Color}_Fixed_Full");
 
             hero = level.hero;
             enemies = level.enemies;
-            characters = level.characters;
             blocks = level.blocks;
             buildings = level.buildings;
             trees = level.trees;
         }
         public void init()
         {
-            enemies.Add(new Enemy(enemyTexture, hero.move, true));
-
-            foreach (Enemy en in enemies) characters.Add(en);
-
             MapLoader.LoadMap(levelNr, blocks, buildings, trees);
+
+            if (!gateOpen)
+            {
+                enemies.Add(new Enemy(enemyTexture, new(1600, 450), hero.move, true));
+            }
+            else RemoveTrees();
+
         }
         public void Update(GameTime gameTime)
         {
@@ -70,22 +72,23 @@ namespace ExamenProject.Levels
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Water") blocks[i].Draw(spriteBatch);
-            for (int i = 0; i < blocks.Count; i++) if (blocks[i].Type == "Grass") blocks[i].Draw(spriteBatch);
+            foreach (Block bl in blocks) if (bl.Type == "Water") bl.Draw(spriteBatch);
+            foreach(Block bl in blocks) if (bl.Type == "Grass") bl.Draw(spriteBatch);
+
+            foreach (Enemy enemy in enemies) enemy.Draw(spriteBatch);
             foreach (Tree tr in trees) tr.Draw(spriteBatch);
-            for (int i = 0; i < buildings.Count; i++) buildings[i].Draw(spriteBatch);
+            foreach (Building bd in buildings) bd.Draw(spriteBatch);
 
             hero.Draw(spriteBatch);
-            foreach (Enemy enemy in enemies) enemy.Draw(spriteBatch);
         }
         public void goNextLevel()
         {
             level.setState(level.getLevel2());
             level.getState().init();
-            hero.move.posY = -50;
+            hero.move.posY = -90;
         }
         public void goLastLevel()
-        {
+        { 
             // Impossible
         }
         private void RemoveTrees()

@@ -12,7 +12,7 @@ namespace ExamenProject.Characters
     {
         private Texture2D heart;
 
-        public Hero(Texture2D texture):base(texture)
+        public Hero(Texture2D texture, Vector2 spawnPosition) : base(texture)
         {
             ContentManager Content = ContentLoader.getInstance().contentM;
             heart = Content.Load<Texture2D>("Heart");
@@ -20,10 +20,6 @@ namespace ExamenProject.Characters
             SpriteSplitter.GetFramesFromTexture(moveAnimation.frames, texture.Width, texture.Height / 8 * 3, 12, 3);
             moveAnimation.setFirst();
             rectangle = moveAnimation.frames[0].SourceRectangle;
-
-            move.posX = 120; //graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
-            move.posY = 100; //graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
-            position = new Vector2(move.posX, move.posY);
 
             offsetFeet.X = rectangle.Width / 4 + 37;
             offsetFeet.Y = rectangle.Height / 4 + 76;
@@ -38,6 +34,10 @@ namespace ExamenProject.Characters
             positionHitbox = new Vector2(move.posX + offsetHitbox.X, move.posY + offsetHitbox.Y);
             positionWeaponR = new Vector2(move.posX + offsetWeaponR.X, move.posY + offsetWeaponR.Y);
             positionWeaponL = new Vector2(move.posX + offsetWeaponL.X, move.posY + offsetWeaponL.Y);
+
+            move.posX = (int)(spawnPosition.X - offsetHitbox.X);
+            move.posY = (int)(spawnPosition.Y - offsetHitbox.Y);
+            position = new Vector2(move.posX, move.posY);
         }
 
         public override void Update(GameTime gameTime)

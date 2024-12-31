@@ -18,7 +18,6 @@ namespace ExamenProject.Levels
 
         public Hero hero;
         public List<Enemy> enemies = new();
-        public List<Character> characters = new();
         public List<Block> blocks = new();
         public List<Building> buildings = new();
         public List<Tree> trees = new();
@@ -26,7 +25,6 @@ namespace ExamenProject.Levels
         public CurrentLevel(Hero hero)
         {
             this.hero = hero;
-            characters.Add(hero); 
             level1 = new Level1(this);
             level2 = new Level2(this);
             state = level1;

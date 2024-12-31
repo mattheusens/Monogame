@@ -21,7 +21,6 @@ namespace ExamenProject.Levels
 
         Hero hero;
         List<Enemy> enemies;
-        List<Character> characters;
         Texture2D enemyTexture;
 
         List<Block> blocks;
@@ -40,7 +39,6 @@ namespace ExamenProject.Levels
 
             hero = level.hero;
             enemies = level.enemies;
-            characters = level.characters;
             blocks = level.blocks;
             buildings = level.buildings;
             trees = level.trees;
@@ -48,10 +46,9 @@ namespace ExamenProject.Levels
 
         public void init()
         {
-            foreach (Enemy en in enemies) characters.Add(en);
-
             MapLoader.LoadMap(2, blocks, buildings, trees);
         }
+
         public void Update(GameTime gameTime)
         {
             foreach (Enemy en in enemies) if (Collision.CheckCollision(hero.rectangleHitbox, en.rectangleWeaponR)) en.counting = true;
@@ -61,6 +58,8 @@ namespace ExamenProject.Levels
             foreach (Tree tr in trees) tr.Update(gameTime);
 
             Collision.CheckAllCollisions(hero, enemies, blocks, buildings, trees);
+
+            if (hero.move.posY < -90) goLastLevel();
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -78,7 +77,9 @@ namespace ExamenProject.Levels
         }
         public void goLastLevel()
         {
-
+            level.setState(level.getLevel1());
+            level.getState().init();
+            hero.move.posY = 900;
         }
     }
 }

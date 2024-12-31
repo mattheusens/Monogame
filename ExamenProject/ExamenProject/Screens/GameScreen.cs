@@ -6,6 +6,7 @@ using ExamenProject.Interfaces;
 using ExamenProject.Loaders;
 using ExamenProject.Characters;
 using ExamenProject.Levels;
+using System.Diagnostics;
 
 namespace ExamenProject.Screens
 {
@@ -15,16 +16,20 @@ namespace ExamenProject.Screens
         CurrentLevel levels;
 
         Hero hero; 
-        Texture2D heroTexture; 
+        Texture2D heroTexture;
+
+        private bool menuPressed = false;
+
+        public static string Color = "Blue";
 
         public GameScreen(Screen screen)
         {
             this.screen = screen;
 
-            ContentManager Content = ContentLoader.getInstance().contentM; 
-            heroTexture = Content.Load<Texture2D>("Warrior_Blue_Full"); 
+            ContentManager Content = ContentLoader.getInstance().contentM;
+            heroTexture = Content.Load<Texture2D>($"Warrior_{Color}_Full"); 
 
-            hero = new Hero(heroTexture);
+            hero = new Hero(heroTexture, new(750, 450));
             levels = new CurrentLevel(hero);
             levels.getState().init();
         }
@@ -34,7 +39,13 @@ namespace ExamenProject.Screens
             levels.getState().Update(gameTime);
 
             if (hero.health == 0) goToEndScreen();
-            if (Keyboard.GetState().IsKeyDown(Keys.P)) goToMenuScreen();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.P)) menuPressed = true;
+            if (Keyboard.GetState().IsKeyUp(Keys.P) && menuPressed) 
+            {
+                goToMenuScreen();
+                menuPressed = false;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -16,6 +16,7 @@ namespace ExamenProject.Maps
         {
             ML1 = new MapLevel1();
         }
+
         public static void LoadMap(int levelNr, List<Block> bls, List<Building> bds, List<Tree> trs)
         {
             bls.Clear();

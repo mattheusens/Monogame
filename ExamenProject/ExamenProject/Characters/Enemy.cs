@@ -15,7 +15,7 @@ namespace ExamenProject.Characters
         public bool counting = false;
         int counter = 0;
 
-        public Enemy(Texture2D texture, Movement movePlayer, bool canFight):base(texture)
+        public Enemy(Texture2D texture, Vector2 spawnPosition, Movement movePlayer, bool canFight) : base(texture)
         {
             this.movePlayer = movePlayer;
             this.canFight = canFight;
@@ -23,10 +23,6 @@ namespace ExamenProject.Characters
             SpriteSplitter.GetFramesFromTexture(moveAnimation.frames, texture.Width, texture.Height / 5 * 3, 12, 3);
             moveAnimation.setFirst();
             rectangle = moveAnimation.CurrentFrame.SourceRectangle;
-
-            move.posX = 400; //graphics.PreferredBackBufferWidth / 2 - texture.Width / 24;
-            move.posY = 400; //graphics.PreferredBackBufferHeight / 2 - texture.Height / 16;
-            position = new Vector2(move.posX, move.posY);
 
             offsetFeet.X = rectangle.Width / 4 + 37;
             offsetFeet.Y = rectangle.Height / 4 + 76;
@@ -41,6 +37,10 @@ namespace ExamenProject.Characters
             positionHitbox = new Vector2(move.posX + offsetHitbox.X, move.posY + offsetHitbox.Y);
             positionWeaponR = new Vector2(move.posX + offsetWeaponR.X, move.posY + offsetWeaponR.Y);
             positionWeaponL = new Vector2(move.posX + offsetWeaponL.X, move.posY + offsetWeaponL.Y);
+
+            move.posX = (int)(spawnPosition.X - offsetHitbox.X);
+            move.posY = (int)(spawnPosition.Y - offsetHitbox.Y);
+            position = new Vector2(move.posX, move.posY);
         }
 
         public override void Update(GameTime gameTime)
@@ -72,7 +72,6 @@ namespace ExamenProject.Characters
         }
         public override void Move()
         {
-
             posXBefore = move.posX;
             posYBefore = move.posY;
             move.FollowPlayer(movePlayer);

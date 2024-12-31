@@ -10,13 +10,12 @@ namespace ExamenProject.Screens
     {
         Screen screen;
 
-        private Texture2D backgroundTexture;
-
         public Button returnButton;
         private Texture2D returnTexture;
         private Vector2 basePositionReturn;
         private Vector2 offsetReturn;
 
+        private Texture2D bigScreen;
         private Texture2D background;
         private SpriteFont font;
         private string text;
@@ -28,8 +27,8 @@ namespace ExamenProject.Screens
             font = MedievalFont.getInstance().font;
             ContentManager Content = ContentLoader.getInstance().contentM;
 
-            backgroundTexture = Content.Load<Texture2D>("Screens/MainBackground");
-            background = Content.Load<Texture2D>("Screens/BigScreen");
+            background = Content.Load<Texture2D>("Screens/MainBackground");
+            bigScreen = Content.Load<Texture2D>("Screens/BigScreen");
             returnTexture = Content.Load<Texture2D>("Screens/Return");
 
             returnButton = new Button(returnTexture, new(1040, 80), 1.5f);
@@ -44,14 +43,15 @@ namespace ExamenProject.Screens
         public void Update(GameTime gameTime)
         {
             returnButton.Update();
-            if (returnButton.clicked) goToStartScreen();
+            if (returnButton.clicked && screen.getPreviousState() == screen.getStartScreen()) goToStartScreen();
+            if (returnButton.clicked && screen.getPreviousState() == screen.getMenuScreen()) goToMenuScreen();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, 1500, 900), Color.White);
+            spriteBatch.Draw(background, new Rectangle(0, 0, 1500, 900), Color.White);
 
-            spriteBatch.Draw(background, new Vector2(1500 / 2, 900 / 2), null, Color.White, 0.0f, new Vector2(96, 96), 4.5f, SpriteEffects.None, 1.0f);
+            spriteBatch.Draw(bigScreen, new Vector2(1500 / 2, 900 / 2), null, Color.White, 0.0f, new Vector2(96, 96), 4.5f, SpriteEffects.None, 1.0f);
             returnButton.Draw(spriteBatch);
             spriteBatch.DrawString(font, text, new(400, 150), Color.White, 0, new(0, 0), 1.5f, SpriteEffects.None, 0);
         }
@@ -71,7 +71,8 @@ namespace ExamenProject.Screens
         }
         public void goToMenuScreen() 
         {
-            // Need to make this
+            returnButton.clicked = false;
+            screen.setState(screen.getMenuScreen());
         }
         public void goToEndScreen() 
         {
