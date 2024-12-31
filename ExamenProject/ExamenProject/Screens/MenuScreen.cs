@@ -52,7 +52,7 @@ namespace ExamenProject.Screens
             basePositionBugs = new(750 - buttonTexture.Width * 2 + 50, 550);
             basePositionQuit = new(750 + buttonTexture.Width / 2 - 50, 550);
 
-            offsetTextRL = new(30, 13);
+            offsetTextRL = new(45, 13);
             offsetTextS = new(85, 13);
             offsetTextB = new(72, 13);
             offsetTextQ = new(85, 13);
@@ -76,6 +76,10 @@ namespace ExamenProject.Screens
             startButton.Update();
             bugsButton.Update();
             quitButton.Update();
+
+            if (startButton.clicked) goToStartScreen();
+            if (bugsButton.clicked) goToBugScreen();
+            if (quitButton.clicked) exitGame();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -97,12 +101,14 @@ namespace ExamenProject.Screens
         }
 
         public void goToStartScreen() 
-        { 
-            // Need to make this
+        {
+            startButton.clicked = false;
+            screen.setState(screen.getStartScreen());
         }
         public void goToBugScreen() 
         {
-            // Need to make this
+            bugsButton.clicked = false;
+            screen.setState(screen.getBugScreen());
         }
         public void goToGame() 
         {
@@ -118,7 +124,7 @@ namespace ExamenProject.Screens
         }
         public void exitGame()
         {
-            // Need to make this
+            screen.quit = true;
         }
     }
 }

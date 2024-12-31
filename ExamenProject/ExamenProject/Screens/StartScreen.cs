@@ -29,7 +29,6 @@ namespace ExamenProject.Screens
 
         public bool startScreenOn = true;
         public bool bugScreenOn = false;
-        public bool quit = false;
 
         public StartScreen(Screen screen)
         {
@@ -103,7 +102,7 @@ namespace ExamenProject.Screens
         }
         public void exitGame() 
         {
-            quit = true;
+            screen.quit = true;
         }
     }
 }

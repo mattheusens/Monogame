@@ -53,16 +53,8 @@ namespace ExamenProject
 
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            screen.getState().Update(gameTime);
-
-            if(screen.getState() == screen.getStartScreen())
-            {
-                StartScreen sc = screen.getState() as StartScreen;
-                if (sc.quit) Exit();
-            }
+            screen.getState().Update(gameTime);            
+            if (screen.quit) Exit();
 
             base.Update(gameTime);
         }

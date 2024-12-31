@@ -18,6 +18,8 @@ namespace ExamenProject.Screens
         IScreenState state;
         IScreenState previousState;
 
+        public bool quit = false;
+
         public Screen()
         {
             startScreen = new StartScreen(this);
