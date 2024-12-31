@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using ExamenProject.Interfaces;
 using ExamenProject.Loaders;
+using System.Diagnostics;
 
 namespace ExamenProject.Screens
 {
@@ -10,14 +11,13 @@ namespace ExamenProject.Screens
     {
         Screen screen;
 
-        public Button restartButton;
-        private Texture2D restartTexture;
+        private Texture2D buttonTexture;
+        private Button restartButton;
         private Vector2 basePositionRestart;
         private Vector2 offsetRestart;
 
-        private Texture2D backgroundFilter;
+        private Texture2D background;
         private SpriteFont font;
-        private string text;
 
         public GameOverScreen(Screen screen)
         {
@@ -26,10 +26,13 @@ namespace ExamenProject.Screens
             font = MedievalFont.getInstance().font;
             ContentManager Content = ContentLoader.getInstance().contentM;
 
-            backgroundFilter = Content.Load<Texture2D>("Screens/BackgroundFilterGameOver");
-            restartTexture = Content.Load<Texture2D>("Screens/Button");
+            background = Content.Load<Texture2D>("Screens/BackgroundFilterGameOver");
+            buttonTexture = Content.Load<Texture2D>("Screens/Button");
 
-            restartButton = new Button(restartTexture, new(750 - restartTexture.Width / 4 * 3, 500), 1.5f);
+            basePositionRestart = new(750 - buttonTexture.Width / 4 * 3, 450);
+            restartButton = new Button(buttonTexture, basePositionRestart, 1.5f);
+            offsetRestart = new(650, 465);
+            offsetRestart = new(44, 15);
         }
 
 
@@ -41,10 +44,10 @@ namespace ExamenProject.Screens
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(backgroundFilter, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+            spriteBatch.Draw(background, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
             restartButton.Draw(spriteBatch);
             spriteBatch.DrawString(font, "GAME OVER", new(440, 250), Color.White, 0, new(0, 0), 3, SpriteEffects.None, 0);
-            spriteBatch.DrawString(font, "Restart", new(650, 515), Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, "Restart", basePositionRestart + offsetRestart, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
         }
 
         public void goToStartScreen() 
@@ -58,7 +61,8 @@ namespace ExamenProject.Screens
         }
         public void goToGame() 
         {
-            // Need to make this
+
+            screen.setState(screen.getGameScreen());
         }
         public void goToMenuScreen() 
         {
@@ -70,7 +74,7 @@ namespace ExamenProject.Screens
         }
         public void exitGame() 
         {
-            // Need to make this
+            screen.quit = true;
         }
     }
 }

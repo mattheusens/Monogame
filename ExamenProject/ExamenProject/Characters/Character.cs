@@ -16,7 +16,6 @@ namespace ExamenProject.Characters
         protected Texture2D weaponTexture;
 
         public Animatie moveAnimation;
-        public Movement moveBefore;
         public Movement move;
 
         public int posXBefore;

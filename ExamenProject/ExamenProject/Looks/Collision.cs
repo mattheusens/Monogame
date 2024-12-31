@@ -108,19 +108,20 @@ namespace ExamenProject.Map
         {
             for (int i = 0; i < enemies.Count; i++)
             {
-                if (!enemies[i].moveAnimation.fighting)
-                {
-                    if (heroHit) hero.health--;
-                    heroHit = false;
-                    continue;
-                }
-
                 bool collisionR = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponR) && enemies[i].move.lastMove == "right";
                 bool collisionL = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponL) && enemies[i].move.lastMove == "left";
 
                 if ((collisionR || collisionL) && !heroHit)
                 {
+                    enemies[i].counting = true;
                     heroHit = true;
+                    continue;
+                }
+
+                if (!enemies[i].moveAnimation.fighting && heroHit && !enemies[i].counting)
+                {
+                    if (heroHit) hero.health--;
+                    heroHit = false;
                 }
             }
         }

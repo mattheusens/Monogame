@@ -12,8 +12,6 @@ namespace ExamenProject.Screens
 
         public Button returnButton;
         private Texture2D returnTexture;
-        private Vector2 basePositionReturn;
-        private Vector2 offsetReturn;
 
         private Texture2D bigScreen;
         private Texture2D background;

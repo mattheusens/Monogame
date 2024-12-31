@@ -46,7 +46,7 @@ namespace ExamenProject.Levels
 
         public void init()
         {
-            MapLoader.LoadMap(2, blocks, buildings, trees);
+            MapLoader.LoadMap(levelNr, blocks, buildings, trees);
         }
 
         public void Update(GameTime gameTime)
