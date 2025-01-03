@@ -12,7 +12,7 @@ namespace ExamenProject.Screens
     internal class GameScreen : IScreenState
     {
         Screen screen;
-        CurrentLevel levels;
+        public CurrentLevel levels;
 
         Hero hero; 
         Texture2D heroTexture;
@@ -32,14 +32,15 @@ namespace ExamenProject.Screens
 
             hero = new Hero(heroTexture, new(750, 450));
             levels = new CurrentLevel(hero);
-            levels.getState().init();
+            levels.getState().initMap();
+            levels.getState().initEnemies();
         }
 
         public void Update(GameTime gameTime)
         {
             levels.getState().Update(gameTime);
 
-            if (coins >= 60) goToGameWonScreen();
+            if (coins >= 20) goToGameWonScreen();
 
             if (hero.health == 0) goToGameOverScreen();
 
@@ -76,15 +77,30 @@ namespace ExamenProject.Screens
         }
         public void goToGameWonScreen()
         {
+            resetGame();
+
             screen.setState(screen.getGameWonScreen());
         }
         public void goToGameOverScreen() 
         {
+            resetGame();
+
             screen.setState(screen.getGameOverScreen());
         }
         public void exitGame() 
         {
             // Impossible
+        }
+        private void resetGame()
+        {
+            hero.move.posX = 750;
+            hero.move.posY = 450;
+            hero.health = 3;
+            coins = 0;
+
+            levels.setState(levels.getLevel1());
+            levels.getLevel1().initMap();
+            levels.getLevel1().initEnemies();
         }
     }
 }

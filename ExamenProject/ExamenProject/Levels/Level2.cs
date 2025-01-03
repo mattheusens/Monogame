@@ -61,14 +61,16 @@ namespace ExamenProject.Levels
                     break;
             }
         }
+        public void initEnemies() { } // Does nothing
         public void goNextLevel()
         {
-
+            // Impossible
         }
         public void goLastLevel()
         {
             level.setState(level.getLevel1());
-            level.getState().init();
+            level.getState().initMap();
+
             hero.move.posY = 900;
         }
     }

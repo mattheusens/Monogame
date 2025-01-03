@@ -6,8 +6,10 @@ namespace ExamenProject.Characters.Enemies
 {
     internal class RandomEnemy : Enemy
     {
-        bool fighting = false;
+        public bool fighting = false;
+
         public bool counting = false;
+        public bool counterReset = false;
         protected int counter = 0;
 
         public RandomEnemy(Texture2D texture, Vector2 spawnPosition, int delay, bool fighting) : base(texture, spawnPosition, delay)
@@ -29,6 +31,7 @@ namespace ExamenProject.Characters.Enemies
             {
                 moveAnimation.Fighting();
                 counter = 0;
+                counterReset = true;
                 counting = false;
             }
         }

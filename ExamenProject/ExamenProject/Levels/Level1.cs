@@ -1,19 +1,6 @@
-﻿using ExamenProject.Interfaces;
-using Microsoft.Xna.Framework.Graphics;
+﻿using System.Linq;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExamenProject.Characters;
-using Microsoft.Xna.Framework.Content;
-using ExamenProject.Map.Nature;
-using ExamenProject.Map;
-using ExamenProject.Loaders;
-using System.Diagnostics;
-using ExamenProject.Maps;
-using ExamenProject.Screens;
+using ExamenProject.Interfaces;
 using ExamenProject.Characters.Enemies;
 
 namespace ExamenProject.Levels
@@ -27,20 +14,19 @@ namespace ExamenProject.Levels
             this.level = level;
             levelNr = 1;
         }
-        public override void init()
+        public override void initMap()
         {
-            base.init();
+            base.initMap();
 
-            if (!gateOpen)
-            {
-                enemies.Add(new CloseEnemy(enemyTexture, new(200, 180), 300, hero.move));
-                enemies.Add(new DistanceEnemy(enemyTexture, new(200, 180), 600, hero.move));
-                enemies.Add(new RandomEnemy(enemyTexture, new(200, 180), 900, false));
-                enemies.Add(new RandomEnemy(enemyTexture, new(200, 180), 1200, true));
-                enemies.Add(new FightingEnemy(enemyTexture, new(200, 180), 1500, hero.move));
-            }
-            else RemoveTrees();
-
+            gateOpen = false;
+        }
+        public void initEnemies()
+        {
+            //enemies.Add(new CloseEnemy(enemyTexture, new(200, 180), 300, hero.move));
+            //enemies.Add(new DistanceEnemy(enemyTexture, new(200, 180), 600, hero.move));
+            //enemies.Add(new RandomEnemy(enemyTexture, new(200, 180), 900, false));
+            //enemies.Add(new RandomEnemy(enemyTexture, new(200, 180), 100, true));
+            enemies.Add(new FightingEnemy(enemyTexture, new(200, 180), 100, hero.move));
         }
         public override void Update(GameTime gameTime)
         {
@@ -56,8 +42,11 @@ namespace ExamenProject.Levels
         }
         public void goNextLevel()
         {
+            enemies.Clear();
+
             level.setState(level.getLevel2());
-            level.getState().init();
+            level.getState().initMap();
+
             hero.move.posY = -90;
         }
         public void goLastLevel()

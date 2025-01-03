@@ -122,23 +122,43 @@ namespace ExamenProject.Map
         {
             for (int i = 0; i < enemies.Count; i++)
             {
-                FightingEnemy enemy = enemies[0] as FightingEnemy;
-                if (enemy == null) continue;
+                if (!(enemies[i] is FightingEnemy || enemies[i] is RandomEnemy)) continue;
 
                 bool collisionR = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponR) && enemies[i].move.lastMove == "right";
                 bool collisionL = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponL) && enemies[i].move.lastMove == "left";
+                bool collision = (collisionR || collisionL) && !heroHit;
 
-                if ((collisionR || collisionL) && !heroHit)
+                if (enemies[i] is FightingEnemy FE)
                 {
-                    enemy.counting = true;
-                    heroHit = true;
-                    continue;
+                    if (collision)
+                    {
+                        FE.counting = true;
+                        heroHit = true;
+                        continue;
+                    }
+                    if (!FE.moveAnimation.fighting && heroHit && FE.counterReset && !hero.invincible)
+                    {
+                        hero.hit = true;
+                        heroHit = false;
+                        FE.counterReset = false;
+                    }
                 }
-
-                if (!enemies[i].moveAnimation.fighting && heroHit && !enemy.counting)
+                if (enemies[i] is RandomEnemy RE)
                 {
-                    if (heroHit && !hero.invincible) hero.hit = true;
-                    heroHit = false;
+                    if (!RE.fighting) continue;
+
+                    if (collision)
+                    {
+                        RE.counting = true;
+                        heroHit = true;
+                        continue;
+                    }
+                    if (!RE.moveAnimation.fighting && heroHit && RE.counterReset && !hero.invincible)
+                    {
+                        hero.hit = true;
+                        heroHit = false;
+                        RE.counterReset = false;
+                    }
                 }
             }
         }

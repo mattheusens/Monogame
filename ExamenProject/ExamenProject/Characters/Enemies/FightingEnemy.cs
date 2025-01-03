@@ -8,6 +8,7 @@ namespace ExamenProject.Characters.Enemies
         Movement movePlayer;
 
         public bool counting = false;
+        public bool counterReset = false;
         protected int counter = 0;
 
         public FightingEnemy(Texture2D texture, Vector2 spawnPosition, int delay, Movement movePlayer) : base(texture, spawnPosition, delay)
@@ -29,6 +30,7 @@ namespace ExamenProject.Characters.Enemies
             {
                 moveAnimation.Fighting();
                 counter = 0;
+                counterReset = true;
                 counting = false;
             }
         }

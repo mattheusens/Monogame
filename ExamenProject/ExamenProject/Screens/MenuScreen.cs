@@ -18,10 +18,6 @@ namespace ExamenProject.Screens
         
         private bool menuPressed = false;
 
-        private Button restartLevelButton;
-        private Vector2 basePositionRestartL;
-        private Vector2 offsetTextRL;
-
         private Button startButton;
         private Vector2 basePositionStart;
         private Vector2 offsetTextS;
@@ -47,17 +43,14 @@ namespace ExamenProject.Screens
             buttonTexture = Content.Load<Texture2D>("Screens/Button");
 
             float buttonSize = 1.5f;
-            basePositionRestartL = new(750 - buttonTexture.Width * 2 + 50, 350);
-            basePositionStart = new(750 + buttonTexture.Width / 2 - 50, 350);
+            basePositionStart = new(750 - buttonTexture.Width / 2 - 50, 350);
             basePositionBugs = new(750 - buttonTexture.Width * 2 + 50, 550);
             basePositionQuit = new(750 + buttonTexture.Width / 2 - 50, 550);
 
-            offsetTextRL = new(45, 13);
             offsetTextS = new(85, 13);
             offsetTextB = new(72, 13);
             offsetTextQ = new(85, 13);
 
-            restartLevelButton = new Button(buttonTexture, basePositionRestartL, buttonSize);
             startButton = new Button(buttonTexture, basePositionStart, buttonSize);
             bugsButton = new Button(buttonTexture, basePositionBugs, buttonSize);
             quitButton = new Button(buttonTexture, basePositionQuit, buttonSize);
@@ -66,13 +59,8 @@ namespace ExamenProject.Screens
         public void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.P)) menuPressed = true;
-            if (Keyboard.GetState().IsKeyUp(Keys.P) && menuPressed) 
-            {
-                goToGame();
-                menuPressed = false;
-            }
+            if (Keyboard.GetState().IsKeyUp(Keys.P) && menuPressed) goToGame();
 
-            restartLevelButton.Update();
             startButton.Update();
             bugsButton.Update();
             quitButton.Update();
@@ -89,12 +77,10 @@ namespace ExamenProject.Screens
 
             spriteBatch.DrawString(font, "Menu", new Vector2(750, 200), Color.White, 0, new Vector2(50, 50), 2f, SpriteEffects.None, 0);
 
-            restartLevelButton.Draw(spriteBatch);
             startButton.Draw(spriteBatch);
             bugsButton.Draw(spriteBatch);
             quitButton.Draw(spriteBatch);
 
-            spriteBatch.DrawString(font, "Restart", basePositionRestartL + offsetTextRL, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
             spriteBatch.DrawString(font, "Start", basePositionStart + offsetTextS, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
             spriteBatch.DrawString(font, "Bugs", basePositionBugs + offsetTextB, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
             spriteBatch.DrawString(font, "Quit", basePositionQuit + offsetTextQ, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
@@ -112,6 +98,7 @@ namespace ExamenProject.Screens
         }
         public void goToGame() 
         {
+            menuPressed = false;
             screen.setState(screen.getGameScreen());
         }
         public void goToMenuScreen() 

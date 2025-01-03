@@ -16,6 +16,11 @@ namespace ExamenProject.Screens
         Screen screen;
 
         private Texture2D buttonTexture;
+
+        private Button startButton;
+        private Vector2 basePositionStart;
+        private Vector2 offsetStart;
+
         private Button restartButton;
         private Vector2 basePositionRestart;
         private Vector2 offsetRestart;
@@ -33,30 +38,40 @@ namespace ExamenProject.Screens
             background = Content.Load<Texture2D>("Screens/BackgroundFilterGameWon");
             buttonTexture = Content.Load<Texture2D>("Screens/Button");
 
-            basePositionRestart = new(750 - buttonTexture.Width / 4 * 3, 450);
+            basePositionStart = new(750 - buttonTexture.Width / 4 * 3, 450);
+            startButton = new Button(buttonTexture, basePositionStart, 1.5f);
+            offsetStart = new(85, 13);
+
+            basePositionRestart = new(750 - buttonTexture.Width / 4 * 3, 600);
             restartButton = new Button(buttonTexture, basePositionRestart, 1.5f);
-            offsetRestart = new(650, 465);
-            offsetRestart = new(44, 15);
+            offsetRestart = new(44, 13);
         }
 
 
         public void Update(GameTime gameTime)
         {
+            startButton.Update();
             restartButton.Update();
-            if (restartButton.clicked) goToStartScreen();
+
+            if (startButton.clicked) goToStartScreen();
+            if (restartButton.clicked) goToGame();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+
+            startButton.Draw(spriteBatch);
             restartButton.Draw(spriteBatch);
+
             spriteBatch.DrawString(font, "GAME WON", new(440, 250), Color.White, 0, new(0, 0), 3, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, "Start", basePositionStart + offsetStart, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
             spriteBatch.DrawString(font, "Restart", basePositionRestart + offsetRestart, Color.White, 0, new(0, 0), 2, SpriteEffects.None, 0);
         }
 
         public void goToStartScreen()
         {
-            restartButton.clicked = false;
+            startButton.clicked = false;
             screen.setState(screen.getStartScreen());
         }
         public void goToBugScreen()
@@ -65,6 +80,7 @@ namespace ExamenProject.Screens
         }
         public void goToGame()
         {
+            restartButton.clicked = false;
             screen.setState(screen.getGameScreen());
         }
         public void goToMenuScreen()

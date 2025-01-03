@@ -12,7 +12,8 @@ namespace ExamenProject.Interfaces
     {
         void goNextLevel();
         void goLastLevel();
-        void init();
+        void initMap();
+        void initEnemies();
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
 

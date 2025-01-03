@@ -11,7 +11,9 @@ namespace ExamenProject.Characters
     internal class Hero : Character
     {
         private Texture2D heart;
+
         public bool hit = false;
+        public bool invincible = false;
 
         public Hero(Texture2D texture, Vector2 spawnPosition) : base(texture, spawnPosition)
         {
@@ -31,8 +33,6 @@ namespace ExamenProject.Characters
             offsetWeaponL.X = rectangle.Width / 4 - 40;
             offsetWeaponL.Y = rectangle.Height / 4 - 20;
 
-            move.posX = (int)(spawnPosition.X - offsetHitbox.X);
-            move.posY = (int)(spawnPosition.Y - offsetHitbox.Y);
             position = new Vector2(move.posX, move.posY);
 
             positionFeet = new Vector2(move.posX + offsetFeet.X, move.posY + offsetFeet.Y);
@@ -42,7 +42,6 @@ namespace ExamenProject.Characters
 
         }
 
-        public bool invincible = false;
 
         public override void Update(GameTime gameTime)
         {

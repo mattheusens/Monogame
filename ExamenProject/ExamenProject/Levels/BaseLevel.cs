@@ -41,8 +41,9 @@ namespace ExamenProject.Levels
             trees = level.trees;
         }
 
-        public virtual void init()
+        public virtual void initMap()
         {
+            enemies.Clear();
             MapLoader.LoadMap(levelNr, blocks, buildings, trees);
         }
 
