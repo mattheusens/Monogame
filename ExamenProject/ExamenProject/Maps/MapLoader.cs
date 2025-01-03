@@ -11,12 +11,6 @@ namespace ExamenProject.Maps
 {
     class MapLoader
     {
-        private static MapLevel1 ML1;
-        private MapLoader()
-        {
-            ML1 = new MapLevel1();
-        }
-
         public static void LoadMap(int levelNr, List<Block> bls, List<Building> bds, List<Tree> trs)
         {
             bls.Clear();

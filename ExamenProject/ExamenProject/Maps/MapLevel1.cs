@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using ExamenProject.Map;
 using ExamenProject.Map.Nature;
+using ExamenProject.Interfaces;
 
 namespace ExamenProject.Maps
 {

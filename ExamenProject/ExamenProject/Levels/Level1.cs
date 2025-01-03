@@ -18,38 +18,18 @@ using ExamenProject.Characters.Enemies;
 
 namespace ExamenProject.Levels
 {
-    internal class Level1 : ILevelState
+    internal class Level1 : BaseLevel, ILevelState
     {
-        CurrentLevel level;
-
-        Hero hero;
-        List<Enemy> enemies;
-        Texture2D enemyTexture;
-
-        List<Block> blocks;
-        List<Building> buildings;
-        List<Tree> trees;
-
-        int levelNr = 1;
         bool gateOpen = false;
 
-        public Level1(CurrentLevel level)
+        public Level1(CurrentLevel level) : base(level)
         {
             this.level = level;
-
-            ContentManager Content = ContentLoader.getInstance().contentM;
-
-            enemyTexture = Content.Load<Texture2D>($"Torch_{GameScreen.color}_Fixed_Full");
-
-            hero = level.hero;
-            enemies = level.enemies;
-            blocks = level.blocks;
-            buildings = level.buildings;
-            trees = level.trees;
+            levelNr = 1;
         }
-        public void init()
+        public override void init()
         {
-            MapLoader.LoadMap(levelNr, blocks, buildings, trees);
+            base.init();
 
             if (!gateOpen)
             {
@@ -62,36 +42,17 @@ namespace ExamenProject.Levels
             else RemoveTrees();
 
         }
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            foreach (Enemy en in enemies) { 
-                if (Collision.CheckCollision(hero.rectangleHitbox, en.rectangleWeaponR) && en is FightingEnemy) {
-                    FightingEnemy en2 = en as FightingEnemy;
-                    en2.counting = true;
-                }
-            }   
-
-            hero.Update(gameTime);
-
-            foreach (Enemy en in enemies) en.Update(gameTime);
-
-            foreach (Tree tr in trees) tr.Update(gameTime);
-
-            Collision.CheckAllCollisions(hero, enemies, blocks, buildings, trees);
+            base.Update(gameTime);
 
             if (!enemies.Any() && !gateOpen) RemoveTrees();
             if (hero.move.posY > 900) goNextLevel();
         }
-        public void Draw(SpriteBatch spriteBatch)
+        private void RemoveTrees()
         {
-            foreach (Block bl in blocks) if (bl.Type == "Water") bl.Draw(spriteBatch);
-            foreach(Block bl in blocks) if (bl.Type == "Grass") bl.Draw(spriteBatch);
-
-            foreach (Tree tr in trees) tr.Draw(spriteBatch);
-            foreach (Building bd in buildings) bd.Draw(spriteBatch);
-            foreach (Enemy enemy in enemies) enemy.Draw(spriteBatch);
-
-            hero.Draw(spriteBatch);
+            for (int i = 0; i < 6; i++) trees.RemoveAt(98);
+            gateOpen = true;
         }
         public void goNextLevel()
         {
@@ -102,11 +63,6 @@ namespace ExamenProject.Levels
         public void goLastLevel()
         { 
             // Impossible
-        }
-        private void RemoveTrees()
-        {
-            for (int i = 0; i < 6; i++) trees.RemoveAt(98);
-            gateOpen = true;
         }
     }
 }

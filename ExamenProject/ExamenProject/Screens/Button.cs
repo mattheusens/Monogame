@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 
-namespace ExamenProject
+namespace ExamenProject.Screens
 {
     internal class Button
     {
