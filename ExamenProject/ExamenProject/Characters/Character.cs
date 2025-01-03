@@ -39,12 +39,14 @@ namespace ExamenProject.Characters
 
         public int health = 3;
 
-        public Character(Texture2D texture)
+        public Character(Texture2D texture, Vector2 spawnPosition)
         {
             GraphicsDevice graphicsDevice = GraphicsDeviceLoader.getInstance().graphicsDevice;
 
             characterTexture = texture;
-            move = new Movement();
+            move = new Movement((int)spawnPosition.X, (int)spawnPosition.Y);
+            posXBefore = (int)spawnPosition.X;
+            posYBefore = (int)spawnPosition.Y;
 
             moveAnimation = new Animatie(move, 6);
 

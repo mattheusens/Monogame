@@ -31,7 +31,8 @@ namespace ExamenProject.Maps
         }
         private static void CreateBuildings(List<Building> bds)
         {
-            //
+            bds.Add(new Building(new Rectangle(170, 150, 192, 128), "cave"));
+            bds.Add(new Building(new Rectangle(1120, 150, 192, 128), "cave"));
         }
         private static void CreateTrees(List<Tree> trs)
         {

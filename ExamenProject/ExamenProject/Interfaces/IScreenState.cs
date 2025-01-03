@@ -13,7 +13,8 @@ namespace ExamenProject.Interfaces
         void goToGame();
         void goToStartScreen();
         void goToBugScreen();
-        void goToEndScreen();
+        void goToGameWonScreen();
+        void goToGameOverScreen();
         void goToMenuScreen();
         void exitGame();
 

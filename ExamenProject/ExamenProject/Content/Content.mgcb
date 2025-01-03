@@ -55,6 +55,18 @@
 /processorParam:TextureFormat=Color
 /build:Background/Buildings/Blue/Tower.png
 
+#begin Background/Buildings/Cave.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Background/Buildings/Cave.png
+
 #begin Background/Buildings/Purple/Castle.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -253,6 +265,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Screens/BackgroundFilterGameOver.png
+
+#begin Screens/BackgroundFilterGameWon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Screens/BackgroundFilterGameWon.png
 
 #begin Screens/BigScreen.png
 /importer:TextureImporter

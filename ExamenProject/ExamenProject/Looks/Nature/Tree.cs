@@ -24,7 +24,7 @@ namespace ExamenProject.Map.Nature
             ContentManager Content = ContentLoader.getInstance().contentM;
             setTexture(Content.Load<Texture2D>("Background/Tree"));
 
-            move = new Movement();
+            move = new Movement((int)position.X, (int)position.Y);
             moveAnimation = new Animatie(move, 3);
             SpriteSplitter.GetFramesFromTexture(moveAnimation.frames, texture.Width, texture.Height / 3 * 2, 4, 2); // 192x192
             moveAnimation.setFirst();

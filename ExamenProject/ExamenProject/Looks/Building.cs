@@ -25,20 +25,24 @@ namespace ExamenProject.Map
 
             if (type == "house")
             {
-                texture = Content.Load<Texture2D>($"Background/Buildings/{GameScreen.Color}/House"); // 128x192
+                texture = Content.Load<Texture2D>($"Background/Buildings/{GameScreen.color}/House"); // 128x192
                 hitboxRectangle = new Rectangle(rectangle.X + 10, rectangle.Y + 24, rectangle.Width - 20, rectangle.Height - 50);
             }
             else if (type == "tower")
             {
-                texture = Content.Load<Texture2D>($"Background/Buildings/{GameScreen.Color}/Tower"); // 128x256
+                texture = Content.Load<Texture2D>($"Background/Buildings/{GameScreen.color}/Tower"); // 128x256
                 hitboxRectangle = new Rectangle(rectangle.X + 7, rectangle.Y + 52, rectangle.Width - 14, rectangle.Height - 84);
             }
             else if (type == "castle")
             {
-                texture = Content.Load<Texture2D>($"Background/Buildings/{GameScreen.Color}/Castle"); // 320x256
+                texture = Content.Load<Texture2D>($"Background/Buildings/{GameScreen.color}/Castle"); // 320x256
                 hitboxRectangle = new Rectangle(rectangle.X + 16, rectangle.Y + 45, rectangle.Width - 32, rectangle.Height - 60);
             }
-
+            else if (type == "cave")
+            {
+                texture = Content.Load<Texture2D>($"Background/Buildings/Cave"); // 192x128
+                hitboxRectangle = new Rectangle(rectangle.X + 18, rectangle.Y + 5, rectangle.Width - 35, rectangle.Height - 30);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

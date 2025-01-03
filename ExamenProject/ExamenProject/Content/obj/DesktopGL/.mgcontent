@@ -8,6 +8,7 @@
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Blue/Castle.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Blue/House.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Blue/Tower.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Cave.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Purple/Castle.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Purple/House.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Background/Buildings/Purple/Tower.png</File>
@@ -25,6 +26,7 @@
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Heart.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/BackgroundFilter.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/BackgroundFilterGameOver.png</File>
+    <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/BackgroundFilterGameWon.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/BigScreen.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/Button.png</File>
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Screens/MainBackground.png</File>
@@ -33,6 +35,8 @@
     <File>C:/Users/matth/Bureaublad/Game Development/Monogame/ExamenProject/ExamenProject/Content/Warrior_Blue_Full.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

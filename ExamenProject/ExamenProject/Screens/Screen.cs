@@ -14,6 +14,7 @@ namespace ExamenProject.Screens
         IScreenState bugScreen;
         IScreenState gameScreen;
         IScreenState menuScreen;
+        IScreenState gameWonScreen;
         IScreenState gameOverScreen;
         IScreenState state;
         IScreenState previousState;
@@ -26,6 +27,7 @@ namespace ExamenProject.Screens
             bugScreen = new BugScreen(this);
             gameScreen = new GameScreen(this);
             menuScreen = new MenuScreen(this);
+            gameWonScreen = new GameWonScreen(this);
             gameOverScreen = new GameOverScreen(this);
             state = startScreen;
         }
@@ -60,6 +62,10 @@ namespace ExamenProject.Screens
         public IScreenState getMenuScreen()
         {
             return menuScreen;
+        }
+        public IScreenState getGameWonScreen()
+        {
+            return gameWonScreen;
         }
         public IScreenState getGameOverScreen()
         {

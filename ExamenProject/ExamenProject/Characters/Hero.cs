@@ -11,8 +11,9 @@ namespace ExamenProject.Characters
     internal class Hero : Character
     {
         private Texture2D heart;
+        public bool hit = false;
 
-        public Hero(Texture2D texture, Vector2 spawnPosition) : base(texture)
+        public Hero(Texture2D texture, Vector2 spawnPosition) : base(texture, spawnPosition)
         {
             ContentManager Content = ContentLoader.getInstance().contentM;
             heart = Content.Load<Texture2D>("Heart");
@@ -30,21 +31,32 @@ namespace ExamenProject.Characters
             offsetWeaponL.X = rectangle.Width / 4 - 40;
             offsetWeaponL.Y = rectangle.Height / 4 - 20;
 
+            move.posX = (int)(spawnPosition.X - offsetHitbox.X);
+            move.posY = (int)(spawnPosition.Y - offsetHitbox.Y);
+            position = new Vector2(move.posX, move.posY);
+
             positionFeet = new Vector2(move.posX + offsetFeet.X, move.posY + offsetFeet.Y);
             positionHitbox = new Vector2(move.posX + offsetHitbox.X, move.posY + offsetHitbox.Y);
             positionWeaponR = new Vector2(move.posX + offsetWeaponR.X, move.posY + offsetWeaponR.Y);
             positionWeaponL = new Vector2(move.posX + offsetWeaponL.X, move.posY + offsetWeaponL.Y);
 
-            move.posX = (int)(spawnPosition.X - offsetHitbox.X);
-            move.posY = (int)(spawnPosition.Y - offsetHitbox.Y);
-            position = new Vector2(move.posX, move.posY);
         }
+
+        public bool invincible = false;
 
         public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.F)) moveAnimation.Fighting();
+            if (hit) 
+            {
+                health--;
+                hit = false;
+                invincible = true;
+            }
             base.Update(gameTime);
         }
+
+        private int counterInv = 0;
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -54,7 +66,16 @@ namespace ExamenProject.Characters
             rectangleWeaponR = new Rectangle((int)positionWeaponR.X, (int)positionWeaponR.Y, rectangle.Width / 2 - 30, rectangle.Height / 2 + 15);
             rectangleWeaponL = new Rectangle((int)positionWeaponL.X, (int)positionWeaponL.Y, rectangle.Width / 2 - 30, rectangle.Height / 2 + 15);
 
-            base.Draw(spriteBatch);
+            if (counterInv / 30 == 0 || counterInv / 30 == 2 || counterInv / 30 == 4 || !invincible) base.Draw(spriteBatch);
+            if (invincible)
+            {
+                counterInv++;
+                if (counterInv == 180) 
+                {
+                    counterInv = 0;
+                    invincible = false; 
+                }
+            }
 
             for (int i = 0; i < health; i++)
             {

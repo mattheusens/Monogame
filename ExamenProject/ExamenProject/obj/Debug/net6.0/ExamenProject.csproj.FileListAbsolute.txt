@@ -52,3 +52,5 @@ C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Tree.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Screens\BackgroundFilterGameOver.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Heart.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Cave.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Screens\BackgroundFilterGameWon.xnb

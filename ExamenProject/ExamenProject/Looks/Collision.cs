@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using ExamenProject.Characters;
 using ExamenProject.Map.Nature;
+using ExamenProject.Characters.Enemies;
+using ExamenProject.Screens;
 
 namespace ExamenProject.Map
 {
@@ -39,8 +41,8 @@ namespace ExamenProject.Map
             {
                 CheckCollisionOnBlock(bls, chr); 
                 CheckCollisionOnBuilding(bds, chr); 
+                CheckCollisionOnTree(trs, chr);
             }
-            CheckCollisionOnTree(trs, hero);
 
             CheckCollisionOnEnemies(ens, hero);
             CheckCollisionOnHero(ens, hero);
@@ -74,6 +76,17 @@ namespace ExamenProject.Map
                 }
             }
         }
+        private static void CheckCollisionOnTree(List<Tree> trees, Character character)
+        {
+            for (int i = 0; i < trees.Count; i++)
+            {
+                if (CheckCollision(character.rectangleFeet, trees[i].hitboxRectangle))
+                {
+                    character.move.posX = character.posXBefore;
+                    character.move.posY = character.posYBefore;
+                }
+            }
+        }
 
         private static List<Enemy> hitEnemies = new();
         private static void CheckCollisionOnEnemies(List<Enemy> enemies, Hero hero)
@@ -97,6 +110,7 @@ namespace ExamenProject.Map
                     if (enemies[i].health <= 0)
                     {
                         enemies.RemoveAt(i);
+                        GameScreen.coins += 10;
                         i--;
                     }
                 }
@@ -108,32 +122,23 @@ namespace ExamenProject.Map
         {
             for (int i = 0; i < enemies.Count; i++)
             {
+                FightingEnemy enemy = enemies[0] as FightingEnemy;
+                if (enemy == null) continue;
+
                 bool collisionR = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponR) && enemies[i].move.lastMove == "right";
                 bool collisionL = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponL) && enemies[i].move.lastMove == "left";
 
                 if ((collisionR || collisionL) && !heroHit)
                 {
-                    enemies[i].counting = true;
+                    enemy.counting = true;
                     heroHit = true;
                     continue;
                 }
 
-                if (!enemies[i].moveAnimation.fighting && heroHit && !enemies[i].counting)
+                if (!enemies[i].moveAnimation.fighting && heroHit && !enemy.counting)
                 {
-                    if (heroHit) hero.health--;
+                    if (heroHit && !hero.invincible) hero.hit = true;
                     heroHit = false;
-                }
-            }
-        }
-
-        private static void CheckCollisionOnTree(List<Tree> trees, Hero hero)
-        {
-            for (int i = 0; i < trees.Count; i++)
-            {
-                if (CheckCollision(hero.rectangleFeet, trees[i].hitboxRectangle))
-                {
-                    hero.move.posX = hero.posXBefore;
-                    hero.move.posY = hero.posYBefore;
                 }
             }
         }

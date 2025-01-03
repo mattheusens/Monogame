@@ -34,9 +34,11 @@ namespace ExamenProject.Maps
             bds.Add(new Building(new Rectangle(590, 20, 320, 256), "castle"));
             bds.Add(new Building(new Rectangle(484, 20, 128, 256), "tower"));
             bds.Add(new Building(new Rectangle(888, 20, 128, 256), "tower"));
-            bds.Add(new Building(new Rectangle(279, 300, 128, 192), "house"));
             bds.Add(new Building(new Rectangle(686, 300, 128, 192), "house"));
             bds.Add(new Building(new Rectangle(1093, 300, 128, 192), "house"));
+            bds.Add(new Building(new Rectangle(686, 550, 128, 192), "house"));
+            bds.Add(new Building(new Rectangle(1093, 550, 128, 192), "house"));
+            bds.Add(new Building(new Rectangle(170, 150, 192, 128), "cave"));
         }
         private static void CreateTrees(List<Tree> trs)
         {

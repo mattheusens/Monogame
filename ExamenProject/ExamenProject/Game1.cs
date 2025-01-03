@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using ExamenProject.Loaders;
 using ExamenProject.Screens;
+using System.Diagnostics;
 
 namespace ExamenProject
 {

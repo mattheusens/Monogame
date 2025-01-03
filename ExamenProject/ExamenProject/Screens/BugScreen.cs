@@ -72,7 +72,11 @@ namespace ExamenProject.Screens
             returnButton.clicked = false;
             screen.setState(screen.getMenuScreen());
         }
-        public void goToEndScreen() 
+        public void goToGameWonScreen()
+        {
+            // Impossible
+        }
+        public void goToGameOverScreen()
         {
             // Impossible
         }

@@ -96,7 +96,11 @@ namespace ExamenProject.Screens
         {
             // Impossible
         }
-        public void goToEndScreen() 
+        public void goToGameWonScreen()
+        {
+            // Impossible
+        }
+        public void goToGameOverScreen() 
         { 
             // Impossible
         }
