@@ -19,7 +19,7 @@ namespace ExamenProject.Screens
 
         private bool menuPressed = false;
 
-        public static string color = "Blue";
+        public static string color = "Red";
 
         public static int coins = 0;
 
@@ -28,7 +28,7 @@ namespace ExamenProject.Screens
             this.screen = screen;
 
             ContentManager Content = ContentLoader.getInstance().contentM;
-            heroTexture = Content.Load<Texture2D>($"Warrior_{color}_Full"); 
+            heroTexture = Content.Load<Texture2D>($"Characters/{GameScreen.color}/Hero"); 
 
             hero = new Hero(heroTexture, new(750, 450));
             levels = new CurrentLevel(hero);
@@ -40,7 +40,7 @@ namespace ExamenProject.Screens
         {
             levels.getState().Update(gameTime);
 
-            if (coins >= 20) goToGameWonScreen();
+            if (coins >= 200) goToGameWonScreen();
 
             if (hero.health == 0) goToGameOverScreen();
 

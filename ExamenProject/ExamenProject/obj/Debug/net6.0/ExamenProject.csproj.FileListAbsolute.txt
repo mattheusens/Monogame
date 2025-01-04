@@ -28,7 +28,6 @@ C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Font.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Audio\MedievelBackground.ogg
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Audio\MedievelBackground.xnb
-C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Torch_Blue_Fixed_Full.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Grass.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Water.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Grass_Big.xnb
@@ -54,3 +53,11 @@ C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Heart.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Background\Buildings\Cave.xnb
 C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Screens\BackgroundFilterGameWon.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Characters\Blue\Hero.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Characters\Purple\Hero.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Characters\Red\Hero.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Characters\Yellow\Hero.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Characters\Blue\Enemy.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Characters\Purple\Enemy.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Characters\Red\Enemy.xnb
+C:\Users\matth\Bureaublad\Game Development\Monogame\ExamenProject\ExamenProject\bin\Debug\net6.0\Content\Characters\Yellow\Enemy.xnb

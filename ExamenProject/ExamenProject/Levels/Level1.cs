@@ -22,11 +22,11 @@ namespace ExamenProject.Levels
         }
         public void initEnemies()
         {
-            //enemies.Add(new CloseEnemy(enemyTexture, new(200, 180), 300, hero.move));
-            //enemies.Add(new DistanceEnemy(enemyTexture, new(200, 180), 600, hero.move));
-            //enemies.Add(new RandomEnemy(enemyTexture, new(200, 180), 900, false));
-            //enemies.Add(new RandomEnemy(enemyTexture, new(200, 180), 100, true));
-            enemies.Add(new FightingEnemy(enemyTexture, new(200, 180), 100, hero.move));
+            enemies.Add(new CloseEnemy(enemyTexture, new(200, 180), 300, hero.move));
+            enemies.Add(new DistanceEnemy(enemyTexture, new(200, 180), 600, hero.move));
+            enemies.Add(new RandomEnemy(enemyTexture, new(200, 180), 900, false));
+            enemies.Add(new RandomEnemy(enemyTexture, new(200, 180), 1200, true));
+            enemies.Add(new FightingEnemy(enemyTexture, new(200, 180), 1500, hero.move));
         }
         public override void Update(GameTime gameTime)
         {

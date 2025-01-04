@@ -126,11 +126,12 @@ namespace ExamenProject.Map
 
                 bool collisionR = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponR) && enemies[i].move.lastMove == "right";
                 bool collisionL = CheckCollision(hero.rectangleHitbox, enemies[i].rectangleWeaponL) && enemies[i].move.lastMove == "left";
-                bool collision = (collisionR || collisionL) && !heroHit;
+                bool collisionSecond = collisionR || collisionL;
+                bool collisionFirst = collisionSecond && !heroHit;
 
                 if (enemies[i] is FightingEnemy FE)
                 {
-                    if (collision)
+                    if (collisionFirst)
                     {
                         FE.counting = true;
                         heroHit = true;
@@ -138,7 +139,7 @@ namespace ExamenProject.Map
                     }
                     if (!FE.moveAnimation.fighting && heroHit && FE.counterReset && !hero.invincible)
                     {
-                        hero.hit = true;
+                        if (collisionSecond) hero.hit = true;
                         heroHit = false;
                         FE.counterReset = false;
                     }
@@ -147,7 +148,7 @@ namespace ExamenProject.Map
                 {
                     if (!RE.fighting) continue;
 
-                    if (collision)
+                    if (collisionFirst)
                     {
                         RE.counting = true;
                         heroHit = true;
@@ -155,7 +156,7 @@ namespace ExamenProject.Map
                     }
                     if (!RE.moveAnimation.fighting && heroHit && RE.counterReset && !hero.invincible)
                     {
-                        hero.hit = true;
+                        if(collisionSecond) hero.hit = true;
                         heroHit = false;
                         RE.counterReset = false;
                     }

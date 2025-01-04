@@ -32,7 +32,7 @@ namespace ExamenProject.Levels
 
             ContentManager Content = ContentLoader.getInstance().contentM;
 
-            enemyTexture = Content.Load<Texture2D>($"Torch_{GameScreen.color}_Fixed_Full");
+            enemyTexture = Content.Load<Texture2D>($"Characters/{GameScreen.color}/Enemy");
 
             hero = level.hero;
             enemies = level.enemies;
